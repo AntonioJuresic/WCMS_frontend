@@ -58,7 +58,7 @@
         est
         rutrum scelerisque. Mauris at lectus porttitor, efficitur dolor vel, rutrum sem. Ut vulputate placerat diam sed
         gravida.</figcaption>
-    
+
     <hr>
 
     <h1>Form</h1>
@@ -79,7 +79,7 @@
 
         <label>Upload file</label>
         <label for="file-upload" class="file-upload">📁 Upload file</label>
-        <input id="file-upload" type="file"/>
+        <input id="file-upload" type="file" />
 
         <br>
 
@@ -123,11 +123,50 @@
 
     <hr>
 
+    <h1>Tables</h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
     <h1>Containers</h1>
 
     <h2>flex-container flex-direction-row justify-content-space-around align-items-center</h2>
 
-    <div class="flex-container flex-direction-row justify-content-space-around align-items-center" style="background: silver; height: 600px;">
+    <div class="flex-container flex-direction-row justify-content-space-around align-items-center"
+        style="background: silver; height: 600px;">
         <div style="background-color: royalblue; width: 200px; height: 200px;">1</div>
         <div style="background-color: rebeccapurple; width: 200px; height: 400px;">2</div>
         <div style="background-color: palevioletred; width: 200px; height: 300px;">3</div>
@@ -136,7 +175,8 @@
 
     <h2>flex-container flex-direction-row flex-wrap-wrap justify-content-flex-end align-content-flex-end</h2>
 
-    <div class="flex-container flex-direction-row flex-wrap-wrap justify-content-flex-end align-content-flex-end" style="background: silver; height: 600px;">
+    <div class="flex-container flex-direction-row flex-wrap-wrap justify-content-flex-end align-content-flex-end"
+        style="background: silver; height: 600px;">
         <div style="background-color: royalblue; width: 200px; height: 375px;">1</div>
         <div style="background-color: rebeccapurple; width: 200px; height: 400px;">2</div>
         <div style="background-color: palevioletred; width: 200px; height: 300px;">3</div>
@@ -149,7 +189,8 @@
 
     <h2>flex-container flex-direction-column justify-content-space-between align-items-flex-end</h2>
 
-    <div class="flex-container flex-direction-column justify-content-space-between align-items-flex-end" style="height: 1000px; background-color: thistle;">
+    <div class="flex-container flex-direction-column justify-content-space-between align-items-flex-end"
+        style="height: 1000px; background-color: thistle;">
         <div style="background-color: royalblue; width: 400px; height: 200px;">1</div>
         <div style="background-color: rebeccapurple; width: 200px; height: 200px;">2</div>
         <div style="background-color: palevioletred; width: 300px; height: 200px;">3</div>
@@ -158,10 +199,12 @@
 
     <h2>flex-container flex-direction-column justify-content-space-between</h2>
 
-    <div class="flex-container flex-direction-column justify-content-space-between" style="height: 1000px; background-color: thistle;">
+    <div class="flex-container flex-direction-column justify-content-space-between"
+        style="height: 1000px; background-color: thistle;">
         <div style="background-color: royalblue; width: 400px; height: 200px;">1</div>
         <div style="background-color: rebeccapurple; width: 200px; height: 200px;">2</div>
-        <div class="align-self-flex-end" style="background-color: palevioletred; width: 300px; height: 200px;">3 class="align-self-flex-end"</div>
+        <div class="align-self-flex-end" style="background-color: palevioletred; width: 300px; height: 200px;">3
+            class="align-self-flex-end"</div>
         <div style="background-color: rosybrown; width: 100px; height: 200px;">4</div>
     </div>
 </body>

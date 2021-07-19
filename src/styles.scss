@@ -277,10 +277,32 @@ form {
         background-color: $green;
     }
 
-
     button.disabled {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    padding: 0px;
+    margin: 0px;
+    border: none;
+
+    thead {
+        tr {
+            border: none;
+
+            font-weight: bolder;
+            text-align: left;
+        }
+    }
+
+    tr {
+        border-top: 2px solid $gray;
+        padding: 0.8rem;
     }
 }
 
