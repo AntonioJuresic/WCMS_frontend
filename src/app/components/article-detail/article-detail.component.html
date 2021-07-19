@@ -1,1 +1,11 @@
-<p>article-detail works!</p>
+<div *ngIf=article>
+    <h2>{{article.title}}</h2>
+    <p>{{article.category_name}}</p>
+    <p>{{article.date_of_creation}}</p>
+    <p>{{article.user_username}}</p>
+    <p>{{article.content}}</p>
+</div>
+
+<div *ngIf=errorMessage>
+    <p>{{errorMessage}}</p>
+</div>
