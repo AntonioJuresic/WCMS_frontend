@@ -12,7 +12,7 @@ export class DataService {
 
     apiRoot = environment.apiRoot;
 
-    apiArticlesRoot = "/post";
+    apiPostRoot = "/post";
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,15 +20,6 @@ export class DataService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getArticles(): Observable<any> { return this.httpClient.get(this.apiRoot + this.apiArticlesRoot); }
-
-    getArticle(id: String): Observable<any> {
-        return this.httpClient.get(this.apiRoot + this.apiArticlesRoot + `/${id}`);
-        /*return this.httpClient.get(this.apiRoot + this.apiArticlesRoot + `/${id}`).pipe(
-            catchError((error: any) => {
-                console.log(error)
-                return error;
-            })
-        )*/
-    }
+    getPosts(): Observable<any> { return this.httpClient.get(this.apiRoot + this.apiPostRoot); }
+    getPost(id: String): Observable<any> { return this.httpClient.get(this.apiRoot + this.apiPostRoot + `/${id}`); }
 }

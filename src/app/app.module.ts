@@ -5,16 +5,16 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { StylingComponent } from "./styling/styling.component";
 import { HttpClientModule } from '@angular/common/http';
-import { ArticlesTestComponent } from './components/articles-test/articles-test.component';
-import { ArticleDetailComponent } from './components/article-detail/article-detail.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StylingComponent,
-    ArticlesTestComponent,
-    ArticleDetailComponent
+    PostDetailComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,

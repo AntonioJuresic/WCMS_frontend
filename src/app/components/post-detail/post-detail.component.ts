@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Article } from 'src/app/shared/models/article';
+import { Post } from 'src/app/shared/models/post';
 import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
-    selector: 'app-article-detail',
-    templateUrl: './article-detail.component.html',
-    styleUrls: ['./article-detail.component.scss']
+    selector: 'app-post-detail',
+    templateUrl: './post-detail.component.html',
+    styleUrls: ['./post-detail.component.scss']
 })
-export class ArticleDetailComponent implements OnInit {
-    
+export class PostDetailComponent implements OnInit {
+
     private routeSubscription: Subscription = new Subscription;
     id: String = new String;
 
-    article: Article = new Article;
+    post: Post = new Post;
     errorMessage: String = new String;
 
     constructor(
@@ -22,19 +22,21 @@ export class ArticleDetailComponent implements OnInit {
         private dataService: DataService
     ) { }
 
+    
+
     ngOnInit(): void {
         this.routeSubscription = this.route.params.subscribe(params => {
             this.id = params['id'];
-            this.getArticle(this.id);
+            this.getPost(this.id);
         })
     }
 
-    getArticle(id: String) {
-        this.dataService.getArticle(id)
+    getPost(id: String) {
+        this.dataService.getPost(id)
         .subscribe(
             (response) => {
-                this.article = response.data[0];
-                console.log(this.article);
+                this.post = response.data[0];
+                console.log(this.post);
             },
             (error) => {
                 console.error(error);
