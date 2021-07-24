@@ -1,3 +1,5 @@
+<button (click)="logout()">Logout</button>
+
 <div *ngFor="let p of posts;">
     <article>
         <h2><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h2>

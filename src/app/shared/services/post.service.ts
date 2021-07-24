@@ -17,7 +17,6 @@ export class PostService {
     getPosts() {
         this.dataService.getPosts()
             .subscribe((res: { status: number, description?: string, data: Post[] }) => {
-                console.log(res);
                 this.posts = res.data;
                 this.postsBehaviorSubject.next(this.posts);
             });

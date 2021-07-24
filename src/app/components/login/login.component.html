@@ -1,0 +1,33 @@
+<div style="margin: 0 auto; width:100%; max-width: 576px;">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Login</h2>
+
+        <label>Username:</label>
+        <input type="text" id="username" class="form-control" formControlName="username"
+            [ngClass]="{'is-invalid': ((username?.dirty || username?.touched) && username?.invalid)}">
+
+        <div *ngIf="(username?.dirty || username?.touched) && username?.invalid">
+            <p class="form-error-text">Username is empty</p>
+        </div>
+
+        <label>Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password"
+            [ngClass]="{'is-invalid': ((password?.dirty || password?.touched) && password?.invalid) }">
+        <div *ngIf="(password?.dirty || password?.touched) && password?.invalid">
+            <p class="form-error-text">Password is empty</p>
+        </div>
+
+        <div *ngIf="errorMessage">
+            <p class="form-error-text">{{errorMessage}}</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="outline-primary">Cancel</button>
+            <button type="submit" class="primary" [ngClass]="{'disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Login</button>
+        </div>
+
+        <p>Don't have an account? <span><a href="">Sing up!</a></span></p>
+    </form>
+
+</div>

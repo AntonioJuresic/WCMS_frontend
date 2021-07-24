@@ -3,10 +3,12 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { StylingComponent } from "./styling/styling.component";
 import { HttpClientModule } from '@angular/common/http';
+
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { StylingComponent } from "./styling/styling.component";
 import { PostsComponent } from './components/posts/posts.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { PostsComponent } from './components/posts/posts.component';
     AppComponent,
     StylingComponent,
     PostDetailComponent,
-    PostsComponent
+    PostsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

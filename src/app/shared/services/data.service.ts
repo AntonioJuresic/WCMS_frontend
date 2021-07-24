@@ -12,13 +12,21 @@ export class DataService {
 
     apiRoot = environment.apiRoot;
 
-    apiPostRoot = "/post";
+    apiPostRoot = '/post';
+    authenticationRoot = '/authentication';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
     constructor(private httpClient: HttpClient) { }
+
+    authenticateUser(username: String, password: String): Observable<any> {
+        return this.httpClient.post(this.apiRoot + this.authenticationRoot, {
+            username: username,
+            password: password,
+        });
+    }
 
     getPosts(): Observable<any> { return this.httpClient.get(this.apiRoot + this.apiPostRoot); }
     getPost(id: String): Observable<any> { return this.httpClient.get(this.apiRoot + this.apiPostRoot + `/${id}`); }
