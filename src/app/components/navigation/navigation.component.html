@@ -1,0 +1,9 @@
+<nav>
+    <div *ngIf="userIsLogged; else login">
+        <button class="outline-secondary" (click)="logout()">Logout</button>
+    </div>
+
+    <ng-template #login>
+        <a [routerLink]="['/login']">Login</a>
+    </ng-template>
+</nav>

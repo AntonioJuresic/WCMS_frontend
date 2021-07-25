@@ -4,11 +4,11 @@ import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
 
 @Component({
-    selector: 'app-posts',
-    templateUrl: './posts.component.html',
-    styleUrls: ['./posts.component.scss']
+    selector: 'app-administration-posts',
+    templateUrl: './administration-posts.component.html',
+    styleUrls: ['./administration-posts.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class AdministrationPostsComponent implements OnInit {
 
     posts: Post[] = [];
     postsBehaviourSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
@@ -26,4 +26,7 @@ export class PostsComponent implements OnInit {
             });
     }
 
+    deletePost(id: Number) {
+        this.postService.deletePost(id);
+    }
 }

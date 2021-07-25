@@ -1,10 +1,10 @@
 export class Post {
-    id?: string;
-    title?: string;
-    content?: string;
+    id?: Number;
+    title?: String;
+    content?: String;
     date_of_creation?: Date;
-    user_id?: number;
-    category_id?: number;
-    user_username?: string;
-    category_name?: string;
+    user_id?: Number;
+    category_id?: Number;
+    user_username?: String;
+    category_name?: String;
 }

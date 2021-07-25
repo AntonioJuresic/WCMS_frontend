@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/models/post';
 import { DataService } from 'src/app/shared/services/data.service';
+import { PostService } from 'src/app/shared/services/post.service';
 
 @Component({
     selector: 'app-post-detail',
@@ -12,17 +13,15 @@ import { DataService } from 'src/app/shared/services/data.service';
 export class PostDetailComponent implements OnInit {
 
     private routeSubscription: Subscription = new Subscription;
-    id: String = new String;
+    id: Number = new Number;
 
     post: Post = new Post;
     errorMessage: String = new String;
 
     constructor(
         private route: ActivatedRoute,
-        private dataService: DataService
+        private postService : PostService
     ) { }
-
-    
 
     ngOnInit(): void {
         this.routeSubscription = this.route.params.subscribe(params => {
@@ -31,16 +30,14 @@ export class PostDetailComponent implements OnInit {
         })
     }
 
-    getPost(id: String) {
-        this.dataService.getPost(id)
+    getPost(id: Number) {
+        this.postService.getPost(id)
         .subscribe(
             (response) => {
                 this.post = response.data[0];
                 console.log(this.post);
             },
             (error) => {
-                console.error(error);
-
                 this.errorMessage = error.error.message;
                 console.error(this.errorMessage);
             }

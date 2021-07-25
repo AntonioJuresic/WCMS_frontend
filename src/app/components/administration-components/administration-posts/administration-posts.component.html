@@ -1,0 +1,21 @@
+<h2>Posts</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let p of posts;">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>edit</td>
+            <td><button type="button" class="danger" (click)="deletePost(p.id!)">❌</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -10,6 +10,7 @@ import { DataService } from './data.service';
 export class AuthenticationService {
 
     private user?: User;
+    private token?: String;
 
     public authenticationChangeSubject: Subject<boolean> = new Subject<boolean>();
     public authenticationErrorSubject: Subject<string> = new Subject<string>();
@@ -25,8 +26,10 @@ export class AuthenticationService {
             .subscribe(
                 (response) => {
                     this.user = response.data;
+                    this.token = response.token;
                     localStorage.setItem('user', JSON.stringify(this.user));
-                    
+                    localStorage.setItem('token', JSON.stringify(this.token));
+
                     this.authenticationChangeSubject.next(true);
                     this.router.navigate(['/']);
                 },
@@ -39,19 +42,26 @@ export class AuthenticationService {
         this.user = JSON.parse(localStorage.getItem('user') || 'null') as User;
     }
 
+    getTokenFromMemory() {
+        return JSON.parse(localStorage.getItem('token') || 'null') as string;
+    }
+
     logoutUser() {
-            this.user = JSON.parse('null')
-            localStorage.removeItem('user');
-    
-            this.authenticationChangeSubject.next(false);
-            this.router.navigate(['']);
-        
+        this.user = JSON.parse('null');
+        localStorage.removeItem('user');
+
+        this.token = JSON.parse('null');
+        localStorage.removeItem('token');
+
+        this.authenticationChangeSubject.next(false);
+        this.router.navigate(['']);
+
     }
 
     isUserAuthenticated() {
         this.getUserFromMemory();
 
-        if(this.user) {
+        if (this.user) {
             return true;
         } else {
             return false;

@@ -18,6 +18,7 @@ $blue: rgb(20, 160, 230);
 $blue-dark: rgb(16, 128, 184);
 
 $gray: rgb(130, 130, 130);
+$gray-dark: rgb(65, 65, 65);
 $black: rgb(20, 20, 20);
 $white: rgb(255, 255, 255);
 
@@ -172,115 +173,139 @@ form {
         border-radius: 5px;
         padding: 0.512rem;
     }
+}
 
-    button {
-        margin: 0.512rem;
-        border-width: 2px;
-        border-style: solid;
-        border-radius: 5px;
-        padding: 0.512rem;
-    }
+button {
+    margin: 0.512rem;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 0.512rem;
+}
 
-    button.primary {
-        border-color: $blue;
-        color: $white;
-        background-color: $blue;
-    }
+button.primary {
+    border-color: $blue;
+    color: $white;
+    background-color: $blue;
+}
 
-    button.primary:hover {
-        border-color: $blue-dark;
-        color: $white;
-        background-color: $blue-dark;
-    }
+button.primary:hover {
+    border-color: $blue-dark;
+    color: $white;
+    background-color: $blue-dark;
+}
 
-    button.outline-primary {
-        border-color: $blue;
-        color: $blue;
-        background-color: $white;
-    }
+button.outline-primary {
+    border-color: $blue;
+    color: $blue;
+    background-color: $white;
+}
 
-    button.outline-primary:hover {
-        border-color: $blue;
-        color: $white;
-        background-color: $blue;
-    }
+button.outline-primary:hover {
+    border-color: $blue;
+    color: $white;
+    background-color: $blue;
+}
 
-    button.danger {
-        border-color: $red;
-        color: $white;
-        background-color: $red;
-    }
+button.secondary {
+    border-color: $gray;
+    color: $white;
+    background-color: $gray;
+}
 
-    button.danger:hover {
-        border-color: $red-dark;
-        color: $white;
-        background-color: $red-dark;
-    }
+button.secondary:hover {
+    border-color: $gray-dark;
+    color: $white;
+    background-color: $gray-dark;
+}
 
-    button.outline-danger {
-        border-color: $red;
-        color: $red;
-        background-color: $white;
-    }
+button.outline-secondary {
+    border-color: $gray;
+    color: $gray;
+    background-color: $white;
+}
 
-    button.outline-danger:hover {
-        border-color: $red;
-        color: $white;
-        background-color: $red;
-    }
+button.outline-secondary:hover {
+    border-color: $gray;
+    color: $white;
+    background-color: $gray;
+}
 
-    button.warning {
-        border-color: $orange;
-        color: $white;
-        background-color: $orange;
-    }
+button.danger {
+    border-color: $red;
+    color: $white;
+    background-color: $red;
+}
 
-    button.warning:hover {
-        border-color: $orange-dark;
-        color: $white;
-        background-color: $orange-dark;
-    }
+button.danger:hover {
+    border-color: $red-dark;
+    color: $white;
+    background-color: $red-dark;
+}
 
-    button.outline-warning {
-        border-color: $orange;
-        color: $orange;
-        background-color: $white;
-    }
+button.outline-danger {
+    border-color: $red;
+    color: $red;
+    background-color: $white;
+}
 
-    button.outline-warning:hover {
-        border-color: $orange;
-        color: $white;
-        background-color: $orange;
-    }
+button.outline-danger:hover {
+    border-color: $red;
+    color: $white;
+    background-color: $red;
+}
 
-    button.success {
-        border-color: $green;
-        color: $white;
-        background-color: $green;
-    }
+button.warning {
+    border-color: $orange;
+    color: $white;
+    background-color: $orange;
+}
 
-    button.success:hover {
-        border-color: $green-dark;
-        color: $white;
-        background-color: $green-dark;
-    }
+button.warning:hover {
+    border-color: $orange-dark;
+    color: $white;
+    background-color: $orange-dark;
+}
 
-    button.outline-success {
-        border-color: $green;
-        color: $green;
-        background-color: $white;
-    }
+button.outline-warning {
+    border-color: $orange;
+    color: $orange;
+    background-color: $white;
+}
 
-    button.outline-success:hover {
-        border-color: $green;
-        color: $white;
-        background-color: $green;
-    }
+button.outline-warning:hover {
+    border-color: $orange;
+    color: $white;
+    background-color: $orange;
+}
 
-    button.disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+button.success {
+    border-color: $green;
+    color: $white;
+    background-color: $green;
+}
+
+button.success:hover {
+    border-color: $green-dark;
+    color: $white;
+    background-color: $green-dark;
+}
+
+button.outline-success {
+    border-color: $green;
+    color: $green;
+    background-color: $white;
+}
+
+button.outline-success:hover {
+    border-color: $green;
+    color: $white;
+    background-color: $green;
+}
+
+button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 table {
@@ -295,14 +320,18 @@ table {
         tr {
             border: none;
 
-            font-weight: bolder;
-            text-align: left;
+            th {
+                font-weight: 800;
+                text-align: left;
+            }
         }
     }
 
-    tr {
-        border-top: 2px solid $gray;
-        padding: 0.8rem;
+    tbody {
+        tr {
+            border-top: 2px solid $gray;
+            padding: 0.8rem;
+        }
     }
 }
 
