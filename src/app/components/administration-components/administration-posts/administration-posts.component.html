@@ -1,21 +1,38 @@
 <h2>Posts</h2>
 
+<div>
+    <button type="button" class="btn btn-success">
+        <a [routerLink]="['/p/editor']">New post</a>
+    </button>
+</div>
+
+<div>
+    <label>Filter post by title:</label>
+    <input type="text" [(ngModel)]="QueryName">
+</div>
+
 <table>
     <thead>
         <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>edit</th>
-            <th>delete</th>
+            <th style="width: fit-content;">id</th>
+            <th style="width: 100%;">title</th>
+            <th style="width: fit-content;">edit</th>
+            <th style="width: fit-content;">delete</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let p of posts;">
-            <td>{{p.id}}</td>
-            <td>{{p.title}}</td>
-            <td>edit</td>
-            <td><button type="button" class="danger" (click)="deletePost(p.id!)">❌</button></td>
+        <tr *ngFor="let p of posts | filterByString: 'title' : QueryName;">
+            <td><a [routerLink]="['/p/', p.id]">{{p.id}}</a></td>
+            <td><a [routerLink]="['/p/', p.id]">{{p.title}}</a></td>
+            <td>
+                <button type="button" class="btn btn-warning btn-no-margin">
+                    <a [routerLink]="['/p/editor/', p.id]">Edit</a>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deletePost(p.id!)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

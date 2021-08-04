@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     errorMessage: String = new String;
 
     constructor(
-        private formBuilder: FormBuilder,
         private authorizationGuardService : AuthorizationGuardService,
         private authenticationService : AuthenticationService
     ) { }

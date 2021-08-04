@@ -1,0 +1,55 @@
+<div style="margin: 0 auto; width:100%; max-width: 576px;">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Login</h2>
+
+        <label>Title:</label>
+        <input type="text" id="title" class="form-control" formControlName="title"
+            [ngClass]="{'is-invalid': ((title?.dirty || title?.touched) && title?.invalid)}">
+
+        <div *ngIf="(title?.dirty || title?.touched) && title?.invalid">
+            <p class="form-error-text">Title is empty</p>
+        </div>
+
+        <label>Content:</label>
+        <textarea cols="30" rows="10" id="content" class="form-control" formControlName="content"
+            [ngClass]="{'is-invalid': ((content?.dirty || content?.touched) && content?.invalid)}"></textarea>
+
+        <div *ngIf="(content?.dirty || content?.touched) && content?.invalid">
+            <p class="form-error-text">Content is empty</p>
+        </div>
+
+        <label>Date of creation:</label>
+        <input type="date" id="date_of_creation" class="form-control" formControlName="date_of_creation"
+            [ngClass]="{'is-invalid': ((date_of_creation?.dirty || date_of_creation?.touched) && date_of_creation?.invalid)}">
+
+        <div *ngIf="(date_of_creation?.dirty || date_of_creation?.touched) && date_of_creation?.invalid">
+            <p class="form-error-text">Date of creation is empty</p>
+        </div>
+
+        <label>User:</label>
+        <input type="text" id="user_id" class="form-control" formControlName="user_id"
+            [ngClass]="{'is-invalid': ((user_id?.dirty || user_id?.touched) && user_id?.invalid)}">
+
+        <div *ngIf="(user_id?.dirty || user_id?.touched) && user_id?.invalid">
+            <p class="form-error-text">user_id is empty</p>
+        </div>
+
+        <label>Category:</label>
+        <input type="text" id="category_id" class="form-control" formControlName="category_id"
+            [ngClass]="{'is-invalid': ((category_id?.dirty || category_id?.touched) && category_id?.invalid)}">
+
+        <div *ngIf="(category_id?.dirty || category_id?.touched) && category_id?.invalid">
+            <p class="form-error-text">category_id is empty</p>
+        </div>
+
+        <div *ngIf="errorMessage">
+            <p class="form-error-text">{{errorMessage}}</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Post</button>
+        </div>
+    </form>
+
+</div>

@@ -22,8 +22,8 @@
         </div>
 
         <div class="flex-container flex-direction-row justify-content-flex-end">
-            <button type="button" class="outline-primary">Cancel</button>
-            <button type="submit" class="primary" [ngClass]="{'disabled' : !formGroup.valid }"
+            <button type="button" class="btn btn-outline-primary">Cancel</button>
+            <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Login</button>
         </div>
 

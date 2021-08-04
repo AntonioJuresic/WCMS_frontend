@@ -22,9 +22,7 @@ export class CategoriesComponent implements OnInit {
         this.categoriesBehaviourSubject = this.categoryService.getCategories();
         this.categoriesSubscription = this.categoriesBehaviourSubject
             .subscribe(res => {
-                console.log(res);
                 this.categories = res;
-                console.log(this.categories);
             });
     }
 

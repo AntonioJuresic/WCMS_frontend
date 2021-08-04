@@ -39,8 +39,8 @@ export class CategoryService {
 
     }
 
-    putCategory(updatedCategory: Category) {
-        this.dataService.putCategory(updatedCategory)
+    putCategory(id: Number, updatedCategory: Category) {
+        this.dataService.putCategory(id, updatedCategory)
             .subscribe((res: { status: Number, description?: String, data: Category }) => {
                 this.categories.push(res.data);
                 this.categoriesBehaviorSubject.next(this.categories);

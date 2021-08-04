@@ -10,6 +10,8 @@ import { PostService } from 'src/app/shared/services/post.service';
 })
 export class AdministrationPostsComponent implements OnInit {
 
+    QueryName: string = '';
+
     posts: Post[] = [];
     postsBehaviourSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
     postsSubscription: Subscription = new Subscription;

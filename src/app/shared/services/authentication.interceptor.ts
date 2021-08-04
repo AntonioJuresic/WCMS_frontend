@@ -15,7 +15,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        console.log(this.authenticationService.getTokenFromMemory());
         const token = this.authenticationService.getTokenFromMemory();
 
         if (token) {

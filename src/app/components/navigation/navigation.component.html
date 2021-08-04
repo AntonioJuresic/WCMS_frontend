@@ -1,9 +1,19 @@
 <nav>
-    <div *ngIf="userIsLogged; else login">
-        <button class="outline-secondary" (click)="logout()">Logout</button>
+    <div *ngIf="userIsLogged;">
+        <a [routerLink]="['/p/editor']">
+            <button class="btn btn-secondary">New post</button>
+        </a>
+
+        <a [routerLink]="['/administration']">
+            <button class="btn btn-secondary">Administration</button>
+        </a>
+
+        <button class="btn btn-outline-secondary" (click)="logout()">Logout</button>
     </div>
 
-    <ng-template #login>
-        <a [routerLink]="['/login']">Login</a>
-    </ng-template>
+    <div *ngIf="!userIsLogged;">
+        <a [routerLink]="['/login']">
+            <button class="btn btn-outline-secondary">Login</button>
+        </a>
+    </div>
 </nav>

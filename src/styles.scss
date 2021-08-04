@@ -17,8 +17,11 @@ $green-dark: rgb(80, 160, 48);
 $blue: rgb(20, 160, 230);
 $blue-dark: rgb(16, 128, 184);
 
+$lightgray: rgb(200, 200, 200);
+$lightgray-dark: rgb(100, 100, 100);
 $gray: rgb(130, 130, 130);
 $gray-dark: rgb(65, 65, 65);
+
 $black: rgb(20, 20, 20);
 $white: rgb(255, 255, 255);
 
@@ -85,6 +88,16 @@ p {
     font-size: 1rem;
 }
 
+a {
+    text-decoration: none;
+    color: $blue;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: $blue-dark;
+}
+
 blockquote {
     margin: 1rem;
     padding: 0.8rem;
@@ -102,80 +115,93 @@ small {
 form {
     padding: 0.8rem;
     font-size: 1rem;
-
-    label {
-        width: 100%;
-        display: inline-block;
-    }
-
-    input {
-        width: 100%;
-
-        margin: 0.512rem 0;
-        border: 1px solid $gray;
-        border-radius: 5px;
-        padding: 0.512rem;
-    }
-
-    textarea:focus,
-    input:focus,
-    select:focus {
-        outline: none;
-        box-shadow: 0 0 0 1px $black;
-    }
-
-    .is-invalid {
-        border-color: $red;
-        box-shadow: 0 0 0 1px $red;
-    }
-
-    .is-invalid:focus {
-        border-color: $red;
-        box-shadow: 0 0 0 1px $red;
-    }
-
-    .form-error-text {
-        color: $red;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    .file-upload {
-        display: inline-block;
-
-        width: 100%;
-
-        border: 1px solid $gray;
-        border-radius: 5px;
-        padding: 0.512rem;
-
-        cursor: pointer;
-    }
-
-    textarea {
-        min-width: 100%;
-        width: 100%;
-        max-width: 100%;
-
-        border: 1px solid $gray;
-        border-radius: 5px;
-
-        padding: 0.512rem;
-    }
-
-    select {
-        width: 100%;
-
-        margin: 0.512rem 0;
-        border: 1px solid $gray;
-        border-radius: 5px;
-        padding: 0.512rem;
-    }
+}
+label {
+    width: 100%;
+    display: inline-block;
 }
 
-button {
+input {
+    width: 100%;
+
+    margin: 0.512rem 0;
+    border: 1px solid $gray;
+    border-radius: 5px;
+    padding: 0.512rem;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px $black;
+}
+
+.is-invalid {
+    border-color: $red;
+    box-shadow: 0 0 0 1px $red;
+}
+
+.is-invalid:focus {
+    border-color: $red;
+    box-shadow: 0 0 0 1px $red;
+}
+
+.form-error-text {
+    color: $red;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-upload {
+    display: inline-block;
+
+    width: 100%;
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+    padding: 0.512rem;
+
+    cursor: pointer;
+}
+
+textarea {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    padding: 0.512rem;
+}
+
+select {
+    width: 100%;
+
+    margin: 0.512rem 0;
+    border: 1px solid $gray;
+    border-radius: 5px;
+    padding: 0.512rem;
+}
+
+button a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.btn {
     margin: 0.512rem;
     border-width: 2px;
     border-style: solid;
@@ -183,127 +209,131 @@ button {
     padding: 0.512rem;
 }
 
-button.primary {
+.btn-no-margin {
+    margin: 0rem;
+}
+
+.btn-primary {
     border-color: $blue;
     color: $white;
     background-color: $blue;
 }
 
-button.primary:hover {
+.btn-primary:hover {
     border-color: $blue-dark;
     color: $white;
     background-color: $blue-dark;
 }
 
-button.outline-primary {
+.btn-outline-primary {
     border-color: $blue;
     color: $blue;
     background-color: $white;
 }
 
-button.outline-primary:hover {
+.btn-outline-primary:hover {
     border-color: $blue;
     color: $white;
     background-color: $blue;
 }
 
-button.secondary {
+.btn-secondary {
     border-color: $gray;
     color: $white;
     background-color: $gray;
 }
 
-button.secondary:hover {
+.btn-secondary:hover {
     border-color: $gray-dark;
     color: $white;
     background-color: $gray-dark;
 }
 
-button.outline-secondary {
+.btn-outline-secondary {
     border-color: $gray;
     color: $gray;
     background-color: $white;
 }
 
-button.outline-secondary:hover {
+.btn-outline-secondary:hover {
     border-color: $gray;
     color: $white;
     background-color: $gray;
 }
 
-button.danger {
+.btn-danger {
     border-color: $red;
     color: $white;
     background-color: $red;
 }
 
-button.danger:hover {
+.btn-danger:hover {
     border-color: $red-dark;
     color: $white;
     background-color: $red-dark;
 }
 
-button.outline-danger {
+.btn-outline-danger {
     border-color: $red;
     color: $red;
     background-color: $white;
 }
 
-button.outline-danger:hover {
+.btn-outline-danger:hover {
     border-color: $red;
     color: $white;
     background-color: $red;
 }
 
-button.warning {
+.btn-warning {
     border-color: $orange;
     color: $white;
     background-color: $orange;
 }
 
-button.warning:hover {
+.btn-warning:hover {
     border-color: $orange-dark;
     color: $white;
     background-color: $orange-dark;
 }
 
-button.outline-warning {
+.btn-outline-warning {
     border-color: $orange;
     color: $orange;
     background-color: $white;
 }
 
-button.outline-warning:hover {
+.btn-outline-warning:hover {
     border-color: $orange;
     color: $white;
     background-color: $orange;
 }
 
-button.success {
+.btn-success {
     border-color: $green;
     color: $white;
     background-color: $green;
 }
 
-button.success:hover {
+.btn-success:hover {
     border-color: $green-dark;
     color: $white;
     background-color: $green-dark;
 }
 
-button.outline-success {
+.btn-outline-success {
     border-color: $green;
     color: $green;
     background-color: $white;
 }
 
-button.outline-success:hover {
+.btn-outline-success:hover {
     border-color: $green;
     color: $white;
     background-color: $green;
 }
 
-button.disabled {
+.btn-disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }

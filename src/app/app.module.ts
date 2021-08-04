@@ -16,6 +16,9 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { AdministrationPostsComponent } from './components/administration-components/administration-posts/administration-posts.component';
 import { AdministrationCategoriesComponent } from './components/administration-components/administration-categories/administration-categories.component';
 import { AuthenticationInterceptor } from "./shared/services/authentication.interceptor";
+import { EditorCategoryComponent } from './components/editors/editor-category/editor-category.component';
+import { EditorPostComponent } from './components/editors/editor-post/editor-post.component';
+import { FilterByStringPipe } from './shared/utilities/filter-by-string.pipe';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { AuthenticationInterceptor } from "./shared/services/authentication.inte
     MainPageComponent,
     CategoriesComponent,
     AdministrationPostsComponent,
-    AdministrationCategoriesComponent
+    AdministrationCategoriesComponent,
+    EditorCategoryComponent,
+    EditorPostComponent,
+    FilterByStringPipe
   ],
   imports: [
     BrowserModule,
