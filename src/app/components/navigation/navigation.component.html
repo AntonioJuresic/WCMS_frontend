@@ -12,6 +12,10 @@
     </div>
 
     <div *ngIf="!userIsLogged;">
+        <a [routerLink]="['/registration']">
+            <button class="btn btn-outline-secondary">Registration</button>
+        </a>
+
         <a [routerLink]="['/login']">
             <button class="btn btn-outline-secondary">Login</button>
         </a>

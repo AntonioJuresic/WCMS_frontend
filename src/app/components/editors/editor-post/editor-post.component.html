@@ -19,27 +19,27 @@
         </div>
 
         <label>Date of creation:</label>
-        <input type="date" id="date_of_creation" class="form-control" formControlName="date_of_creation"
-            [ngClass]="{'is-invalid': ((date_of_creation?.dirty || date_of_creation?.touched) && date_of_creation?.invalid)}">
+        <input type="date" id="dateOfCreation" class="form-control" formControlName="dateOfCreation"
+            [ngClass]="{'is-invalid': ((dateOfCreation?.dirty || dateOfCreation?.touched) && dateOfCreation?.invalid)}">
 
-        <div *ngIf="(date_of_creation?.dirty || date_of_creation?.touched) && date_of_creation?.invalid">
+        <div *ngIf="(dateOfCreation?.dirty || dateOfCreation?.touched) && dateOfCreation?.invalid">
             <p class="form-error-text">Date of creation is empty</p>
         </div>
 
         <label>User:</label>
-        <input type="text" id="user_id" class="form-control" formControlName="user_id"
-            [ngClass]="{'is-invalid': ((user_id?.dirty || user_id?.touched) && user_id?.invalid)}">
+        <input type="text" id="userId" class="form-control" formControlName="userId"
+            [ngClass]="{'is-invalid': ((userId?.dirty || userId?.touched) && userId?.invalid)}">
 
-        <div *ngIf="(user_id?.dirty || user_id?.touched) && user_id?.invalid">
-            <p class="form-error-text">user_id is empty</p>
+        <div *ngIf="(userId?.dirty || userId?.touched) && userId?.invalid">
+            <p class="form-error-text">userId is empty</p>
         </div>
 
         <label>Category:</label>
-        <input type="text" id="category_id" class="form-control" formControlName="category_id"
-            [ngClass]="{'is-invalid': ((category_id?.dirty || category_id?.touched) && category_id?.invalid)}">
+        <input type="text" id="categoryId" class="form-control" formControlName="categoryId"
+            [ngClass]="{'is-invalid': ((categoryId?.dirty || categoryId?.touched) && categoryId?.invalid)}">
 
-        <div *ngIf="(category_id?.dirty || category_id?.touched) && category_id?.invalid">
-            <p class="form-error-text">category_id is empty</p>
+        <div *ngIf="(categoryId?.dirty || categoryId?.touched) && categoryId?.invalid">
+            <p class="form-error-text">categoryId is empty</p>
         </div>
 
         <div *ngIf="errorMessage">

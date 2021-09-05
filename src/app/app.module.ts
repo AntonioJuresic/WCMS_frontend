@@ -19,6 +19,7 @@ import { AuthenticationInterceptor } from "./shared/services/authentication.inte
 import { EditorCategoryComponent } from './components/editors/editor-category/editor-category.component';
 import { EditorPostComponent } from './components/editors/editor-post/editor-post.component';
 import { FilterByStringPipe } from './shared/utilities/filter-by-string.pipe';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FilterByStringPipe } from './shared/utilities/filter-by-string.pipe';
     AdministrationCategoriesComponent,
     EditorCategoryComponent,
     EditorPostComponent,
-    FilterByStringPipe
+    FilterByStringPipe,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

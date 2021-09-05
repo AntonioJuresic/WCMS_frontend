@@ -6,7 +6,10 @@
 1rem/16.00px	A Visual Type Scale
 0.8rem/12.80px	A Visual Type Scale
 0.64rem/10.24px	A Visual Type Scale
-0.512rem/8.19px	A Visual Type Scale*/
+0.512rem/8.19px	A Visual Type Scale
+0.41rem/6.55px	A Visual Type Scale
+0.328rem/5.24px	A Visual Type Scale
+*/
 
 $red: rgb(250, 50, 50);
 $red-dark: rgb(200, 40, 40);
@@ -151,6 +154,10 @@ select:focus {
     color: $red;
 }
 
+.form-success-text {
+    color: $green;
+}
+
 input[type="file"] {
     display: none;
 }
@@ -206,7 +213,7 @@ button:hover {
     border-width: 2px;
     border-style: solid;
     border-radius: 5px;
-    padding: 0.512rem;
+    padding: 0.41rem 0.512rem;
 }
 
 .btn-no-margin {

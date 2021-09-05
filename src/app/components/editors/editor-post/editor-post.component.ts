@@ -16,9 +16,9 @@ export class EditorPostComponent implements OnInit {
     public formGroup: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         content: new FormControl('', Validators.required),
-        date_of_creation: new FormControl('', Validators.required),
-        user_id: new FormControl('', Validators.required),
-        category_id: new FormControl('', Validators.required)
+        dateOfCreation: new FormControl('', Validators.required),
+        userId: new FormControl('', Validators.required),
+        categoryId: new FormControl('', Validators.required)
     });
 
     errorMessage: String = new String;
@@ -40,9 +40,9 @@ export class EditorPostComponent implements OnInit {
 
     get title() { return this.formGroup.get('title'); }
     get content() { return this.formGroup.get('content'); }
-    get date_of_creation() { return this.formGroup.get('date_of_creation'); }
-    get user_id() { return this.formGroup.get('user_id'); }
-    get category_id() { return this.formGroup.get('category_id'); }
+    get dateOfCreation() { return this.formGroup.get('dateOfCreation'); }
+    get userId() { return this.formGroup.get('userId'); }
+    get categoryId() { return this.formGroup.get('categoryId'); }
 
     onSubmit() {
         console.log(this.id);
@@ -60,13 +60,13 @@ export class EditorPostComponent implements OnInit {
                     this.formGroup.setValue({
                         title: response.data[0].title, 
                         content: response.data[0].content,
-                        date_of_creation: response.data[0].date_of_creation,
-                        user_id: response.data[0].user_id,
-                        category_id: response.data[0].category_id,
+                        dateOfCreation: response.data[0].dateOfCreation,
+                        userId: response.data[0].userId,
+                        categoryId: response.data[0].categoryId,
                       });
                 },
                 (error) => {
-                    //this.errorMessage = error.error.message;
+                    this.errorMessage = error.error.message;
                 }
             )
     }

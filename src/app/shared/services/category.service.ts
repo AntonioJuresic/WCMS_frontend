@@ -16,12 +16,12 @@ export class CategoryService {
 
     getCategories() {
         this.dataService.getCategories()
-            .subscribe((res: { status: Number, description?: String, data: Category[] }) => {
-                this.categories = res.data;
+            .subscribe((res: { status: Number, selectedCategories: Category[] }) => {
+                this.categories = res.selectedCategories;
                 this.categoriesBehaviorSubject.next(this.categories);
             });
 
-        return this.categoriesBehaviorSubject
+        return this.categoriesBehaviorSubject;
     }
 
     getCategory(id: Number) {
@@ -30,23 +30,23 @@ export class CategoryService {
 
     postCategory(newCategory: Category) {
         this.dataService.postCategory(newCategory)
-            .subscribe((res: { status: Number, description?: String, data: Category }) => {
-                this.categories.push(res.data);
+            .subscribe((res: { status: Number, selectedCategory: Category }) => {
+                this.categories.push(res.selectedCategory);
                 this.categoriesBehaviorSubject.next(this.categories);
             });
 
-        return this.categoriesBehaviorSubject
+        return this.categoriesBehaviorSubject;
 
     }
 
     putCategory(id: Number, updatedCategory: Category) {
         this.dataService.putCategory(id, updatedCategory)
-            .subscribe((res: { status: Number, description?: String, data: Category }) => {
-                this.categories.push(res.data);
+            .subscribe((res: { status: Number, selectedCategory: Category }) => {
+                this.categories.push(res.selectedCategory);
                 this.categoriesBehaviorSubject.next(this.categories);
             });
 
-        return this.categoriesBehaviorSubject
+        return this.categoriesBehaviorSubject;
 
     }
 

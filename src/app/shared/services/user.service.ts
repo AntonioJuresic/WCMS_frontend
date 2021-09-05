@@ -15,11 +15,15 @@ export class UserService {
 
     getUsers() {
         this.dataService.getPosts()
-            .subscribe((res: { status: Number, description?: String, data: User[] }) => {
+            .subscribe((res: { status: Number, data: User[] }) => {
                 this.users = res.data;
                 this.usersBehaviorSubject.next(this.users);
             });
 
-        return this.usersBehaviorSubject
+        return this.usersBehaviorSubject;
+    }
+
+    postUser(newUser: User) {
+        return this.dataService.postUser(newUser);
     }
 }

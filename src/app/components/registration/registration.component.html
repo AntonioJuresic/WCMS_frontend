@@ -1,0 +1,60 @@
+<div style="margin: 0 auto; width:100%; max-width: 576px;">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Registration</h2>
+
+        <label>Email:</label>
+        <input type="text" id="email" class="form-control" formControlName="email"
+            [ngClass]="{'is-invalid': ((email?.dirty || email?.touched) && email?.invalid)}">
+
+        <div *ngIf="(email?.dirty || email?.touched) && f.email.errors?.required">
+            <p class="form-error-text">Email is required</p>
+        </div>
+
+        <div *ngIf="(email?.dirty || email?.touched) && f.email.errors?.email">
+            <p class="form-error-text">Email is not valid</p>
+        </div>
+
+        <label>Username:</label>
+        <input type="text" id="username" class="form-control" formControlName="username"
+            [ngClass]="{'is-invalid': ((username?.dirty || username?.touched) && username?.invalid)}">
+
+        <div *ngIf="(username?.dirty || username?.touched) && username?.invalid">
+            <p class="form-error-text">Username is required</p>
+        </div>
+
+        <label>Password</label>
+        <input type="password" id="password1" class="form-control" formControlName="password1"
+            [ngClass]="{'is-invalid': ((password1?.dirty || password1?.touched) && password1?.invalid) }">
+        <div *ngIf="(password1?.dirty || password1?.touched) && password1?.invalid">
+            <p class="form-error-text">Password is required</p>
+        </div>
+
+        <label>Please repeat the password</label>
+        <input type="password" id="password2" class="form-control" formControlName="password2"
+            [ngClass]="{'is-invalid': ((password2?.dirty || password2?.touched) && password2?.invalid) }">
+        <div *ngIf="(password2?.dirty || password2?.touched) && f.password2.errors?.required">
+            <p class="form-error-text">Please repeat the password</p>
+        </div>
+
+        <div *ngIf="(password2?.dirty || password2?.touched) && password1?.value != password2?.value">
+            <p class="form-error-text">Passwords don't match</p>
+        </div>
+
+        <div *ngIf="errorMessage">
+            <p class="form-error-text">{{errorMessage}}</p>
+        </div>
+        
+        <div *ngIf="successMessage">
+            <p class="form-success-text">{{successMessage}}</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="btn btn-outline-primary">Cancel</button>
+            <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Register</button>
+        </div>
+
+        <p>Already have an account? <span><a [routerLink]="['/login']">Log in!</a></span></p>
+    </form>
+
+</div>

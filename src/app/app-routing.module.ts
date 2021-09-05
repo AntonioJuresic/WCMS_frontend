@@ -5,6 +5,7 @@ import { EditorPostComponent } from './components/editors/editor-post/editor-pos
 import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { StylingComponent } from './styling/styling.component';
 
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
     { path: "p/:id", component: PostDetailComponent },
 
     { path: "login", component: LoginComponent },
+    { path: "registration", component: RegistrationComponent },
+
     { path: "administration", component: AdministrationComponent },
 
     { path: "styling", component: StylingComponent }

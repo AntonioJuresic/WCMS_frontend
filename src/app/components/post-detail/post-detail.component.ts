@@ -31,15 +31,13 @@ export class PostDetailComponent implements OnInit {
     getPost(id: Number) {
         this.postService.getPost(id)
             .subscribe(
-                (response) => {
-                    this.post = response.data[0];
-                    console.log(this.post);
+                (response: { selectedPost: Post[] }) => {
+                    this.post = response.selectedPost[0];
                 },
                 (error) => {
                     this.errorMessage = error.error.message;
-                    console.error(this.errorMessage);
                 }
-            )
+            );
     }
 
 }
