@@ -27,16 +27,20 @@
         </div>
 
         <label>User:</label>
-        <input type="text" id="userId" class="form-control" formControlName="userId"
+        <select id="userId" class="form-control" formControlName="userId"
             [ngClass]="{'is-invalid': ((userId?.dirty || userId?.touched) && userId?.invalid)}">
+            <option *ngFor="let user of users" [ngValue]="user.id">{{user.username}}</option>
+        </select>
 
         <div *ngIf="(userId?.dirty || userId?.touched) && userId?.invalid">
             <p class="form-error-text">userId is empty</p>
         </div>
 
         <label>Category:</label>
-        <input type="text" id="categoryId" class="form-control" formControlName="categoryId"
+        <select id="categoryId" class="form-control" formControlName="categoryId"
             [ngClass]="{'is-invalid': ((categoryId?.dirty || categoryId?.touched) && categoryId?.invalid)}">
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+        </select>
 
         <div *ngIf="(categoryId?.dirty || categoryId?.touched) && categoryId?.invalid">
             <p class="form-error-text">categoryId is empty</p>

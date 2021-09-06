@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Category } from 'src/app/shared/models/category';
+import { User } from 'src/app/shared/models/user';
 import { AuthorizationGuardService } from 'src/app/shared/services/authorization-guard.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { PostService } from 'src/app/shared/services/post.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-editor-post',
-  templateUrl: './editor-post.component.html',
-  styleUrls: ['./editor-post.component.scss']
+    selector: 'app-editor-post',
+    templateUrl: './editor-post.component.html',
+    styleUrls: ['./editor-post.component.scss']
 })
 export class EditorPostComponent implements OnInit {
 
@@ -23,19 +28,44 @@ export class EditorPostComponent implements OnInit {
 
     errorMessage: String = new String;
 
+    users: User[] = [];
+    usersBehaviourSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+    usersSubscription: Subscription = new Subscription;
+
+    categories: Category[] = [];
+    categoriesBehaviourSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+    categoriesSubscription: Subscription = new Subscription;
+
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
         private route: ActivatedRoute,
         private postService: PostService,
+        private userService: UserService,
+        private categoryService: CategoryService
     ) { }
 
     ngOnInit(): void {
         this.authorizationGuardService.needsAuthentication();
-        
+
         this.route.params.subscribe(params => {
             this.id = params['id'];
-            this.getPost(this.id);
+
+            if (this.id != undefined) {
+                this.getPost(this.id);
+            }
         });
+
+        this.categoriesBehaviourSubject = this.categoryService.getCategories();
+        this.categoriesSubscription = this.categoriesBehaviourSubject
+            .subscribe(res => {
+                this.categories = res;
+            });
+
+        this.usersBehaviourSubject = this.userService.getUsers();
+        this.usersSubscription = this.usersBehaviourSubject
+            .subscribe(res => {
+                this.users = res;
+            });
     }
 
     get title() { return this.formGroup.get('title'); }
@@ -45,10 +75,9 @@ export class EditorPostComponent implements OnInit {
     get categoryId() { return this.formGroup.get('categoryId'); }
 
     onSubmit() {
-        console.log(this.id);
-        if(this.id == undefined) {
+        if (this.id == undefined) {
             this.postService.postPost(this.formGroup.value);
-        } else if(this.id != undefined) {
+        } else if (this.id != undefined) {
             this.postService.putPost(this.id, this.formGroup.value);
         }
     }
@@ -58,12 +87,12 @@ export class EditorPostComponent implements OnInit {
             .subscribe(
                 (response) => {
                     this.formGroup.setValue({
-                        title: response.data[0].title, 
-                        content: response.data[0].content,
-                        dateOfCreation: response.data[0].dateOfCreation,
-                        userId: response.data[0].userId,
-                        categoryId: response.data[0].categoryId,
-                      });
+                        title: response.selectedPost[0].title,
+                        content: response.selectedPost[0].content,
+                        dateOfCreation: response.selectedPost[0].dateOfCreation,
+                        userId: response.selectedPost[0].userId,
+                        categoryId: response.selectedPost[0].categoryId,
+                    });
                 },
                 (error) => {
                     this.errorMessage = error.error.message;

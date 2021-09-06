@@ -67,6 +67,7 @@ export class RegistrationComponent implements OnInit {
                 },
                 (error) => {
                     console.log(error.error.error);
+                    this.successMessage = "";
                     this.errorMessage = error.error.error;
                 }
             );

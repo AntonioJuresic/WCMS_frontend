@@ -14,9 +14,9 @@ export class UserService {
     constructor(private dataService: DataService) { }
 
     getUsers() {
-        this.dataService.getPosts()
-            .subscribe((res: { status: Number, data: User[] }) => {
-                this.users = res.data;
+        this.dataService.getUsers()
+            .subscribe((res: { selectedUsers: User[] }) => {
+                this.users = res.selectedUsers;
                 this.usersBehaviorSubject.next(this.users);
             });
 
