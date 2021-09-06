@@ -89,7 +89,7 @@ export class EditorPostComponent implements OnInit {
                     this.formGroup.setValue({
                         title: response.selectedPost[0].title,
                         content: response.selectedPost[0].content,
-                        dateOfCreation: response.selectedPost[0].dateOfCreation,
+                        dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
                         userId: response.selectedPost[0].userId,
                         categoryId: response.selectedPost[0].categoryId,
                     });
@@ -98,6 +98,13 @@ export class EditorPostComponent implements OnInit {
                     this.errorMessage = error.error.message;
                 }
             )
+    }
+
+    ISOToJSDate(date: string) {
+        return new Date(date)
+            .toISOString()
+            .slice(0, 19)
+            .replace("Z", "");
     }
 
 }

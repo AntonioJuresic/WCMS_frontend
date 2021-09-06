@@ -19,7 +19,7 @@
         </div>
 
         <label>Date of creation:</label>
-        <input type="date" id="dateOfCreation" class="form-control" formControlName="dateOfCreation"
+        <input type="datetime-local" id="dateOfCreation" class="form-control" formControlName="dateOfCreation"
             [ngClass]="{'is-invalid': ((dateOfCreation?.dirty || dateOfCreation?.touched) && dateOfCreation?.invalid)}">
 
         <div *ngIf="(dateOfCreation?.dirty || dateOfCreation?.touched) && dateOfCreation?.invalid">
