@@ -27,7 +27,7 @@ export class PostService {
         return this.dataService.getPost(id);
     }
 
-    postPost(newPost: Post) {
+    postPost(newPost: FormData) {
         this.dataService.postPost(newPost)
             .subscribe((res: { status: Number, selectedPost: Post }) => {
                 this.posts.push(res.selectedPost);
@@ -39,7 +39,7 @@ export class PostService {
     }
 
 
-    putPost(id: Number, updatedPost: Post) {
+    putPost(id: Number, updatedPost: FormData) {
         this.dataService.putPost(id, updatedPost)
             .subscribe((res: { status: Number, selectedPost: Post }) => {
                 this.posts.push(res.selectedPost);
@@ -53,7 +53,6 @@ export class PostService {
     deletePost(id: Number) {
         this.dataService.deletePost(id)
             .subscribe(res => {
-                console.log(res);
                 this.posts = this.posts.filter(p => p.id != id);
                 this.postsBehaviorSubject.next(this.posts);
             });

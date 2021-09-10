@@ -17,9 +17,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class EditorPostComponent implements OnInit {
 
     id: Number = new Number;
+    imageForm: any;
 
     public formGroup: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
+        image: new FormControl(''),
         content: new FormControl('', Validators.required),
         dateOfCreation: new FormControl('', Validators.required),
         userId: new FormControl('', Validators.required),
@@ -69,16 +71,36 @@ export class EditorPostComponent implements OnInit {
     }
 
     get title() { return this.formGroup.get('title'); }
+    get image() { return this.formGroup.get('image'); }
     get content() { return this.formGroup.get('content'); }
     get dateOfCreation() { return this.formGroup.get('dateOfCreation'); }
     get userId() { return this.formGroup.get('userId'); }
     get categoryId() { return this.formGroup.get('categoryId'); }
 
+    onFileChange(event: any) {
+        if (event.target.files.length > 0) {
+            this.imageForm = event.target.files[0];
+            console.log(this.imageForm);
+        }
+    }
+
     onSubmit() {
+        let formData = new FormData();
+
+        formData.append("title", this.formGroup.get("title")!.value);
+        formData.append("image", this.imageForm);
+        formData.append("content", this.formGroup.get("content")!.value);
+        formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value);
+        formData.append("userId", this.formGroup.get("userId")!.value);
+        formData.append("categoryId", this.formGroup.get("categoryId")!.value);
+        
+        console.log(formData);
+        console.log(formData.toString());
+
         if (this.id == undefined) {
-            this.postService.postPost(this.formGroup.value);
+            this.postService.postPost(formData);
         } else if (this.id != undefined) {
-            this.postService.putPost(this.id, this.formGroup.value);
+            this.postService.putPost(this.id, formData);
         }
     }
 
@@ -88,6 +110,7 @@ export class EditorPostComponent implements OnInit {
                 (response) => {
                     this.formGroup.setValue({
                         title: response.selectedPost[0].title,
+                        //image: response.selectedPost[0].imagePath,
                         content: response.selectedPost[0].content,
                         dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
                         userId: response.selectedPost[0].userId,
