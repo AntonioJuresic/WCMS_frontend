@@ -90,12 +90,9 @@ export class EditorPostComponent implements OnInit {
         formData.append("title", this.formGroup.get("title")!.value);
         formData.append("image", this.imageForm);
         formData.append("content", this.formGroup.get("content")!.value);
-        formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value);
+        formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value + ":00.000Z");
         formData.append("userId", this.formGroup.get("userId")!.value);
         formData.append("categoryId", this.formGroup.get("categoryId")!.value);
-        
-        console.log(formData);
-        console.log(formData.toString());
 
         if (this.id == undefined) {
             this.postService.postPost(formData);
