@@ -1,6 +1,6 @@
 <div *ngFor="let p of posts;">
     <article>
         <h2><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h2>
-        <h3>{{p.dateOfCreation}}</h3>
+        <img [src]="p.imagePath" alt="postImage" id="postImage">
     </article>
 </div>

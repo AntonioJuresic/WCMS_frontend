@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from '@angular/router';
 import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-post-detail',
@@ -33,6 +34,7 @@ export class PostDetailComponent implements OnInit {
             .subscribe(
                 (response: { selectedPost: Post[] }) => {
                     this.post = response.selectedPost[0];
+                    this.post.imagePath = environment.SERVER_URL + this.post.imagePath?.substring(2);
                 },
                 (error) => {
                     this.errorMessage = error.error.message;

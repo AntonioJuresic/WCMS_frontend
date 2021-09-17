@@ -20,6 +20,7 @@ export class PostsComponent implements OnInit {
 
     ngOnInit(): void {
         this.postsBehaviourSubject = this.postService.getPosts();
+        
         this.postsSubscription = this.postsBehaviourSubject
             .subscribe(res => {
                 this.posts = res;

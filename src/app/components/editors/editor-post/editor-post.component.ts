@@ -90,7 +90,7 @@ export class EditorPostComponent implements OnInit {
         formData.append("title", this.formGroup.get("title")!.value);
         formData.append("image", this.imageForm);
         formData.append("content", this.formGroup.get("content")!.value);
-        formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value + ":00.000Z");
+        formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value);
         formData.append("userId", this.formGroup.get("userId")!.value);
         formData.append("categoryId", this.formGroup.get("categoryId")!.value);
 
@@ -108,6 +108,7 @@ export class EditorPostComponent implements OnInit {
                     this.formGroup.setValue({
                         title: response.selectedPost[0].title,
                         //image: response.selectedPost[0].imagePath,
+                        image: "",
                         content: response.selectedPost[0].content,
                         dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
                         userId: response.selectedPost[0].userId,
