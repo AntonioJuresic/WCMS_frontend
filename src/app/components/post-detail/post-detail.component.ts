@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from '@angular/router';
 import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -17,9 +18,9 @@ export class PostDetailComponent implements OnInit {
     errorMessage: String = new String;
 
     constructor(
-        private router: Router,
         private route: ActivatedRoute,
-        private postService: PostService
+        private postService: PostService,
+        private titleService: Title
     ) { }
 
     ngOnInit(): void {
@@ -35,6 +36,8 @@ export class PostDetailComponent implements OnInit {
                 (response: { selectedPost: Post[] }) => {
                     this.post = response.selectedPost[0];
                     this.post.imagePath = environment.SERVER_URL + this.post.imagePath?.substring(2);
+                    
+                    this.titleService.setTitle(response.selectedPost[0].title.valueOf());
                 },
                 (error) => {
                     this.errorMessage = error.error.message;
