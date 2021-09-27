@@ -1,5 +1,10 @@
 <h2>Categories</h2>
 
+<div>
+    <button type="button" class="btn btn-success"
+        (click)="openEditor()">New category</button>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -14,8 +19,19 @@
         <tr *ngFor="let c of categories;">
             <td>{{c.id}}</td>
             <td>{{c.name}}</td>
-            <td>edit</td>
-            <td><button type="button" class="btn btn-danger" (click)="deleteCategory(c.id!)">Delete</button></td>
+            <td>
+                <button type="button" class="btn btn-warning"
+                    (click)="openEditor(c)">Edit</button>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-danger"
+                    (click)="deleteCategory(c.id!)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>
+
+<div *ngIf="editMode">
+    <app-editor-category [category]="categoryForEdit" (editModeFalse)="closeEditor($event)"></app-editor-category>
+</div>

@@ -14,6 +14,9 @@ export class AdministrationCategoriesComponent implements OnInit {
     categoriesBehaviourSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
     categoriesSubscription: Subscription = new Subscription;
 
+    editMode : Boolean = false;
+    categoryForEdit? : Category;
+
     constructor(
         private categoryService: CategoryService
     ) { }
@@ -24,6 +27,15 @@ export class AdministrationCategoriesComponent implements OnInit {
             .subscribe(res => {
                 this.categories = res;
             });
+    }
+
+    openEditor(selectedCategory? : Category) {
+        this.editMode = true;
+        this.categoryForEdit = selectedCategory;
+    }
+
+    closeEditor(boolean: Boolean) {
+        this.editMode = boolean;
     }
 
     deleteCategory(id: Number) {

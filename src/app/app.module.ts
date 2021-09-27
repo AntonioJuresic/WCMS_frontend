@@ -20,6 +20,8 @@ import { EditorCategoryComponent } from './components/editors/editor-category/ed
 import { EditorPostComponent } from './components/editors/editor-post/editor-post.component';
 import { FilterByStringPipe } from './shared/utilities/filter-by-string.pipe';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ServerDownComponent } from './components/server-down/server-down.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { RegistrationComponent } from './components/registration/registration.co
     EditorCategoryComponent,
     EditorPostComponent,
     FilterByStringPipe,
-    RegistrationComponent
+    RegistrationComponent,
+    ServerDownComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

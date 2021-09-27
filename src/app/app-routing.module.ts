@@ -6,10 +6,12 @@ import { LoginComponent } from './components/login/login.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { ServerDownComponent } from './components/server-down/server-down.component';
 import { StylingComponent } from './styling/styling.component';
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
+
     { path: "p/editor", component: EditorPostComponent },
     { path: "p/editor/:id", component: EditorPostComponent },
     { path: "p/:id", component: PostDetailComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
 
     { path: "administration", component: AdministrationComponent },
 
-    { path: "styling", component: StylingComponent }
+    { path: "styling", component: StylingComponent },
+
+    { path: "serverdown", component: ServerDownComponent }
 ];
 
 @NgModule({

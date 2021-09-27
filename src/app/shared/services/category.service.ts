@@ -30,8 +30,8 @@ export class CategoryService {
 
     postCategory(newCategory: Category) {
         this.dataService.postCategory(newCategory)
-            .subscribe((res: { status: Number, selectedCategory: Category }) => {
-                this.categories.push(res.selectedCategory);
+            .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
+                this.categories.push(res.selectedCategory[0]);
                 this.categoriesBehaviorSubject.next(this.categories);
             });
 
@@ -41,8 +41,8 @@ export class CategoryService {
 
     putCategory(id: Number, updatedCategory: Category) {
         this.dataService.putCategory(id, updatedCategory)
-            .subscribe((res: { status: Number, selectedCategory: Category }) => {
-                this.categories.push(res.selectedCategory);
+            .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
+                this.categories[this.categories.findIndex(c => c.id === res.selectedCategory[0].id)] = res.selectedCategory[0];
                 this.categoriesBehaviorSubject.next(this.categories);
             });
 
