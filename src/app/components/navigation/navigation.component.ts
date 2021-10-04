@@ -21,7 +21,6 @@ export class NavigationComponent implements OnInit {
         this.authenticationChangeSubject = this.authenticationService.authenticationChangeSubject;
         this.authenticationSubscription = this.authenticationChangeSubject
             .subscribe(res => {
-                console.log(res);
                 this.userIsLogged = res;
             })
 

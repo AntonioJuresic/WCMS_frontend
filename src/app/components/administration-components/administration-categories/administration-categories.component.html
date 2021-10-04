@@ -1,8 +1,7 @@
 <h2>Categories</h2>
 
 <div>
-    <button type="button" class="btn btn-success"
-        (click)="openEditor()">New category</button>
+    <button type="button" class="btn btn-success" (click)="openEditor()">New category</button>
 </div>
 
 <table>
@@ -19,14 +18,13 @@
         <tr *ngFor="let c of categories;">
             <td>{{c.id}}</td>
             <td>{{c.name}}</td>
+
             <td>
-                <button type="button" class="btn btn-warning"
-                    (click)="openEditor(c)">Edit</button>
+                <button type="button" class="btn btn-warning" (click)="openEditor(c)">Edit</button>
             </td>
 
             <td>
-                <button type="button" class="btn btn-danger"
-                    (click)="deleteCategory(c.id!)">Delete</button>
+                <button type="button" class="btn btn-danger" (click)="deleteCategory(c.id!)">Delete</button>
             </td>
         </tr>
     </tbody>
