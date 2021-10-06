@@ -59,24 +59,26 @@ export class AuthenticationService {
         localStorage.removeItem('token');
 
         this.authenticationCBS.next(false);
-        this.router.navigate(['']);
-
+        this.router.navigate(['/']);
     }
 
     isUserAuthenticated() {
-        this.dataService
-            .checkAuthentication()
-            .subscribe(
-                (response) => {
-                    console.log("KORISNIK JE ULOGIRAN");
-                    this.authenticationCBS.next(true);
-                },
-                (error) => {
-                    console.log("KORISNIK NIJE ULOGIRAN ILI TOKEN VIŠE NE VALJA");
-                    this.authenticationErrorSubject.next(error.error.message);     
-                    
-                    this.authenticationCBS.next(false);
-        });
-    }
 
+        this.getUserFromMemory();
+
+        if (this.user) {
+            this.dataService
+                .checkAuthentication()
+                .subscribe(
+                    (response) => {
+                        this.authenticationCBS.next(true);
+                    },
+                    (error) => {
+                        this.authenticationCBS.next(false);
+                    });
+        } else {
+            this.authenticationCBS.next(false);
+        }
+
+    }
 }

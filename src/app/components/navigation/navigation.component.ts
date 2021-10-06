@@ -18,10 +18,11 @@ export class NavigationComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.authenticationService.isUserAuthenticated();
+
         this.authenticationSubscription = this.authenticationService.isAuthenticatedObservable
             .subscribe(res => {
                 this.userIsLogged = res;
-                console.log("this.userIsLogged - ", this.userIsLogged);
             })
     }
 

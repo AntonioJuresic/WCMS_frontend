@@ -15,22 +15,30 @@ export class AuthorizationGuardService {
         private authenticationService: AuthenticationService,
         private router: Router
     ) {
+        /*this.authenticationService.isUserAuthenticated();
+
         this.authenticationSubscription = this.authenticationService.isAuthenticatedObservable
             .subscribe(res => {
                 this.userIsLogged = res;
                 console.log("this.userIsLogged - ", this.userIsLogged);
-            })
+            })*/
     }
 
     needsAuthentication() {
-        if (!this.userIsLogged) {
-            this.router.navigate(['/']);
-        }
+        this.authenticationService.isAuthenticatedObservable
+            .subscribe(res => {
+                if (!res) {
+                    this.router.navigate(['/']);
+                }
+            })
     }
 
     canNotAcessAuthenticated() {
-        if (this.userIsLogged) {
-            this.router.navigate(['/']);
-        }
+        this.authenticationService.isAuthenticatedObservable
+            .subscribe(res => {
+                if (res) {
+                    this.router.navigate(['/']);
+                }
+            })
     }
 }
