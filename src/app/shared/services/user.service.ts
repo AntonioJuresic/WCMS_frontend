@@ -23,6 +23,10 @@ export class UserService {
         return this.usersBehaviorSubject;
     }
 
+    getUser(id: Number) {
+        return this.dataService.getUser(id);
+    }
+
     postUser(newUser: User) {
         return this.dataService.postUser(newUser);
     }

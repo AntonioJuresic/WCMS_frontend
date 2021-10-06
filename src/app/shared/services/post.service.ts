@@ -33,6 +33,14 @@ export class PostService {
         return this.dataService.getPost(id);
     }
 
+    getPostsByCategory(name: String) {
+        return this.dataService.getPostsByCategory(name);
+    }
+
+    getPostsByUser(username: String) {
+        return this.dataService.getPostsByUser(username);
+    }
+
     postPost(newPost: FormData) {
         this.dataService.postPost(newPost)
             .subscribe((res: { status: Number, selectedPost: Post }) => {
@@ -44,7 +52,6 @@ export class PostService {
         return this.postsBehaviorSubject;
 
     }
-
 
     putPost(id: Number, updatedPost: FormData) {
         this.dataService.putPost(id, updatedPost)

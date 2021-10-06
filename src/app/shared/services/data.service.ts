@@ -39,13 +39,21 @@ export class DataService {
         });
     }
 
+    //users
+    
     getUsers(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_USER_URL);
+    }
+
+    getUser(id: Number): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_USER_URL + `/${id}`);
     }
 
     postUser(user: User): Observable<any> {
         return this.httpClient.post(this.API_URL + this.API_USER_URL, user);
     }
+
+    //posts
 
     getPosts(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_POST_URL);
@@ -53,6 +61,14 @@ export class DataService {
 
     getPost(id: Number): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_POST_URL + `/${id}`);
+    }
+
+    getPostsByCategory(name: String): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_POSTS_BY_CATEGORY_URL + `/${name}`);
+    }
+
+    getPostsByUser(username: String): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_POSTS_BY_USER_URL + `/${username}`);
     }
 
     postPost(postRequest: FormData): Observable<any> {
@@ -67,13 +83,7 @@ export class DataService {
         return this.httpClient.delete(this.API_URL + this.API_POST_URL + `/${id}`);
     }
 
-    getPostsByCategory(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_POSTS_BY_CATEGORY_URL);
-    }
-
-    getPostsByUser(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_POSTS_BY_USER_URL);
-    }
+    //categories
 
     getCategories(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_CATEGORY_URL);

@@ -15,12 +15,14 @@ export class PostDetailComponent implements OnInit {
     id: Number = new Number;
 
     post: Post = new Post;
+    
     errorMessage: String = new String;
 
     constructor(
         private route: ActivatedRoute,
-        private postService: PostService,
-        private titleService: Title
+        private titleService: Title,
+
+        private postService: PostService
     ) { }
 
     ngOnInit(): void {
