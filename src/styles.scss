@@ -101,6 +101,10 @@ a:hover {
     color: $blue-dark;
 }
 
+a.btn:hover {
+    text-decoration: none;
+}
+
 blockquote {
     margin: 1rem;
     padding: 0.8rem;
