@@ -1,25 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, Subscription } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthorizationGuardService {
 
-    constructor(
-        private authenticationServicervice : AuthenticationService,
-        private router : Router
-    ) { }
+    public userIsLogged: boolean = false;
+    authenticationSubscription: Subscription = new Subscription;
 
-    needsAuthentication(){
-        if(!this.authenticationServicervice.isUserAuthenticated()){
+    constructor(
+        private authenticationService: AuthenticationService,
+        private router: Router
+    ) {
+        this.authenticationSubscription = this.authenticationService.isAuthenticatedObservable
+            .subscribe(res => {
+                this.userIsLogged = res;
+                console.log("this.userIsLogged - ", this.userIsLogged);
+            })
+    }
+
+    needsAuthentication() {
+        if (!this.userIsLogged) {
             this.router.navigate(['/']);
         }
     }
 
     canNotAcessAuthenticated() {
-        if(this.authenticationServicervice.isUserAuthenticated()){
+        if (this.userIsLogged) {
             this.router.navigate(['/']);
         }
     }

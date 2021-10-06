@@ -39,6 +39,10 @@ export class DataService {
         });
     }
 
+    checkAuthentication(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_AUTHENTICATION_URL);
+    }
+
     //users
     
     getUsers(): Observable<any> {

@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 export class NavigationComponent implements OnInit {
 
     public userIsLogged: boolean = false;
-    public authenticationChangeSubject: Subject<boolean> = new Subject<boolean>();
+
     authenticationSubscription: Subscription = new Subscription;
 
     constructor(
@@ -18,13 +18,11 @@ export class NavigationComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authenticationChangeSubject = this.authenticationService.authenticationChangeSubject;
-        this.authenticationSubscription = this.authenticationChangeSubject
+        this.authenticationSubscription = this.authenticationService.isAuthenticatedObservable
             .subscribe(res => {
                 this.userIsLogged = res;
+                console.log("this.userIsLogged - ", this.userIsLogged);
             })
-
-        this.userIsLogged = this.authenticationService.isUserAuthenticated();
     }
 
     logout() {

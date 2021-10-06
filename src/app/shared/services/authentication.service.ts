@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../models/user';
 import { DataService } from './data.service';
 
@@ -12,7 +12,9 @@ export class AuthenticationService {
     private user?: User;
     private token?: String;
 
-    public authenticationChangeSubject: Subject<boolean> = new Subject<boolean>();
+    public authenticationCBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public isAuthenticatedObservable: Observable<boolean> = this.authenticationCBS.asObservable();
+
     public authenticationErrorSubject: Subject<string> = new Subject<string>();
 
     constructor(
@@ -30,7 +32,10 @@ export class AuthenticationService {
                     localStorage.setItem('user', JSON.stringify(this.user));
                     localStorage.setItem('token', JSON.stringify(this.token));
 
-                    this.authenticationChangeSubject.next(true);
+                    this.authenticationCBS.next(true);
+
+                    console.log("USPJESNA PRIJAVA");
+
                     this.router.navigate(['/']);
                 },
                 (error) => {
@@ -53,19 +58,25 @@ export class AuthenticationService {
         this.token = JSON.parse('null');
         localStorage.removeItem('token');
 
-        this.authenticationChangeSubject.next(false);
+        this.authenticationCBS.next(false);
         this.router.navigate(['']);
 
     }
 
     isUserAuthenticated() {
-        this.getUserFromMemory();
-
-        if (this.user) {
-            return true;
-        } else {
-            return false;
-        }
+        this.dataService
+            .checkAuthentication()
+            .subscribe(
+                (response) => {
+                    console.log("KORISNIK JE ULOGIRAN");
+                    this.authenticationCBS.next(true);
+                },
+                (error) => {
+                    console.log("KORISNIK NIJE ULOGIRAN ILI TOKEN VIŠE NE VALJA");
+                    this.authenticationErrorSubject.next(error.error.message);     
+                    
+                    this.authenticationCBS.next(false);
+        });
     }
 
 }
