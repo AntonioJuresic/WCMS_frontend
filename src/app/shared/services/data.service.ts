@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/category';
 import { User } from '../models/user';
+import { WebsiteInfo } from '../models/websiteInfo';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,10 @@ export class DataService {
     API_URL = environment.API_URL;
 
     API_AUTHENTICATION_URL = '/authentication';
-    API_USER_URL = '/user';
 
+    API_WEBSITE_INFO_URL = '/info';
+
+    API_USER_URL = '/user';
     API_POST_URL = '/post';
 
     API_POSTS_BY_CATEGORY_URL = '/category-posts';
@@ -41,6 +44,20 @@ export class DataService {
 
     checkAuthentication(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_AUTHENTICATION_URL);
+    }
+
+    //website info
+
+    getWebsiteInfo(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_WEBSITE_INFO_URL);
+    }
+
+    postWebsiteInfo(websiteInfo: WebsiteInfo): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_INFO_URL, websiteInfo);
+    }
+
+    putWebsiteInfo(websiteInfo: WebsiteInfo): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_INFO_URL, websiteInfo);
     }
 
     //users

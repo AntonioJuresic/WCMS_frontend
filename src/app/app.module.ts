@@ -24,6 +24,7 @@ import { ServerDownComponent } from './components/error-components/server-down/s
 import { NotFoundComponent } from './components/error-components/not-found/not-found.component';
 import { PostsByUserComponent } from './components/posts-components/posts-by-user/posts-by-user.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
+import { WebsiteInfoComponent } from './components/website-info/website-info.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { PostsByCategoryComponent } from './components/posts-components/posts-by
     ServerDownComponent,
     NotFoundComponent,
     PostsByUserComponent,
-    PostsByCategoryComponent
+    PostsByCategoryComponent,
+    WebsiteInfoComponent
   ],
   imports: [
     BrowserModule,
