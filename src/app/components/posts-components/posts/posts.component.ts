@@ -11,7 +11,6 @@ import { PostService } from 'src/app/shared/services/post.service';
 export class PostsComponent implements OnInit {
 
     posts: Post[] = [];
-    postsBehaviourSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
     postsSubscription: Subscription = new Subscription;
 
     constructor(
@@ -19,12 +18,13 @@ export class PostsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.postsBehaviourSubject = this.postService.getPosts();
+        this.postService.getPosts();
         
-        this.postsSubscription = this.postsBehaviourSubject
-            .subscribe(res => {
-                this.posts = res;
-            });
+        this.postsSubscription = this.postService.postsObservable
+            .subscribe(
+                res => {
+                    this.posts = res;
+                });
     }
 
 }

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
@@ -6,7 +6,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthorizationGuardService {
+export class AuthorizationGuardService implements OnDestroy {
 
     authenticationSubscription: Subscription = new Subscription;
 
@@ -15,25 +15,44 @@ export class AuthorizationGuardService {
         private router: Router
     ) { }
 
-    needsAuthentication() {
-        this.authenticationService.isUserAuthenticated();
+    async testnaFunkcija(uvjet: boolean) {
+        await this.authenticationService.isUserAuthenticated();
 
-        this.authenticationService.isAuthenticatedObservable
+        this.authenticationSubscription = this.authenticationService.authenticationBS
             .subscribe(res => {
-                if (!res) {
-                    this.router.navigate(['/']);
+                let stanjeKorisnika = res;
+
+                console.log("stanjeKorisnika - ", stanjeKorisnika);
+
+                console.log("Poziv suba");
+
+                //treba biti ulogiran
+                if (uvjet) {
+                    console.log("Korisnik treba biti ulogiran");
+
+                    if (uvjet == stanjeKorisnika) {
+                        console.log("Korisnik je ulogiran i može biti ovdje");
+                    } else {
+                        console.warn("Korisnik nije ulogiran i ne može biti ovdje");
+                        this.router.navigate(['/']);
+                    }
+
+                    //ne smije biti ulogiran
+                } else if (!uvjet) {
+                    console.log("Korisnik ne smije biti ulogiran");
+
+                    if (uvjet != stanjeKorisnika) {
+                        console.warn("Korisnik je ulogiran i ne može biti ovdje");
+                        this.router.navigate(['/']);
+                    } else {
+                        console.log("Korisnik nije ulogiran i može biti ovdje");
+                    }
                 }
-            })
+            });
     }
 
-    canNotAcessAuthenticated() {
-        this.authenticationService.isUserAuthenticated();
-
-        this.authenticationService.isAuthenticatedObservable
-            .subscribe(res => {
-                if (res) {
-                    this.router.navigate(['/']);
-                }
-            })
+    ngOnDestroy(): void {
+        this.authenticationSubscription.unsubscribe();
     }
+
 }

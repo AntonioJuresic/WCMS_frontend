@@ -12,9 +12,8 @@ export class AuthenticationService {
     private user?: User;
     private token?: String;
 
-    public authenticationCBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    public isAuthenticatedObservable: Observable<boolean> = this.authenticationCBS.asObservable();
-
+    public authenticationBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    
     public authenticationErrorSubject: Subject<string> = new Subject<string>();
 
     constructor(
@@ -29,12 +28,11 @@ export class AuthenticationService {
                 (response) => {
                     this.user = response.data;
                     this.token = response.token;
+
                     localStorage.setItem('user', JSON.stringify(this.user));
                     localStorage.setItem('token', JSON.stringify(this.token));
 
-                    this.authenticationCBS.next(true);
-
-                    console.log("USPJESNA PRIJAVA");
+                    this.authenticationBS.next(true);
 
                     this.router.navigate(['/']);
                 },
@@ -58,12 +56,12 @@ export class AuthenticationService {
         this.token = JSON.parse('null');
         localStorage.removeItem('token');
 
-        this.authenticationCBS.next(false);
+        this.authenticationBS.next(false);
+
         this.router.navigate(['/']);
     }
 
     isUserAuthenticated() {
-
         this.getUserFromMemory();
 
         if (this.user) {
@@ -71,14 +69,14 @@ export class AuthenticationService {
                 .checkAuthentication()
                 .subscribe(
                     (response) => {
-                        this.authenticationCBS.next(true);
+                        console.log("Korisnik je ulogiran");
+                        this.authenticationBS.next(true);
                     },
                     (error) => {
-                        this.authenticationCBS.next(false);
+                        this.authenticationBS.next(false);
                     });
         } else {
-            this.authenticationCBS.next(false);
+            this.authenticationBS.next(false);
         }
-
     }
 }

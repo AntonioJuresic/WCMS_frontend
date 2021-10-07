@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -7,7 +7,8 @@ import { AuthorizationGuardService } from 'src/app/shared/services/authorization
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
+    providers: [AuthorizationGuardService]
 })
 export class LoginComponent implements OnInit {
 
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authorizationGuardService.canNotAcessAuthenticated();
+        //this.authorizationGuardService.canNotAcessAuthenticated();
+        this.authorizationGuardService.testnaFunkcija(false);
 
         this.authenticationService.authenticationErrorSubject
             .subscribe((error) => {
@@ -38,5 +40,4 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.authenticationService.loginUser(this.formGroup.value.username, this.formGroup.value.password);
     }
-
 }

@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -10,7 +9,8 @@ import Validation from '../../../shared/utilities/validation';
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.scss']
+    styleUrls: ['./registration.component.scss'],
+    providers: [AuthorizationGuardService]
 })
 export class RegistrationComponent implements OnInit {
 
@@ -37,7 +37,8 @@ export class RegistrationComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authorizationGuardService.canNotAcessAuthenticated();
+        //this.authorizationGuardService.canNotAcessAuthenticated();
+        this.authorizationGuardService.testnaFunkcija(false);
 
         this.authenticationService.authenticationErrorSubject
             .subscribe((error) => {
@@ -72,5 +73,4 @@ export class RegistrationComponent implements OnInit {
                 }
             );
     }
-
 }

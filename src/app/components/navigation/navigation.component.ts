@@ -20,14 +20,19 @@ export class NavigationComponent implements OnInit {
     ngOnInit(): void {
         this.authenticationService.isUserAuthenticated();
 
-        this.authenticationSubscription = this.authenticationService.isAuthenticatedObservable
-            .subscribe(res => {
-                this.userIsLogged = res;
-            })
+        this.authenticationSubscription = this.authenticationService.authenticationBS
+            .subscribe(
+                res => {
+                    this.userIsLogged = res;
+                });
     }
 
     logout() {
         this.authenticationService.logoutUser();
+    }
+
+    ngOnDestory(): void {
+        this.authenticationSubscription.unsubscribe();
     }
 
 }

@@ -12,7 +12,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
     selector: 'app-editor-post',
     templateUrl: './editor-post.component.html',
-    styleUrls: ['./editor-post.component.scss']
+    styleUrls: ['./editor-post.component.scss'],
+    providers: [AuthorizationGuardService]
 })
 export class EditorPostComponent implements OnInit {
 
@@ -47,7 +48,7 @@ export class EditorPostComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authorizationGuardService.needsAuthentication();
+        this.authorizationGuardService.testnaFunkcija(true);
 
         this.route.params.subscribe(params => {
             this.id = params['id'];

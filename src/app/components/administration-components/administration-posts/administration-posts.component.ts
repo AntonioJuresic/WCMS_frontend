@@ -13,7 +13,6 @@ export class AdministrationPostsComponent implements OnInit {
     QueryName: string = '';
 
     posts: Post[] = [];
-    postsBehaviourSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
     postsSubscription: Subscription = new Subscription;
 
     constructor(
@@ -21,11 +20,13 @@ export class AdministrationPostsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.postsBehaviourSubject = this.postService.getPosts();
-        this.postsSubscription = this.postsBehaviourSubject
-            .subscribe(res => {
-                this.posts = res;
-            });
+        this.postService.getPosts();
+        
+        this.postsSubscription = this.postService.postsObservable
+            .subscribe(
+                res => {
+                    this.posts = res;
+                });
     }
 
     deletePost(id: Number) {

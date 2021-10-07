@@ -4,15 +4,17 @@ import { AuthorizationGuardService } from 'src/app/shared/services/authorization
 @Component({
     selector: 'app-administration',
     templateUrl: './administration.component.html',
-    styleUrls: ['./administration.component.scss']
+    styleUrls: ['./administration.component.scss'],
+    providers: [AuthorizationGuardService]
 })
 export class AdministrationComponent implements OnInit {
 
     constructor(
-        private authorizationGuardService: AuthorizationGuardService) { }
+        private authorizationGuardService: AuthorizationGuardService
+    ) { }
 
     ngOnInit(): void {
-        this.authorizationGuardService.needsAuthentication();
+        this.authorizationGuardService.testnaFunkcija(true);
     }
 
 }
