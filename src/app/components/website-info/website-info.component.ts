@@ -11,7 +11,6 @@ import { WebsiteInfoService } from 'src/app/shared/services/website-info.service
 export class WebsiteInfoComponent implements OnInit {
 
     websiteInfo: WebsiteInfo = new WebsiteInfo
-    websiteInfoBehaviourSubject: BehaviorSubject<WebsiteInfo> = new BehaviorSubject<WebsiteInfo>(new WebsiteInfo);
     websiteInfoSubscription: Subscription = new Subscription;
 
     constructor(
@@ -19,9 +18,9 @@ export class WebsiteInfoComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.websiteInfoBehaviourSubject = this.websiteInfoService.getWebsiteInfo();
+        this.websiteInfoService.getWebsiteInfo();
 
-        this.websiteInfoSubscription = this.websiteInfoBehaviourSubject
+        this.websiteInfoSubscription = this.websiteInfoService.websiteInfoBS
             .subscribe(res => {
                 this.websiteInfo = res;
             });

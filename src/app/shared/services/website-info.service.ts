@@ -9,7 +9,7 @@ import { DataService } from './data.service';
 export class WebsiteInfoService {
 
     websiteInfo: WebsiteInfo = new WebsiteInfo;
-    websiteInfoBehaviorSubject: BehaviorSubject<WebsiteInfo> = new BehaviorSubject<WebsiteInfo>(new WebsiteInfo);
+    websiteInfoBS: BehaviorSubject<WebsiteInfo> = new BehaviorSubject<WebsiteInfo>(new WebsiteInfo);
 
     constructor(
         private dataService: DataService
@@ -19,29 +19,23 @@ export class WebsiteInfoService {
         this.dataService.getWebsiteInfo()
             .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
                 this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBehaviorSubject.next(this.websiteInfo);
+                this.websiteInfoBS.next(this.websiteInfo);
             });
-
-        return this.websiteInfoBehaviorSubject;
     }
 
     postWebsiteInfo(newWebsiteInfo: WebsiteInfo) {
         this.dataService.postWebsiteInfo(newWebsiteInfo)
             .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
                 this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBehaviorSubject.next(this.websiteInfo);
+                this.websiteInfoBS.next(this.websiteInfo);
             });
-
-        return this.websiteInfoBehaviorSubject;
     }
 
     putWebsiteInfo(updatedWebsiteInfo: WebsiteInfo) {
         this.dataService.putWebsiteInfo(updatedWebsiteInfo)
             .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
                 this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBehaviorSubject.next(this.websiteInfo);
+                this.websiteInfoBS.next(this.websiteInfo);
             });
-
-        return this.websiteInfoBehaviorSubject;
     }
 }

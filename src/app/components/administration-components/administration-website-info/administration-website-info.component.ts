@@ -11,7 +11,6 @@ import { WebsiteInfoService } from 'src/app/shared/services/website-info.service
 export class AdministrationWebsiteInfoComponent implements OnInit {
   
     websiteInfo: WebsiteInfo = new WebsiteInfo;
-    websiteInfoBehaviourSubject: BehaviorSubject<WebsiteInfo[]> = new BehaviorSubject<WebsiteInfo[]>([]);
     websiteInfoSubscription: Subscription = new Subscription;
 
     editMode : Boolean = false;
@@ -21,14 +20,14 @@ export class AdministrationWebsiteInfoComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        /*this.websiteInfoBehaviourSubject = this.categoryService.getCategories();
-        this.websiteInfoSubscription = this.websiteInfoBehaviourSubject
+        this.websiteInfoService.getWebsiteInfo();
+        this.websiteInfoSubscription = this.websiteInfoService.websiteInfoBS
             .subscribe(res => {
-                this.websiteInfo = res[0];
-            });*/
+                this.websiteInfo = res;
+            });
     }
 
-    openEditor(WebsiteInfo? : WebsiteInfo) {
+    openEditor(websiteInfo? : WebsiteInfo) {
         this.editMode = true;
     }
 

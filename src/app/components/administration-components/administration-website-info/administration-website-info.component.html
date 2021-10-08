@@ -1,1 +1,16 @@
-<p>administration-website-info works!</p>
+<h2>Website Information</h2>
+
+<div *ngIf="this.websiteInfo == undefined">
+    <button type="button" class="btn btn-success" (click)="openEditor()">Create</button>
+</div>
+
+<div *ngIf="this.websiteInfo != undefined">
+    <p>{{websiteInfo.title}}</p>
+    <p>{{websiteInfo.description}}</p>
+
+    <button type="button" class="btn btn-warning" (click)="openEditor(websiteInfo)">Edit</button>
+</div>
+
+<div *ngIf="editMode">
+    <app-editor-website-info [websiteInfo]="websiteInfo" (editModeFalse)="closeEditor($event)"></app-editor-website-info>
+</div>

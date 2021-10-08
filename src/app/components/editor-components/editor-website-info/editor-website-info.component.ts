@@ -42,7 +42,7 @@ export class EditorWebsiteInfoComponent implements OnInit {
 
         this.formGroup.setValue({
             title: "",
-            describe: ""
+            description: ""
         });
 
         this.editModeFalse.emit(false);
