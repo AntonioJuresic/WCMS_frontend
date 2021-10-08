@@ -122,7 +122,12 @@ small {
 form {
     padding: 0.8rem;
     font-size: 1rem;
+
+    img {
+        width: 100%;
+    }
 }
+
 label {
     width: 100%;
     display: inline-block;

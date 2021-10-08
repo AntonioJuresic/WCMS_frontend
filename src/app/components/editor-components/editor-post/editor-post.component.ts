@@ -8,6 +8,7 @@ import { AuthorizationGuardService } from 'src/app/shared/services/authorization
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { PostService } from 'src/app/shared/services/post.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-editor-post',
@@ -19,6 +20,7 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
     id: Number = new Number;
     imageForm: any;
+    imageURL: String = new String;
 
     public formGroup: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
@@ -89,6 +91,8 @@ export class EditorPostComponent implements OnInit, OnDestroy {
                         userId: response.selectedPost[0].userId,
                         categoryId: response.selectedPost[0].categoryId,
                     });
+
+                    this.imageURL = environment.SERVER_URL + response.selectedPost[0].imagePath.substring(2);
                 },
                 (error) => {
                     this.errorMessage = error.error.message;
@@ -104,9 +108,19 @@ export class EditorPostComponent implements OnInit, OnDestroy {
     }
 
     onFileChange(event: any) {
+        const reader = new FileReader();
+
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
+
             console.log(this.imageForm);
+
+            reader.readAsDataURL(event.target.files[0]);
+            reader.onload = () => {
+                this.imageURL = reader.result as string;
+                console.log(reader.result as string);
+              };
+
         }
     }
 

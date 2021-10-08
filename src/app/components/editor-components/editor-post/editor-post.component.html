@@ -10,10 +10,13 @@
             <p class="form-error-text">Title is empty</p>
         </div>
 
-        
+        <div *ngIf="imageURL">
+            <img [src]="imageURL">
+        </div>
+
         <label>Image</label>
         <label for="image" class="file-upload">🖼️ Upload image</label>
-        <input type="file" id="image" class="form-control" formControlName="image" (change)="onFileChange($event)"/>
+        <input type="file" accept="image/*" id="image" class="form-control" formControlName="image" (change)="onFileChange($event)" />
 
         <label>Content:</label>
         <textarea cols="30" rows="10" id="content" class="form-control" formControlName="content"
