@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent implements OnInit, OnDestroy {
 
     public userIsLogged: boolean = false;
 
@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
         this.authenticationService.logoutUser();
     }
 
-    ngOnDestory(): void {
+    ngOnDestroy(): void {
         this.authenticationSubscription.unsubscribe();
     }
 

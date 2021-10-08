@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { WebsiteInfo } from 'src/app/shared/models/websiteInfo';
 import { WebsiteInfoService } from 'src/app/shared/services/website-info.service';
@@ -8,7 +8,7 @@ import { WebsiteInfoService } from 'src/app/shared/services/website-info.service
     templateUrl: './website-info.component.html',
     styleUrls: ['./website-info.component.scss']
 })
-export class WebsiteInfoComponent implements OnInit {
+export class WebsiteInfoComponent implements OnInit, OnDestroy {
 
     websiteInfo: WebsiteInfo = new WebsiteInfo
     websiteInfoSubscription: Subscription = new Subscription;
@@ -24,6 +24,10 @@ export class WebsiteInfoComponent implements OnInit {
             .subscribe(res => {
                 this.websiteInfo = res;
             });
+    }
+
+    ngOnDestroy(): void {
+        this.websiteInfoSubscription.unsubscribe();
     }
 
 }

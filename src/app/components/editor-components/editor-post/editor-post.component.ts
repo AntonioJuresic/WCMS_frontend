@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { UserService } from 'src/app/shared/services/user.service';
     styleUrls: ['./editor-post.component.scss'],
     providers: [AuthorizationGuardService]
 })
-export class EditorPostComponent implements OnInit {
+export class EditorPostComponent implements OnInit, OnDestroy {
 
     id: Number = new Number;
     imageForm: any;
@@ -76,6 +76,33 @@ export class EditorPostComponent implements OnInit {
     get userId() { return this.formGroup.get('userId'); }
     get categoryId() { return this.formGroup.get('categoryId'); }
 
+    getPost(id: Number) {
+        this.postService.getPost(id)
+            .subscribe(
+                (response) => {
+                    this.formGroup.setValue({
+                        title: response.selectedPost[0].title,
+                        //image: response.selectedPost[0].imagePath,
+                        image: "",
+                        content: response.selectedPost[0].content,
+                        dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
+                        userId: response.selectedPost[0].userId,
+                        categoryId: response.selectedPost[0].categoryId,
+                    });
+                },
+                (error) => {
+                    this.errorMessage = error.error.message;
+                }
+            )
+    }
+    
+    ISOToJSDate(date: string) {
+        return new Date(date)
+            .toISOString()
+            .slice(0, 19)
+            .replace("Z", "");
+    }
+
     onFileChange(event: any) {
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
@@ -100,31 +127,9 @@ export class EditorPostComponent implements OnInit {
         }
     }
 
-    getPost(id: Number) {
-        this.postService.getPost(id)
-            .subscribe(
-                (response) => {
-                    this.formGroup.setValue({
-                        title: response.selectedPost[0].title,
-                        //image: response.selectedPost[0].imagePath,
-                        image: "",
-                        content: response.selectedPost[0].content,
-                        dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
-                        userId: response.selectedPost[0].userId,
-                        categoryId: response.selectedPost[0].categoryId,
-                    });
-                },
-                (error) => {
-                    this.errorMessage = error.error.message;
-                }
-            )
-    }
-
-    ISOToJSDate(date: string) {
-        return new Date(date)
-            .toISOString()
-            .slice(0, 19)
-            .replace("Z", "");
+    ngOnDestroy(): void {
+        this.categoriesSubscription.unsubscribe();
+        this.usersSubscription.unsubscribe();
     }
 
 }

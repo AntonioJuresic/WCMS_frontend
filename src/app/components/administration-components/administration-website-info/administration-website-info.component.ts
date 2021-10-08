@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { WebsiteInfo } from 'src/app/shared/models/websiteInfo';
 import { WebsiteInfoService } from 'src/app/shared/services/website-info.service';
@@ -8,7 +8,7 @@ import { WebsiteInfoService } from 'src/app/shared/services/website-info.service
   templateUrl: './administration-website-info.component.html',
   styleUrls: ['./administration-website-info.component.scss']
 })
-export class AdministrationWebsiteInfoComponent implements OnInit {
+export class AdministrationWebsiteInfoComponent implements OnInit, OnDestroy {
   
     websiteInfo: WebsiteInfo = new WebsiteInfo;
     websiteInfoSubscription: Subscription = new Subscription;
@@ -33,5 +33,9 @@ export class AdministrationWebsiteInfoComponent implements OnInit {
 
     closeEditor(boolean: Boolean) {
         this.editMode = boolean;
+    }
+
+    ngOnDestroy(): void {
+        this.websiteInfoSubscription.unsubscribe();
     }
 }

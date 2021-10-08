@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -8,7 +8,7 @@ import { PostService } from 'src/app/shared/services/post.service';
     templateUrl: './administration-posts.component.html',
     styleUrls: ['./administration-posts.component.scss']
 })
-export class AdministrationPostsComponent implements OnInit {
+export class AdministrationPostsComponent implements OnInit, OnDestroy {
 
     QueryName: string = '';
 
@@ -31,5 +31,9 @@ export class AdministrationPostsComponent implements OnInit {
 
     deletePost(id: Number) {
         this.postService.deletePost(id);
+    }
+
+    ngOnDestroy(): void {
+        this.postsSubscription.unsubscribe();
     }
 }
