@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
 export class EditorPostComponent implements OnInit, OnDestroy {
 
     id: Number = new Number;
+    newPost: Boolean = new Boolean;
+
     imageForm: any;
     imageURL: String = new String;
 
@@ -31,13 +33,16 @@ export class EditorPostComponent implements OnInit, OnDestroy {
         categoryId: new FormControl('', Validators.required)
     });
 
-    errorMessage: String = new String;
-
     users: User[] = [];
     usersSubscription: Subscription = new Subscription;
 
     categories: Category[] = [];
     categoriesSubscription: Subscription = new Subscription;
+
+    showMessageWindow: Boolean = new Boolean(false);
+    successMessage: String = new String;
+    postURL: String = new String;
+    errorMessage: String = new String;
 
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
@@ -52,9 +57,11 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
         this.route.params.subscribe(params => {
             this.id = params['id'];
+            this.newPost = true;
 
             if (this.id != undefined) {
                 this.getPost(this.id);
+                this.newPost = false;
             }
         });
 
@@ -84,7 +91,6 @@ export class EditorPostComponent implements OnInit, OnDestroy {
                 (response) => {
                     this.formGroup.setValue({
                         title: response.selectedPost[0].title,
-                        //image: response.selectedPost[0].imagePath,
                         image: "",
                         content: response.selectedPost[0].content,
                         dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
@@ -95,11 +101,12 @@ export class EditorPostComponent implements OnInit, OnDestroy {
                     this.imageURL = environment.SERVER_URL + response.selectedPost[0].imagePath.substring(2);
                 },
                 (error) => {
+                    this.showMessageWindow = true;
                     this.errorMessage = error.error.message;
                 }
             )
     }
-    
+
     ISOToJSDate(date: string) {
         return new Date(date)
             .toISOString()
@@ -118,9 +125,8 @@ export class EditorPostComponent implements OnInit, OnDestroy {
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {
                 this.imageURL = reader.result as string;
-                console.log(reader.result as string);
-              };
-
+                //console.log(reader.result as string);
+            };
         }
     }
 
@@ -139,6 +145,26 @@ export class EditorPostComponent implements OnInit, OnDestroy {
         } else if (this.id != undefined) {
             this.postService.putPost(this.id, formData);
         }
+
+        this.postService.successPostPutBS
+            .subscribe(res => {
+
+                this.showMessageWindow = true;
+
+                if(res != undefined) {
+                    this.id = res;
+
+                    this.successMessage = "Post succesfully posted/updated.";
+                    this.errorMessage = "";
+                } else if(res == undefined) {
+                    this.successMessage = "";
+                    this.errorMessage = "Error while trying to save the post.";
+                }
+            })
+    }
+
+    closeMessageWindow() {
+        this.showMessageWindow = false;
     }
 
     ngOnDestroy(): void {

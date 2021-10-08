@@ -16,7 +16,8 @@
 
         <label>Image</label>
         <label for="image" class="file-upload">🖼️ Upload image</label>
-        <input type="file" accept="image/*" id="image" class="form-control" formControlName="image" (change)="onFileChange($event)" />
+        <input type="file" accept="image/*" id="image" class="form-control" formControlName="image"
+            (change)="onFileChange($event)" />
 
         <label>Content:</label>
         <textarea cols="30" rows="10" id="content" class="form-control" formControlName="content"
@@ -64,4 +65,23 @@
         </div>
     </form>
 
+</div>
+
+<div *ngIf="showMessageWindow == true" class="message-window-container custom-flex-center-items">
+
+    <div class="message-window">
+
+        <p *ngIf="successMessage.length != 0" class="form-success-text" style="text-align: center;">{{successMessage}}</p>
+
+        <a *ngIf="successMessage.length != 0 && newPost == true" [routerLink]="['/p/editor/', id]"
+            class="btn btn-outline-primary">Continue editing</a>
+
+        <button *ngIf="successMessage.length != 0 && newPost == false" (click)="closeMessageWindow()"
+            class="btn btn-outline-primary">Continue editing</button>
+
+        <a *ngIf="successMessage.length != 0" [routerLink]="['/p/', id]" class="btn btn-primary">Go to the post</a>
+
+
+        <p *ngIf="errorMessage.length != 0" class="form-error-text">{{errorMessage}}</p>
+    </div>
 </div>

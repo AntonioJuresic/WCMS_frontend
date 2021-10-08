@@ -12,22 +12,27 @@ export class PostService {
     posts: Post[] = [];
 
     postsBS: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
-
+    successPostPutBS: BehaviorSubject<Number | undefined> = new BehaviorSubject<Number | undefined>(undefined);
+    
     constructor(
         private dataService: DataService
     ) { }
 
     getPosts() {
         this.dataService.getPosts()
-            .subscribe((res: { status: Number, selectedPosts: Post[] }) => {
-                this.posts = res.selectedPosts;
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedPosts: Post[]
+                }) => {
+                    this.posts = res.selectedPosts;
 
-                this.posts.forEach((post) => {
-                    post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
+                    this.posts.forEach((post) => {
+                        post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
+                    });
+
+                    this.postsBS.next(this.posts);
                 });
-
-                this.postsBS.next(this.posts);
-            });
     }
 
     getPost(id: Number) {
@@ -47,15 +52,20 @@ export class PostService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedPost: Post
+                    selectedPost: Post[]
                 }) => {
-                    res.selectedPost.imagePath = environment.SERVER_URL + res.selectedPost.imagePath?.substring(2);
-                    this.posts.push(res.selectedPost);
+                    res.selectedPost[0].imagePath =
+                        environment.SERVER_URL +
+                        res.selectedPost[0].imagePath?.substring(2);
+
+                    this.posts.push(res.selectedPost[0]);
                     this.postsBS.next(this.posts);
+
+                    this.successPostPutBS.next(res.selectedPost[0].id!);
+                },
+                (error) => {
+                    this.successPostPutBS.next(undefined);
                 });
-
-        return this.postsBS;
-
     }
 
     putPost(id: Number, updatedPost: FormData) {
@@ -63,15 +73,20 @@ export class PostService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedPost: Post
+                    selectedPost: Post[]
                 }) => {
-                    res.selectedPost.imagePath = environment.SERVER_URL + res.selectedPost.imagePath?.substring(2);
-                    this.posts.push(res.selectedPost);
+                    res.selectedPost[0].imagePath =
+                        environment.SERVER_URL +
+                        res.selectedPost[0].imagePath?.substring(2);
+
+                    this.posts.push(res.selectedPost[0]);
                     this.postsBS.next(this.posts);
+
+                    this.successPostPutBS.next(res.selectedPost[0].id!);
+                },
+                (error) => {
+                    this.successPostPutBS.next(undefined);
                 });
-
-        return this.postsBS;
-
     }
 
     deletePost(id: Number) {
