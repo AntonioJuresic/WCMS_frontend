@@ -49,8 +49,8 @@ body {
 
 hr {
     margin: 0.512rem 0px;
-    border: 1px solid $gray;
-    background-color: $gray;
+    border: 1px solid $lightgray;
+    background-color: $lightgray;
 }
 
 h1,
@@ -370,7 +370,7 @@ table {
 
     tbody {
         tr {
-            border-top: 2px solid $gray;
+            border-top: 2px solid $lightgray;
             padding: 0.8rem;
         }
     }

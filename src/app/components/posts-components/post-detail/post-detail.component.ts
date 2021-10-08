@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 export class PostDetailComponent implements OnInit {
 
     id: Number = new Number;
-
     post: Post = new Post;
     
     errorMessage: String = new String;

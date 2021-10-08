@@ -10,7 +10,7 @@ export class CategoryService {
 
 
     categories: Category[] = [];
-    categoriesBehaviorSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+    categoriesBS: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
     constructor(private dataService: DataService) { }
 
@@ -18,10 +18,8 @@ export class CategoryService {
         this.dataService.getCategories()
             .subscribe((res: { status: Number, selectedCategories: Category[] }) => {
                 this.categories = res.selectedCategories;
-                this.categoriesBehaviorSubject.next(this.categories);
+                this.categoriesBS.next(this.categories);
             });
-
-        return this.categoriesBehaviorSubject;
     }
 
     getCategory(id: Number) {
@@ -32,21 +30,16 @@ export class CategoryService {
         this.dataService.postCategory(newCategory)
             .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
                 this.categories.push(res.selectedCategory[0]);
-                this.categoriesBehaviorSubject.next(this.categories);
+                this.categoriesBS.next(this.categories);
             });
-
-        return this.categoriesBehaviorSubject;
-
     }
 
     putCategory(id: Number, updatedCategory: Category) {
         this.dataService.putCategory(id, updatedCategory)
             .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
                 this.categories[this.categories.findIndex(c => c.id === res.selectedCategory[0].id)] = res.selectedCategory[0];
-                this.categoriesBehaviorSubject.next(this.categories);
+                this.categoriesBS.next(this.categories);
             });
-
-        return this.categoriesBehaviorSubject;
 
     }
 
@@ -55,8 +48,7 @@ export class CategoryService {
             .subscribe(res => {
                 console.log(res);
                 this.categories = this.categories.filter(p => p.id != id);
-                this.categoriesBehaviorSubject.next(this.categories);
+                this.categoriesBS.next(this.categories);
             });
-
     }
 }

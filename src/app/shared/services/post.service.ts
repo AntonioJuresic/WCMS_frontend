@@ -12,7 +12,6 @@ export class PostService {
     posts: Post[] = [];
 
     postsBS: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
-    postsObservable: Observable<Post[]> = this.postsBS.asObservable();
 
     constructor(
         private dataService: DataService

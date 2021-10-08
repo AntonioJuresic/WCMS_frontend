@@ -1,0 +1,39 @@
+<div style="margin: 0 auto; width:100%; max-width: 576px;">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <label *ngIf="this.websiteInfo == undefined">Set website info:</label>
+        <label *ngIf="this.websiteInfo != undefined">Update website info:</label>
+
+        <input type="text" id="title" class="form-control" formControlName="title"
+            [ngClass]="{'is-invalid': ((title?.dirty || title?.touched) && title?.invalid)}">
+
+        <div *ngIf="(title?.dirty || title?.touched) && title?.invalid">
+            <p class="form-error-text">Title is required</p>
+        </div>
+
+        <input type="text" id="description" class="form-control" formControlName="description"
+            [ngClass]="{'is-invalid': ((description?.dirty || description?.touched) && description?.invalid)}">
+
+        <div *ngIf="(description?.dirty || description?.touched) && description?.invalid">
+            <p class="form-error-text">Description is required</p>
+        </div>
+
+        <!-- <div *ngIf="errorMessage">
+            <p class="form-error-text">{{errorMessage}}</p>
+        </div>
+        
+        <div *ngIf="successMessage">
+            <p class="form-success-text">{{successMessage}}</p>
+        </div> -->
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
+            
+            <button *ngIf="this.websiteInfo == undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+            [disabled]="!formGroup.valid">Create</button>
+
+            <button *ngIf="this.websiteInfo != undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

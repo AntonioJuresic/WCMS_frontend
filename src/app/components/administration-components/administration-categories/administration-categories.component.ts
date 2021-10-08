@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Category } from 'src/app/shared/models/category';
 import { CategoryService } from 'src/app/shared/services/category.service';
@@ -8,10 +8,9 @@ import { CategoryService } from 'src/app/shared/services/category.service';
   templateUrl: './administration-categories.component.html',
   styleUrls: ['./administration-categories.component.scss']
 })
-export class AdministrationCategoriesComponent implements OnInit {
+export class AdministrationCategoriesComponent implements OnInit, OnDestroy {
   
     categories: Category[] = [];
-    categoriesBehaviourSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
     categoriesSubscription: Subscription = new Subscription;
 
     editMode : Boolean = false;
@@ -22,8 +21,9 @@ export class AdministrationCategoriesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.categoriesBehaviourSubject = this.categoryService.getCategories();
-        this.categoriesSubscription = this.categoriesBehaviourSubject
+        this.categoryService.getCategories();
+
+        this.categoriesSubscription = this.categoryService.categoriesBS
             .subscribe(res => {
                 this.categories = res;
             });
@@ -40,5 +40,9 @@ export class AdministrationCategoriesComponent implements OnInit {
 
     deleteCategory(id: Number) {
         this.categoryService.deleteCategory(id);
+    }
+
+    ngOnDestroy(): void {
+        this.categoriesSubscription.unsubscribe();
     }
 }

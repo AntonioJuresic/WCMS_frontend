@@ -15,37 +15,26 @@ export class AuthorizationGuardService implements OnDestroy {
         private router: Router
     ) { }
 
-    async testnaFunkcija(uvjet: boolean) {
+    async userNeedsToBeLogged(userLoginRequired: boolean) {
         await this.authenticationService.isUserAuthenticated();
 
         this.authenticationSubscription = this.authenticationService.authenticationBS
             .subscribe(res => {
-                let stanjeKorisnika = res;
 
-                console.log("stanjeKorisnika - ", stanjeKorisnika);
-
-                console.log("Poziv suba");
+                //true ako je ulogiran
+                //false ako nije ulogiran
+                let userIsLogged = res;
 
                 //treba biti ulogiran
-                if (uvjet) {
-                    console.log("Korisnik treba biti ulogiran");
-
-                    if (uvjet == stanjeKorisnika) {
-                        console.log("Korisnik je ulogiran i može biti ovdje");
-                    } else {
-                        console.warn("Korisnik nije ulogiran i ne može biti ovdje");
+                if (userLoginRequired) {
+                    if (userLoginRequired != userIsLogged) {
                         this.router.navigate(['/']);
                     }
 
-                    //ne smije biti ulogiran
-                } else if (!uvjet) {
-                    console.log("Korisnik ne smije biti ulogiran");
-
-                    if (uvjet != stanjeKorisnika) {
-                        console.warn("Korisnik je ulogiran i ne može biti ovdje");
+                //ne smije biti ulogiran
+                } else if (!userLoginRequired) {
+                    if (userLoginRequired != userIsLogged) {
                         this.router.navigate(['/']);
-                    } else {
-                        console.log("Korisnik nije ulogiran i može biti ovdje");
                     }
                 }
             });

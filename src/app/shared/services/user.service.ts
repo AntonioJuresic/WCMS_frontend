@@ -9,7 +9,7 @@ import { DataService } from './data.service';
 export class UserService {
 
     users: User[] = [];
-    usersBehaviorSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+    usersBS: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
     constructor(private dataService: DataService) { }
 
@@ -17,10 +17,8 @@ export class UserService {
         this.dataService.getUsers()
             .subscribe((res: { selectedUsers: User[] }) => {
                 this.users = res.selectedUsers;
-                this.usersBehaviorSubject.next(this.users);
+                this.usersBS.next(this.users);
             });
-
-        return this.usersBehaviorSubject;
     }
 
     getUser(id: Number) {

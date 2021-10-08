@@ -37,8 +37,7 @@ export class RegistrationComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        //this.authorizationGuardService.canNotAcessAuthenticated();
-        this.authorizationGuardService.testnaFunkcija(false);
+        this.authorizationGuardService.userNeedsToBeLogged(false);
 
         this.authenticationService.authenticationErrorSubject
             .subscribe((error) => {

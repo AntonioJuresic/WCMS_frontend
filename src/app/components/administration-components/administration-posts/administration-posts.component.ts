@@ -22,7 +22,7 @@ export class AdministrationPostsComponent implements OnInit {
     ngOnInit(): void {
         this.postService.getPosts();
         
-        this.postsSubscription = this.postService.postsObservable
+        this.postsSubscription = this.postService.postsBS
             .subscribe(
                 res => {
                     this.posts = res;

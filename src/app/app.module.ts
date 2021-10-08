@@ -25,7 +25,8 @@ import { NotFoundComponent } from './components/error-components/not-found/not-f
 import { PostsByUserComponent } from './components/posts-components/posts-by-user/posts-by-user.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
 import { WebsiteInfoComponent } from './components/website-info/website-info.component';
-import { EditorWebsiteInfoComponent } from './components/editor-website-info/editor-website-info.component';
+import { EditorWebsiteInfoComponent } from './components/editor-components/editor-website-info/editor-website-info.component';
+import { AdministrationWebsiteInfoComponent } from './components/administration-components/administration-website-info/administration-website-info.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { EditorWebsiteInfoComponent } from './components/editor-website-info/edi
     PostsByUserComponent,
     PostsByCategoryComponent,
     WebsiteInfoComponent,
-    EditorWebsiteInfoComponent
+    EditorWebsiteInfoComponent,
+    AdministrationWebsiteInfoComponent
   ],
   imports: [
     BrowserModule,

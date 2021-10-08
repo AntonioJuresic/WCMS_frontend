@@ -32,11 +32,9 @@ export class EditorPostComponent implements OnInit {
     errorMessage: String = new String;
 
     users: User[] = [];
-    usersBehaviourSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
     usersSubscription: Subscription = new Subscription;
 
     categories: Category[] = [];
-    categoriesBehaviourSubject: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
     categoriesSubscription: Subscription = new Subscription;
 
     constructor(
@@ -48,7 +46,7 @@ export class EditorPostComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.authorizationGuardService.testnaFunkcija(true);
+        this.authorizationGuardService.userNeedsToBeLogged(true);
 
         this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -58,14 +56,14 @@ export class EditorPostComponent implements OnInit {
             }
         });
 
-        this.categoriesBehaviourSubject = this.categoryService.getCategories();
-        this.categoriesSubscription = this.categoriesBehaviourSubject
+        this.categoryService.getCategories();
+        this.categoriesSubscription = this.categoryService.categoriesBS
             .subscribe(res => {
                 this.categories = res;
             });
 
-        this.usersBehaviourSubject = this.userService.getUsers();
-        this.usersSubscription = this.usersBehaviourSubject
+        this.userService.getUsers();
+        this.usersSubscription = this.userService.usersBS
             .subscribe(res => {
                 this.users = res;
             });
