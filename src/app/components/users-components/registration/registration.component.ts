@@ -14,9 +14,13 @@ import Validation from '../../../shared/utilities/validation';
 })
 export class RegistrationComponent implements OnInit {
 
+    imageForm: any;
+    imageURL: String = new String;
+
     public formGroup: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         username: new FormControl('', Validators.required),
+        image: new FormControl(''),
         password1: new FormControl('', Validators.required),
         password2: new FormControl('', Validators.required)
     },
@@ -26,9 +30,6 @@ export class RegistrationComponent implements OnInit {
 
     successMessage: String = new String;
     errorMessage: String = new String;
-
-    newUser: User = new User();
-    currentDate: Date = new Date();
 
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
@@ -47,6 +48,7 @@ export class RegistrationComponent implements OnInit {
 
     get email() { return this.formGroup.get('email'); }
     get username() { return this.formGroup.get('username'); }
+    get image() { return this.formGroup.get('image'); }
     get password1() { return this.formGroup.get('password1'); }
     get password2() { return this.formGroup.get('password2'); }
 
@@ -54,12 +56,27 @@ export class RegistrationComponent implements OnInit {
         return this.formGroup.controls;
     }
 
-    onSubmit() {
-        this.newUser.email = this.formGroup.value.email;
-        this.newUser.username = this.formGroup.value.username;
-        this.newUser.password = this.formGroup.value.password1;
+    onFileChange(event: any) {
+        const reader = new FileReader();
 
-        this.userService.postUser(this.newUser)
+        if (event.target.files.length > 0) {
+            this.imageForm = event.target.files[0];
+
+            console.log(this.imageForm);
+        }
+    }
+
+    onSubmit() {
+        let formData = new FormData();
+
+        formData.append("email", this.formGroup.get("email")!.value);
+        formData.append("username", this.formGroup.get("username")!.value);
+        formData.append("image", this.imageForm);
+        formData.append("password", this.formGroup.get("password1")!.value);
+
+        console.log(formData);
+
+        this.userService.postUser(formData)
             .subscribe(
                 (response: { selectedUser?: User }) => {
                     this.successMessage = "User created!";

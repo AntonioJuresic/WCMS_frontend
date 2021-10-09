@@ -42,7 +42,7 @@
         </select>
 
         <div *ngIf="(userId?.dirty || userId?.touched) && userId?.invalid">
-            <p class="form-error-text">userId is empty</p>
+            <p class="form-error-text">Select author</p>
         </div>
 
         <label>Category:</label>
@@ -52,7 +52,7 @@
         </select>
 
         <div *ngIf="(categoryId?.dirty || categoryId?.touched) && categoryId?.invalid">
-            <p class="form-error-text">categoryId is empty</p>
+            <p class="form-error-text">Select category</p>
         </div>
 
         <div *ngIf="errorMessage">

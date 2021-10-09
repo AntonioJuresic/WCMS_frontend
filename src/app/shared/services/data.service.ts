@@ -70,7 +70,7 @@ export class DataService {
         return this.httpClient.get(this.API_URL + this.API_USER_URL + `/${id}`);
     }
 
-    postUser(user: User): Observable<any> {
+    postUser(user: FormData): Observable<any> {
         return this.httpClient.post(this.API_URL + this.API_USER_URL, user);
     }
 

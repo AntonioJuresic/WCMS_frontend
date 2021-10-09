@@ -1,6 +1,7 @@
 <app-navigation></app-navigation>
 
 <div *ngIf="user">
+    <img [src]="user.imagePath" alt="userImage" id="userImage">
     <h2>{{user.username}}</h2>
 </div>
 

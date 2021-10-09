@@ -20,6 +20,7 @@ $green-dark: rgb(80, 160, 48);
 $blue: rgb(20, 160, 230);
 $blue-dark: rgb(16, 128, 184);
 
+$lightgray-light: rgb(230, 230, 230);
 $lightgray: rgb(200, 200, 200);
 $lightgray-dark: rgb(100, 100, 100);
 $gray: rgb(130, 130, 130);
@@ -103,10 +104,10 @@ a:hover {
 
 a.btn {
     display: inline-block;
-    
+
     margin: 0.512rem;
     padding: 0.41rem 0.512rem;
-    
+
     text-decoration: none;
 }
 
@@ -168,7 +169,8 @@ select:focus {
     color: $green;
 }
 
-.form-error-text, .error-text {
+.form-error-text,
+.error-text {
     color: $red;
 }
 
@@ -219,7 +221,7 @@ select {
     max-width: 576px;
 
     border-radius: 5px;
-    
+
     background-color: white;
 }
 
@@ -398,6 +400,7 @@ table {
             border: none;
 
             th {
+                padding: 0.8rem;
                 font-weight: 800;
                 text-align: left;
             }
@@ -406,8 +409,20 @@ table {
 
     tbody {
         tr {
-            border-top: 2px solid $lightgray;
+            //border-top: 2px solid $lightgray;
             padding: 0.8rem;
+
+            td {
+                padding: 0.8rem;
+            }
+        }
+
+        tr:nth-child(even) {
+            background: $white;
+        }
+
+        tr:nth-child(odd) {
+            background: $lightgray-light;
         }
     }
 }

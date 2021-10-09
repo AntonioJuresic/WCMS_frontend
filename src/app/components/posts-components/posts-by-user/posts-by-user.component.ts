@@ -43,6 +43,8 @@ export class PostsByUserComponent implements OnInit {
                 (response: { selectedUser: User[], selectedPosts: Post[] }) => {
                     this.user = response.selectedUser[0];
                     this.posts = response.selectedPosts;
+                    
+                    this.user.imagePath = environment.SERVER_URL + this.user.imagePath?.substring(2);
 
                     this.posts.forEach((post) => {
                         post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
