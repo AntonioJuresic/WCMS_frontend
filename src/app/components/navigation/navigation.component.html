@@ -1,14 +1,20 @@
 <nav>
     <div *ngIf="userIsLogged;">
-        <a [routerLink]="['/p/editor']">
-            <button class="btn btn-secondary">New post</button>
-        </a>
+        <div class="menu">
+            <a [routerLink]="['/p/editor']" class="btn btn-secondary">New post</a>
+            <a [routerLink]="['/administration']" class="btn btn-secondary">Administration</a>
 
-        <a [routerLink]="['/administration']">
-            <button class="btn btn-secondary">Administration</button>
-        </a>
+            <div class="submenu">
+                <img [src]="user?.imagePath" alt="userImage" id="userImage">
+                <p>{{user?.username}}</p>
 
-        <button class="btn btn-outline-secondary" (click)="logout()">Logout</button>
+                <div class="submenu-content">
+                    <a [routerLink]="['/u/', user?.username]">My profile</a>
+                    <a href="#">Settings</a>
+                    <a href="" (click)="logout()">Log out</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div *ngIf="!userIsLogged;">

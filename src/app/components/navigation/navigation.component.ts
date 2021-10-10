@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 export class NavigationComponent implements OnInit, OnDestroy {
 
     public userIsLogged: boolean = false;
+    public user?: User = new User;
 
     authenticationSubscription: Subscription = new Subscription;
 
@@ -25,6 +27,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
                 res => {
                     this.userIsLogged = res;
                 });
+
+        this.user = this.authenticationService.getUserFromMemory();
     }
 
     logout() {

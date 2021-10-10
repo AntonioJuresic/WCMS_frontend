@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { DataService } from './data.service';
 
@@ -26,8 +27,10 @@ export class AuthenticationService {
             .authenticateUser(username, password)
             .subscribe(
                 (response) => {
-                    this.user = response.data;
+                    this.user = response.userData;
                     this.token = response.token;
+                    
+                    this.user!.imagePath = environment.SERVER_URL + this.user!.imagePath!.substring(2);
 
                     localStorage.setItem('user', JSON.stringify(this.user));
                     localStorage.setItem('token', JSON.stringify(this.token));
@@ -42,7 +45,7 @@ export class AuthenticationService {
     }
 
     getUserFromMemory() {
-        this.user = JSON.parse(localStorage.getItem('user') || 'null') as User;
+        return JSON.parse(localStorage.getItem('user') || 'null') as User;
     }
 
     getTokenFromMemory() {
@@ -61,10 +64,10 @@ export class AuthenticationService {
         this.router.navigate(['/']);
     }
 
-    isUserAuthenticated() {
-        this.getUserFromMemory();
+    async isUserAuthenticated() {
+        //this.getUserFromMemory();
 
-        if (this.user) {
+        if (await this.getUserFromMemory()) {
             this.dataService
                 .checkAuthentication()
                 .subscribe(

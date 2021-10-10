@@ -1,0 +1,48 @@
+.menu {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+
+    .submenu {
+        padding: 1rem;
+
+        img {
+            height: 3.052rem;
+            vertical-align: middle;
+
+            border-radius: 5px;
+        }
+
+        p {
+            padding: 0px 1rem;
+            display: inline;
+        }
+
+        .submenu-content {
+            display: none;
+            position: relative;
+            z-index: 1;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .submenu:hover .submenu-content {
+        position: absolute;
+        margin: 0.64rem;
+
+        display: flex;
+        flex-direction: column;
+
+        a {
+            margin: 0.41rem 0.64rem ;
+        }
+    }
+}
