@@ -219,10 +219,13 @@ select {
     padding: 1rem;
 
     max-width: 576px;
-
     border-radius: 5px;
 
     background-color: white;
+
+    p {
+        text-align: center;
+    }
 }
 
 .message-window-container {

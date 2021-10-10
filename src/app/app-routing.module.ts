@@ -11,6 +11,7 @@ import { ServerDownComponent } from './components/error-components/server-down/s
 import { StylingComponent } from './styling/styling.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
 import { PostsByUserComponent } from './components/posts-components/posts-by-user/posts-by-user.component';
+import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
 
     { path: "c/:name", component: PostsByCategoryComponent },
     { path: "u/:username", component: PostsByUserComponent },
+
+    { path: "u/editor/:id", component: EditorUserComponent },
 
     { path: "administration", component: AdministrationComponent },
     { path: "styling", component: StylingComponent },

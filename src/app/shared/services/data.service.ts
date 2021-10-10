@@ -16,14 +16,15 @@ export class DataService {
     API_AUTHENTICATION_URL = '/authentication';
 
     API_WEBSITE_INFO_URL = '/info';
-
-    API_USER_URL = '/user';
     API_POST_URL = '/post';
 
-    API_POSTS_BY_CATEGORY_URL = '/category-posts';
-    API_POSTS_BY_USER_URL = '/user-posts';
-
     API_CATEGORY_URL = '/category';
+    API_POSTS_BY_CATEGORY_URL = '/category-posts';
+
+    API_USER_URL = '/user';
+    API_POSTS_BY_USER_URL = '/user-posts';
+    API_USER_HIMSELF_URL = '/user-himself';
+
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -58,20 +59,6 @@ export class DataService {
 
     putWebsiteInfo(websiteInfo: WebsiteInfo): Observable<any> {
         return this.httpClient.put(this.API_URL + this.API_WEBSITE_INFO_URL, websiteInfo);
-    }
-
-    //users
-    
-    getUsers(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_USER_URL);
-    }
-
-    getUser(id: Number): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_USER_URL + `/${id}`);
-    }
-
-    postUser(user: FormData): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_USER_URL, user);
     }
 
     //posts
@@ -124,5 +111,40 @@ export class DataService {
 
     deleteCategory(id: Number): Observable<any> {
         return this.httpClient.delete(this.API_URL + this.API_CATEGORY_URL + `/${id}`);
+    }
+
+    //users
+    
+    getUsers(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_USER_URL);
+    }
+
+    getUser(id: Number): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_USER_URL + `/${id}`);
+    }
+
+    postUser(user: FormData): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_USER_URL, user);
+    }
+
+    putUser(id: Number, user: FormData): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_USER_URL + `/${id}`, user);
+    }
+
+    deleteUser(id: Number): Observable<any> {
+        return this.httpClient.delete(this.API_URL + this.API_USER_URL + `/${id}`);
+    }
+
+    //user himself
+    getUserHimself(id: Number): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`);
+    }
+
+    putUserHimself(id: Number, user: FormData): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`, user);
+    }
+
+    deleteUserHimself(id: Number): Observable<any> {
+        return this.httpClient.delete(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`);
     }
 }

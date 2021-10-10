@@ -12,19 +12,27 @@ export class UserService {
     users: User[] = [];
     usersBS: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
 
-    constructor(private dataService: DataService) { }
+    successUserPutBS: BehaviorSubject<String | undefined> = new BehaviorSubject<String | undefined>(undefined);
+    failedUserPutBS: BehaviorSubject<String | undefined> = new BehaviorSubject<String | undefined>(undefined);
+
+    constructor(
+        private dataService: DataService
+    ) { }
 
     getUsers() {
         this.dataService.getUsers()
-            .subscribe((res: { selectedUsers: User[] }) => {
-                this.users = res.selectedUsers;
+            .subscribe(
+                (res: {
+                    selectedUsers: User[]
+                }) => {
+                    this.users = res.selectedUsers;
 
-                this.users.forEach((user) => {
-                    user.imagePath = environment.SERVER_URL + user.imagePath?.substring(2);
+                    this.users.forEach((user) => {
+                        user.imagePath = environment.SERVER_URL + user.imagePath?.substring(2);
+                    });
+
+                    this.usersBS.next(this.users);
                 });
-
-                this.usersBS.next(this.users);
-            });
     }
 
     getUser(id: Number) {
@@ -33,5 +41,28 @@ export class UserService {
 
     postUser(newUser: FormData) {
         return this.dataService.postUser(newUser);
+    }
+
+    putUser(id: Number, newUser: FormData) {
+        this.dataService.putUser(id, newUser)
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedUser: User[]
+                }) => {
+                    res.selectedUser[0].imagePath =
+                        environment.SERVER_URL +
+                        res.selectedUser[0].imagePath?.substring(2);
+
+                    this.users.push(res.selectedUser[0]);
+                    this.usersBS.next(this.users);
+
+                    this.successUserPutBS.next(res.selectedUser[0].username!);
+                    this.failedUserPutBS.next(undefined);
+                },
+                (error) => {
+                    this.successUserPutBS.next(undefined);
+                    this.failedUserPutBS.next(error.error.error);
+                });
     }
 }

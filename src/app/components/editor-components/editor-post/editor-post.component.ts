@@ -125,7 +125,6 @@ export class EditorPostComponent implements OnInit, OnDestroy {
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {
                 this.imageURL = reader.result as string;
-                //console.log(reader.result as string);
             };
         }
     }
@@ -148,7 +147,6 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
         this.postService.successPostPutBS
             .subscribe(res => {
-
                 this.showMessageWindow = true;
 
                 if(res != undefined) {

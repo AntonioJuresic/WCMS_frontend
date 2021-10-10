@@ -27,6 +27,7 @@ import { PostsByCategoryComponent } from './components/posts-components/posts-by
 import { WebsiteInfoComponent } from './components/website-info/website-info.component';
 import { EditorWebsiteInfoComponent } from './components/editor-components/editor-website-info/editor-website-info.component';
 import { AdministrationWebsiteInfoComponent } from './components/administration-components/administration-website-info/administration-website-info.component';
+import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AdministrationWebsiteInfoComponent } from './components/administration-
     PostsByCategoryComponent,
     WebsiteInfoComponent,
     EditorWebsiteInfoComponent,
-    AdministrationWebsiteInfoComponent
+    AdministrationWebsiteInfoComponent,
+    EditorUserComponent
   ],
   imports: [
     BrowserModule,
