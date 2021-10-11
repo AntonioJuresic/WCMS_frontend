@@ -28,6 +28,7 @@ import { WebsiteInfoComponent } from './components/website-info/website-info.com
 import { EditorWebsiteInfoComponent } from './components/editor-components/editor-website-info/editor-website-info.component';
 import { AdministrationWebsiteInfoComponent } from './components/administration-components/administration-website-info/administration-website-info.component';
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
+import { AdministrationUsersComponent } from './components/administration-components/administration-users/administration-users.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { EditorUserComponent } from './components/editor-components/editor-user/
     WebsiteInfoComponent,
     EditorWebsiteInfoComponent,
     AdministrationWebsiteInfoComponent,
-    EditorUserComponent
+    EditorUserComponent,
+    AdministrationUsersComponent
   ],
   imports: [
     BrowserModule,

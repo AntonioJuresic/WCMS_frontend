@@ -31,6 +31,8 @@ export class UserService {
                         user.imagePath = environment.SERVER_URL + user.imagePath?.substring(2);
                     });
 
+                    this.users.sort((a,b) => a.username.valueOf().localeCompare(b.username.valueOf()));
+
                     this.usersBS.next(this.users);
                 });
     }
@@ -57,12 +59,24 @@ export class UserService {
                     this.users.push(res.selectedUser[0]);
                     this.usersBS.next(this.users);
 
-                    this.successUserPutBS.next(res.selectedUser[0].username!);
+                    this.successUserPutBS.next(res.selectedUser[0].username);
                     this.failedUserPutBS.next(undefined);
                 },
                 (error) => {
                     this.successUserPutBS.next(undefined);
                     this.failedUserPutBS.next(error.error.error);
                 });
+    }
+
+    deleteUser(id: Number) {
+        this.dataService.deleteUser(id)
+        .subscribe(
+            res => {
+                //this.users = this.users.filter(u => u.id != id);
+                this.users.find(u => u.id == id)!.deleted = true;
+
+                this.usersBS.next(this.users);
+            }
+        )
     }
 }

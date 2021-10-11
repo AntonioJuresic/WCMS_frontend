@@ -30,7 +30,7 @@ export class AuthenticationService {
                     this.user = response.userData;
                     this.token = response.token;
                     
-                    this.user!.imagePath = environment.SERVER_URL + this.user!.imagePath!.substring(2);
+                    this.user!.imagePath = environment.SERVER_URL + this.user!.imagePath.substring(2);
 
                     localStorage.setItem('user', JSON.stringify(this.user));
                     localStorage.setItem('token', JSON.stringify(this.token));

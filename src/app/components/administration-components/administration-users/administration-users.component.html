@@ -1,0 +1,34 @@
+<h2>Users</h2>
+
+<div>
+    <label>Filter by username:</label>
+    <input type="text" [(ngModel)]="QueryUsername">
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: fit-content; text-align: center;">id</th>
+            <th style="width: 100%;">username</th>
+            <th style="width: fit-content; text-align: center;">deleted</th>
+            <th style="width: fit-content; text-align: center;">edit</th>
+            <th style="width: fit-content; text-align: center;">delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let u of users | filterByString: 'title' : QueryUsername;">
+            <td><a [routerLink]="['/u/', u.username]">{{u.id}}</a></td>
+            <td><a [routerLink]="['/u/', u.username]">{{u.username}}</a></td>
+            <td>{{u.deleted == true}}</td>
+
+            <td>
+                <a [routerLink]="['/u/editor/', u.id]" class="btn btn-warning btn-no-margin">Edit</a>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteUser(u.id!)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
