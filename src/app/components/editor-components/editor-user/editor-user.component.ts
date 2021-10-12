@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AuthorizationGuardService } from 'src/app/shared/services/authorization-guard.service';
@@ -35,7 +35,8 @@ export class EditorUserComponent implements OnInit {
 
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
-        private route: ActivatedRoute,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
         private userService: UserService,
         private authenticationService: AuthenticationService
     ) { }
@@ -43,11 +44,21 @@ export class EditorUserComponent implements OnInit {
     ngOnInit(): void {
         this.authorizationGuardService.userNeedsToBeLogged(true);
 
-        this.route.params.subscribe(params => {
-            this.id = params['id'];
+        this.activatedRoute.paramMap
+            .subscribe(res => {
 
-            this.getUser(this.id);
-        });
+                if(window.history.state.user.id == undefined) {
+                    this.router.navigate(['/']);
+                }
+
+                this.formGroup.setValue({
+                    username: window.history.state.user.username,
+                    email: window.history.state.user.email,
+                    image: ""
+                });
+
+                this.imageURL = window.history.state.user.imagePath;
+            });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
     }
@@ -73,27 +84,6 @@ export class EditorUserComponent implements OnInit {
 
     get f(): { [key: string]: AbstractControl } {
         return this.formGroup.controls;
-    }
-
-    getUser(id: Number) {
-        this.userService.getUser(id)
-            .subscribe(
-                (response) => {
-                    this.user = response.selectedUser[0];
-
-                    this.formGroup.setValue({
-                        username: response.selectedUser[0].username,
-                        email: response.selectedUser[0].email,
-                        image: ""
-                    });
-
-                    this.imageURL = environment.SERVER_URL + response.selectedUser[0].imagePath.substring(2);
-                },
-                (error) => {
-                    this.showMessageWindow = true;
-                    this.errorMessage = error.error.message;
-                }
-            )
     }
 
     onSubmit() {
@@ -130,7 +120,7 @@ export class EditorUserComponent implements OnInit {
 
         this.userService.deleteUser(id);
 
-        if(id == this.loggedUser.id) {
+        if (id == this.loggedUser.id) {
             this.authenticationService.logoutUser();
         }
     }

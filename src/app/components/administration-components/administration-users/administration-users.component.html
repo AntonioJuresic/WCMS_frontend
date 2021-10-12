@@ -23,7 +23,8 @@
             <td>{{u.deleted == true}}</td>
 
             <td>
-                <a [routerLink]="['/u/editor/', u.id]" class="btn btn-warning btn-no-margin">Edit</a>
+                <a [routerLink]="['/u/editor/' ]" [state]="{ user : u }"
+                    class="btn btn-warning btn-no-margin">Edit</a>
             </td>
 
             <td>

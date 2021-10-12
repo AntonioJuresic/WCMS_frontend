@@ -24,9 +24,9 @@ const routes: Routes = [
     { path: "p/:id", component: PostDetailComponent },
 
     { path: "c/:name", component: PostsByCategoryComponent },
-    { path: "u/:username", component: PostsByUserComponent },
 
-    { path: "u/editor/:id", component: EditorUserComponent },
+    { path: "u/editor", component: EditorUserComponent },
+    { path: "u/:username", component: PostsByUserComponent },
 
     { path: "administration", component: AdministrationComponent },
     { path: "styling", component: StylingComponent },

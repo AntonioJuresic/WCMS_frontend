@@ -4,13 +4,13 @@
             <a [routerLink]="['/p/editor']" class="btn btn-secondary">New post</a>
             <a [routerLink]="['/administration']" class="btn btn-secondary">Administration</a>
 
-            <div class="submenu">
+            <div class="submenu" style="margin-left: auto;">
                 <img [src]="user?.imagePath" alt="userImage" id="userImage">
                 <p>{{user?.username}}</p>
 
                 <div class="submenu-content">
                     <a [routerLink]="['/u/', user?.username]">My profile</a>
-                    <a [routerLink]="['/u/editor/', user?.id]">Settings</a>
+                    <a [routerLink]="['/u/editor/' ]" [state]="{ user : user }">Settings</a>
                     <a href="" (click)="logout()">Log out</a>
                 </div>
             </div>
