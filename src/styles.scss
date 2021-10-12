@@ -390,7 +390,9 @@ button:hover {
     cursor: not-allowed;
 }
 
-th, th, td {
+th,
+th,
+td {
     padding: 0.512rem 0.512rem;
 }
 
@@ -422,6 +424,12 @@ table {
             background: $lightgray-light;
         }
     }
+}
+
+.container-small {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 576px;
 }
 
 // Flex container

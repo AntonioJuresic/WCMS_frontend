@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AuthorizationGuardService } from 'src/app/shared/services/authorization-guard.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -15,6 +16,8 @@ export class EditorUserComponent implements OnInit {
 
     id: Number = new Number;
     user: User = new User;
+
+    loggedUser: User = new User;
 
     imageForm: any;
     imageURL: String = new String;
@@ -33,7 +36,8 @@ export class EditorUserComponent implements OnInit {
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
         private route: ActivatedRoute,
-        private userService: UserService
+        private userService: UserService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngOnInit(): void {
@@ -44,6 +48,8 @@ export class EditorUserComponent implements OnInit {
 
             this.getUser(this.id);
         });
+
+        this.loggedUser = this.authenticationService.getUserFromMemory();
     }
 
     onFileChange(event: any) {
@@ -73,7 +79,7 @@ export class EditorUserComponent implements OnInit {
         this.userService.getUser(id)
             .subscribe(
                 (response) => {
-                    console.log(response);
+                    this.user = response.selectedUser[0];
 
                     this.formGroup.setValue({
                         username: response.selectedUser[0].username,
@@ -116,6 +122,17 @@ export class EditorUserComponent implements OnInit {
             })
 
         this.showMessageWindow = true;
+    }
+
+    deleteUser(id: Number) {
+        console.log(id);
+        console.log(this.user.id);
+
+        this.userService.deleteUser(id);
+
+        if(id == this.loggedUser.id) {
+            this.authenticationService.logoutUser();
+        }
     }
 
     closeMessageWindow() {

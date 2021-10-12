@@ -31,7 +31,7 @@ export class UserService {
                         user.imagePath = environment.SERVER_URL + user.imagePath?.substring(2);
                     });
 
-                    this.users.sort((a,b) => a.username.valueOf().localeCompare(b.username.valueOf()));
+                    this.users.sort((a, b) => a.username.valueOf().localeCompare(b.username.valueOf()));
 
                     this.usersBS.next(this.users);
                 });
@@ -70,13 +70,13 @@ export class UserService {
 
     deleteUser(id: Number) {
         this.dataService.deleteUser(id)
-        .subscribe(
-            res => {
-                //this.users = this.users.filter(u => u.id != id);
-                this.users.find(u => u.id == id)!.deleted = true;
+            .subscribe(
+                res => {
+                    //this.users = this.users.filter(u => u.id != id);
+                    this.users.find(u => u.id == id)!.deleted = true;
 
-                this.usersBS.next(this.users);
-            }
-        )
+                    this.usersBS.next(this.users);
+                }
+            )
     }
 }

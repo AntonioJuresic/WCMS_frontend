@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -15,8 +16,11 @@ export class AdministrationUsersComponent implements OnInit {
     users: User[] = [];
     usersSubscription: Subscription = new Subscription;
 
+    loggedUser: User = new User;
+
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngOnInit(): void {
@@ -25,11 +29,17 @@ export class AdministrationUsersComponent implements OnInit {
         this.usersSubscription = this.userService.usersBS
             .subscribe(res => {
                 this.users = res;
-            })
+            });
+
+        this.loggedUser = this.authenticationService.getUserFromMemory();
     }
 
     deleteUser(id: Number) {
         this.userService.deleteUser(id);
+
+        if(id == this.loggedUser.id) {
+            this.authenticationService.logoutUser();
+        }
     }
 
     ngOnDestory(): void {

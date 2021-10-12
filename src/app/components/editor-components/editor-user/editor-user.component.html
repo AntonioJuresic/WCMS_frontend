@@ -1,4 +1,4 @@
-<div style="margin: 0 auto; width:100%; max-width: 576px;">
+<div class="container-small">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <h2>Edit profile</h2>
 
@@ -32,20 +32,14 @@
         </div>
 
         <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id!)" style="margin-right: auto;">Delete</button>
+
             <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>
             <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Update settings</button>
         </div>
     </form>
 </div>
-
-<!-- <div *ngIf="errorMessage">
-    <p class="form-error-text">{{errorMessage}}</p>
-</div>
-
-<div *ngIf="successMessage">
-    <p class="form-success-text">{{successMessage}}</p>
-</div> -->
 
 <div *ngIf="showMessageWindow == true" class="message-window-container custom-flex-center-items">
     <div class="message-window">
