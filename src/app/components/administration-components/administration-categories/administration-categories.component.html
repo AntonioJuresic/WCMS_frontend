@@ -4,6 +4,10 @@
     <button type="button" class="btn btn-success" (click)="openEditor()">New category</button>
 </div>
 
+<div *ngIf="editMode">
+    <app-editor-category [category]="categoryForEdit" (editModeFalse)="closeEditor($event)"></app-editor-category>
+</div>
+
 <table>
     <thead>
         <tr>
@@ -29,7 +33,3 @@
         </tr>
     </tbody>
 </table>
-
-<div *ngIf="editMode">
-    <app-editor-category [category]="categoryForEdit" (editModeFalse)="closeEditor($event)"></app-editor-category>
-</div>

@@ -30,6 +30,7 @@ import { AdministrationWebsiteInfoComponent } from './components/administration-
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 import { AdministrationUsersComponent } from './components/administration-components/administration-users/administration-users.component';
 import { AdministrationCommentsComponent } from './components/administration-components/administration-comments/administration-comments.component';
+import { PostCommentsComponent } from './components/posts-components/post-comments/post-comments.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { AdministrationCommentsComponent } from './components/administration-com
     AdministrationWebsiteInfoComponent,
     EditorUserComponent,
     AdministrationUsersComponent,
-    AdministrationCommentsComponent
+    AdministrationCommentsComponent,
+    PostCommentsComponent
   ],
   imports: [
     BrowserModule,

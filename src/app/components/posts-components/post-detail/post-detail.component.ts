@@ -34,11 +34,11 @@ export class PostDetailComponent implements OnInit {
     getPost(id: Number) {
         this.postService.getPost(id)
             .subscribe(
-                (response: { selectedPost: Post[] }) => {
-                    this.post = response.selectedPost[0];
+                (res: { selectedPost: Post[] }) => {
+                    this.post = res.selectedPost[0];
                     this.post.imagePath = environment.SERVER_URL + this.post.imagePath?.substring(2);
                     
-                    this.titleService.setTitle(response.selectedPost[0].title.valueOf());
+                    this.titleService.setTitle(res.selectedPost[0].title.valueOf());
                 },
                 (error) => {
                     this.errorMessage = error.error.message;

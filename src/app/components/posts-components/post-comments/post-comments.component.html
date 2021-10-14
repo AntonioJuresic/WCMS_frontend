@@ -1,0 +1,8 @@
+<p>Comments:</p>
+
+<ul>
+    <li *ngFor="let c of comments">
+        <a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a> - {{c.dateOfCreation | date:'d.M.Y.'}}
+        <p>{{c.content}}</p>
+    </li>
+</ul>

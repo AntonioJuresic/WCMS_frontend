@@ -63,7 +63,7 @@ export class CommentService {
                 });
     }
     
-    getPostsByPost(id: Number) {
+    getCommentsByPost(id: Number) {
         return this.dataService.getCommentsByPost(id);
     }
 

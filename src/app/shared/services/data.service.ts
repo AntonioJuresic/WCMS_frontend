@@ -175,6 +175,7 @@ export class DataService {
     }
 
     getCommentsByPost(id: Number): Observable<any> {
+        console.log(this.API_URL + this.API_COMMENTS_BY_POST_URL + `/${id}`);
         return this.httpClient.get(this.API_URL + this.API_COMMENTS_BY_POST_URL + `/${id}`);
     }
 

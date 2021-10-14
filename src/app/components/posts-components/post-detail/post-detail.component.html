@@ -7,6 +7,8 @@
     <p><a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></p>
     <p>Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</p>
     <p>{{post.content}}</p>
+
+    <app-post-comments [id]="post.id!"></app-post-comments>
 </div>
 
 <div *ngIf=errorMessage>
