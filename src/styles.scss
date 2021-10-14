@@ -111,6 +111,10 @@ a.btn {
     text-decoration: none;
 }
 
+a.btn-no-margin {
+    margin: 0rem;
+}
+
 blockquote {
     margin: 1rem;
     padding: 0.8rem;
@@ -416,6 +420,10 @@ table {
     }
 
     tbody {
+        tr {
+            white-space: nowrap;
+        }
+        
         tr:nth-child(even) {
             background: $white;
         }

@@ -29,6 +29,7 @@ import { EditorWebsiteInfoComponent } from './components/editor-components/edito
 import { AdministrationWebsiteInfoComponent } from './components/administration-components/administration-website-info/administration-website-info.component';
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 import { AdministrationUsersComponent } from './components/administration-components/administration-users/administration-users.component';
+import { AdministrationCommentsComponent } from './components/administration-components/administration-comments/administration-comments.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AdministrationUsersComponent } from './components/administration-compon
     EditorWebsiteInfoComponent,
     AdministrationWebsiteInfoComponent,
     EditorUserComponent,
-    AdministrationUsersComponent
+    AdministrationUsersComponent,
+    AdministrationCommentsComponent
   ],
   imports: [
     BrowserModule,

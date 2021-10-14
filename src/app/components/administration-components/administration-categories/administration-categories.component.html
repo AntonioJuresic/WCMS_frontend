@@ -7,10 +7,10 @@
 <table>
     <thead>
         <tr>
-            <th style="width: fit-content; text-align: center;">id</th>
+            <th>id</th>
             <th style="width: 100%;">name</th>
-            <th style="width: fit-content; text-align: center;">edit</th>
-            <th style="width: fit-content; text-align: center;">delete</th>
+            <th style="text-align: center;">edit</th>
+            <th style="text-align: center;">delete</th>
         </tr>
     </thead>
 
@@ -20,11 +20,11 @@
             <td><a [routerLink]="['/c/', c.name]">{{c.name}}</a></td>
 
             <td>
-                <button type="button" class="btn btn-warning" (click)="openEditor(c)">Edit</button>
+                <button type="button" class="btn btn-warning btn-no-margin" (click)="openEditor(c)">Edit</button>
             </td>
 
             <td>
-                <button type="button" class="btn btn-danger" (click)="deleteCategory(c.id!)">Delete</button>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteCategory(c.id!)">Delete</button>
             </td>
         </tr>
     </tbody>

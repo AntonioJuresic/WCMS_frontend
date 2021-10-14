@@ -1,0 +1,24 @@
+<h2>Comments</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>user</th>
+            <th>post</th>
+            <th style="width: 100%;">content</th>
+            <th style="text-align: center;">delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of comments">
+            <td><a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a></td>
+            <td><a [routerLink]="['/p/', c.postId]">{{c.postTitle}}</a></td>
+            <td>{{c.content}}</td>
+
+            <td>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteComment(c.id!)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
