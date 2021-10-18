@@ -22,7 +22,6 @@ import { FilterByStringPipe } from './shared/utilities/filter-by-string.pipe';
 import { RegistrationComponent } from './components/users-components/registration/registration.component';
 import { ServerDownComponent } from './components/error-components/server-down/server-down.component';
 import { NotFoundComponent } from './components/error-components/not-found/not-found.component';
-import { PostsByUserComponent } from './components/posts-components/posts-by-user/posts-by-user.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
 import { WebsiteInfoComponent } from './components/website-info/website-info.component';
 import { EditorWebsiteInfoComponent } from './components/editor-components/editor-website-info/editor-website-info.component';
@@ -31,6 +30,8 @@ import { EditorUserComponent } from './components/editor-components/editor-user/
 import { AdministrationUsersComponent } from './components/administration-components/administration-users/administration-users.component';
 import { AdministrationCommentsComponent } from './components/administration-components/administration-comments/administration-comments.component';
 import { PostCommentsComponent } from './components/posts-components/post-comments/post-comments.component';
+import { UserProfileComponent } from './components/users-components/user-profile/user-profile.component';
+import { UserCommentsComponent } from './components/users-components/user-comments/user-comments.component';
 
 
 @NgModule({
@@ -52,7 +53,6 @@ import { PostCommentsComponent } from './components/posts-components/post-commen
     RegistrationComponent,
     ServerDownComponent,
     NotFoundComponent,
-    PostsByUserComponent,
     PostsByCategoryComponent,
     WebsiteInfoComponent,
     EditorWebsiteInfoComponent,
@@ -60,7 +60,9 @@ import { PostCommentsComponent } from './components/posts-components/post-commen
     EditorUserComponent,
     AdministrationUsersComponent,
     AdministrationCommentsComponent,
-    PostCommentsComponent
+    PostCommentsComponent,
+    UserProfileComponent,
+    UserCommentsComponent
   ],
   imports: [
     BrowserModule,

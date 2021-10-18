@@ -12,6 +12,10 @@
     </article>
 </div>
 
+<div>
+    <app-user-comments [username]="user.username" ></app-user-comments>
+</div>
+
 <div *ngIf=errorMessage>
     <p>{{errorMessage}}</p>
 </div>

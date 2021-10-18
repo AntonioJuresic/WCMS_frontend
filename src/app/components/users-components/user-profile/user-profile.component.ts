@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/shared/models/post';
 import { User } from 'src/app/shared/models/user';
 import { PostService } from 'src/app/shared/services/post.service';
@@ -8,11 +8,11 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-posts-by-user',
-  templateUrl: './posts-by-user.component.html',
-  styleUrls: ['./posts-by-user.component.scss']
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.scss']
 })
-export class PostsByUserComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
 
     username: String = new String;
 

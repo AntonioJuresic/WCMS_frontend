@@ -115,9 +115,6 @@ export class EditorUserComponent implements OnInit {
     }
 
     deleteUser(id: Number) {
-        console.log(id);
-        console.log(this.user.id);
-
         this.userService.deleteUser(id);
 
         if (id == this.loggedUser.id) {

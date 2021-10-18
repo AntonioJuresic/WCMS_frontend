@@ -10,8 +10,8 @@ import { RegistrationComponent } from './components/users-components/registratio
 import { ServerDownComponent } from './components/error-components/server-down/server-down.component';
 import { StylingComponent } from './styling/styling.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
-import { PostsByUserComponent } from './components/posts-components/posts-by-user/posts-by-user.component';
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
+import { UserProfileComponent } from './components/users-components/user-profile/user-profile.component';
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: "c/:name", component: PostsByCategoryComponent },
 
     { path: "u/editor", component: EditorUserComponent },
-    { path: "u/:username", component: PostsByUserComponent },
+    { path: "u/:username", component: UserProfileComponent },
 
     { path: "administration", component: AdministrationComponent },
     { path: "styling", component: StylingComponent },
