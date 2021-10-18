@@ -1,4 +1,13 @@
 <p>Comments:</p>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <input type="text" id="content" class="form-control" formControlName="content"
+        [ngClass]="{'is-invalid': ((content?.dirty || content?.touched) && content?.invalid)}">
+
+    <div class="flex-container flex-direction-row justify-content-flex-end">
+        <button type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+            [disabled]="!formGroup.valid">Comment</button>
+    </div>
+</form>
 
 <ul>
     <li *ngFor="let c of comments">

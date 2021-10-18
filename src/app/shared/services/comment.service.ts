@@ -23,7 +23,6 @@ export class CommentService {
                     selectedComments: Comment[]
                 }) => {
                     this.comments = res.selectedComments;
-
                     this.commentsBS.next(this.comments);
                 });
     }
@@ -65,6 +64,14 @@ export class CommentService {
     
     getCommentsByPost(id: Number) {
         return this.dataService.getCommentsByPost(id);
+    }
+
+    postCommentOnAPost(newComment: Comment) {
+        return this.dataService.postComment(newComment);
+    }
+
+    putCommentOnAPost(id: Number, newComment: Comment) {
+        return this.dataService.putComment(id, newComment);
     }
 
     getCommentsByUser(username: String) {

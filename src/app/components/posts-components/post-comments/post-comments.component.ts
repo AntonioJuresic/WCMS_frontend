@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/shared/models/comment';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
     selector: 'app-post-comments',
@@ -10,34 +12,59 @@ import { CommentService } from 'src/app/shared/services/comment.service';
 })
 export class PostCommentsComponent implements OnInit {
 
-    @Input() id: Number = new Number;
+    @Input() postId: Number = new Number;
 
     comments: Comment[] = [];
     commentsSubscription: Subscription = new Subscription;
 
+    public formGroup: FormGroup = new FormGroup({
+        content: new FormControl("", Validators.required)
+    });
+
     constructor(
-        private commentService: CommentService
+        private commentService: CommentService,
+        private authenticationService: AuthenticationService
     ) { }
 
-    ngOnInit(): void {
-        /*this.commentService.getCommentsByPost(this.id)
-            .subscribe(
-                res => {
-                    this.comments = res;
-                });*/
-    }
+    ngOnInit(): void { }
 
     ngOnChanges() {
-        console.log('id', this.id);
-        console.log(this.id != undefined);
-
-        if (this.id != undefined) {
-            this.commentService.getCommentsByPost(this.id)
+        if (this.postId != undefined) {
+            this.commentService.getCommentsByPost(this.postId)
                 .subscribe(
                     (res: { selectedComments: Comment[] }) => {
                         this.comments = res.selectedComments;
+                        this.comments.sort((a, b) => {return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)});
                     });
         }
+    }
+
+    get content() { return this.formGroup.get('content'); }
+
+    onSubmit() {
+        let comment = new Comment;
+        comment.content = this.formGroup.value.content;
+        comment.postId = this.postId;
+
+        let user = this.authenticationService.getUserFromMemory();
+        comment.userId = user.id;
+
+        this.formGroup.setValue({
+            content: ""
+        });
+
+        this.postCommentOnPost(comment);
+    }
+
+    postCommentOnPost(newComment: Comment) {
+        this.commentService.postCommentOnAPost(newComment)
+            .subscribe(
+                (res: {
+                    selectedComment: Comment[]
+                }) => {
+                    this.comments.push(res.selectedComment[0]);
+                    this.comments.sort((a, b) => {return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)});
+                });
     }
 
 }

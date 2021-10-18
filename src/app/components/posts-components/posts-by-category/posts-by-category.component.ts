@@ -24,8 +24,6 @@ export class PostsByCategoryComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private titleService: Title,
-
-        private categoryService: CategoryService,
         private postService: PostService
     ) { }
 
