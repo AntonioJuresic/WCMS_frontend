@@ -3,6 +3,8 @@
 <div *ngIf="user">
     <img [src]="user.imagePath" alt="userImage" id="userImage">
     <h2>{{user.username}}</h2>
+    <h3 *ngIf="user.authorityTitle != null">{{user.authorityTitle}}</h3>
+    <h3>Date of creation: {{user.dateOfCreation | date:'d.M.Y.'}}</h3>
 </div>
 
 <div *ngFor="let p of posts;">

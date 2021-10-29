@@ -3,7 +3,9 @@ export class User {
     username!: String;
     email!: String;
     imagePath!: String;
-    password!: String;
+    password!: String; // vjerojatno nije potrebno
     dateOfCreation!: Date;
     deleted!: Boolean;
+    authorityTitle?: String;
+    authorityLevel?: Number;
 }

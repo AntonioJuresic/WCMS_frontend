@@ -49,6 +49,8 @@ export class UserProfileComponent implements OnInit {
                     this.posts.forEach((post) => {
                         post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
                     });
+
+                    console.log(this.user);
                 },
                 (error) => {
                     this.errorMessage = this.errorMessage + error.error.message;
