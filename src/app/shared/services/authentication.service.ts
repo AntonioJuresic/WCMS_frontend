@@ -10,11 +10,8 @@ import { DataService } from './data.service';
 })
 export class AuthenticationService {
 
-    private user?: User;
-    private token?: String;
-
     public authenticationBS: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    
+
     public authenticationErrorSubject: Subject<string> = new Subject<string>();
 
     constructor(
@@ -27,13 +24,13 @@ export class AuthenticationService {
             .authenticateUser(username, password)
             .subscribe(
                 (response) => {
-                    this.user = response.userData;
-                    this.token = response.token;
-                    
-                    this.user!.imagePath = environment.SERVER_URL + this.user!.imagePath.substring(2);
+                    let user = response.userData;
+                    let token = response.token;
 
-                    localStorage.setItem('user', JSON.stringify(this.user));
-                    localStorage.setItem('token', JSON.stringify(this.token));
+                    user!.imagePath = environment.SERVER_URL + user!.imagePath.substring(2);
+
+                    localStorage.setItem('user', JSON.stringify(user));
+                    localStorage.setItem('token', JSON.stringify(token));
 
                     this.authenticationBS.next(true);
 
@@ -42,6 +39,11 @@ export class AuthenticationService {
                 (error) => {
                     this.authenticationErrorSubject.next(error.error.message);
                 });
+    }
+
+    setUserInMemory(user: User) {
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log(this.getUserFromMemory());
     }
 
     getUserFromMemory() {
@@ -53,10 +55,7 @@ export class AuthenticationService {
     }
 
     logoutUser() {
-        this.user = JSON.parse('null');
         localStorage.removeItem('user');
-
-        this.token = JSON.parse('null');
         localStorage.removeItem('token');
 
         this.authenticationBS.next(false);
@@ -65,8 +64,6 @@ export class AuthenticationService {
     }
 
     async isUserAuthenticated() {
-        //this.getUserFromMemory();
-
         if (await this.getUserFromMemory()) {
             this.dataService
                 .checkAuthentication()

@@ -18,6 +18,7 @@ export class EditorUserComponent implements OnInit {
     user: User = new User;
 
     loggedUser: User = new User;
+    userHimself: Boolean = new Boolean(false);
 
     imageForm: any;
     imageURL: String = new String;
@@ -63,8 +64,9 @@ export class EditorUserComponent implements OnInit {
             });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
+        this.userHimself = this.id == this.loggedUser.id
 
-        if(this.loggedUser.authorityLevel == null && this.id != this.loggedUser.id) {
+        if(this.loggedUser.authorityLevel == null && !this.userHimself) {
             this.router.navigate(['/']);
         }
     }
@@ -97,7 +99,11 @@ export class EditorUserComponent implements OnInit {
         formData.append("username", this.formGroup.get("username")!.value);
         formData.append("image", this.imageForm);
 
-        this.userService.putUser(this.id, formData);
+        if(this.userHimself) {
+            this.userService.putUserHimself(this.id, formData);
+        } else {
+            this.userService.putUser(this.id, formData);
+        }
 
         this.userService.successUserPutBS
             .subscribe(res => {
