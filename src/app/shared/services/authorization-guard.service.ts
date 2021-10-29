@@ -31,13 +31,23 @@ export class AuthorizationGuardService implements OnDestroy {
                         this.router.navigate(['/']);
                     }
 
-                //ne smije biti ulogiran
+                    //ne smije biti ulogiran
                 } else if (!userLoginRequired) {
                     if (userLoginRequired != userIsLogged) {
                         this.router.navigate(['/']);
                     }
                 }
             });
+    }
+
+    async userNeedsToBeAdmin() {
+        await this.authenticationService.isUserAuthenticated();
+
+        let user = this.authenticationService.getUserFromMemory();
+
+        if(user.authorityLevel == null) {
+            this.router.navigate(['/']);
+        }
     }
 
     ngOnDestroy(): void {

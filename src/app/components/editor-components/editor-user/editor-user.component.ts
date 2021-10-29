@@ -51,6 +51,8 @@ export class EditorUserComponent implements OnInit {
                     this.router.navigate(['/']);
                 }
 
+                this.id = window.history.state.user.id;
+
                 this.formGroup.setValue({
                     username: window.history.state.user.username,
                     email: window.history.state.user.email,
@@ -61,6 +63,10 @@ export class EditorUserComponent implements OnInit {
             });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
+
+        if(this.loggedUser.authorityLevel == null && this.id != this.loggedUser.id) {
+            this.router.navigate(['/']);
+        }
     }
 
     onFileChange(event: any) {
@@ -68,8 +74,6 @@ export class EditorUserComponent implements OnInit {
 
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
-
-            console.log(this.imageForm);
 
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {

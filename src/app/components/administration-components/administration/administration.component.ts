@@ -15,6 +15,7 @@ export class AdministrationComponent implements OnInit {
 
     ngOnInit(): void {
         this.authorizationGuardService.userNeedsToBeLogged(true);
+        this.authorizationGuardService.userNeedsToBeAdmin();
     }
 
 }

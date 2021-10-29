@@ -54,6 +54,7 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.authorizationGuardService.userNeedsToBeLogged(true);
+        this.authorizationGuardService.userNeedsToBeAdmin();
 
         this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -119,8 +120,6 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
-
-            console.log(this.imageForm);
 
             reader.readAsDataURL(event.target.files[0]);
             reader.onload = () => {

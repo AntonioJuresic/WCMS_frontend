@@ -72,7 +72,6 @@ export class AuthenticationService {
                 .checkAuthentication()
                 .subscribe(
                     (response) => {
-                        console.log("Korisnik je ulogiran");
                         this.authenticationBS.next(true);
                     },
                     (error) => {

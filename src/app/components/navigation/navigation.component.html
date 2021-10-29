@@ -1,8 +1,8 @@
 <nav>
     <div *ngIf="userIsLogged;">
         <div class="menu">
-            <a [routerLink]="['/p/editor']" class="btn btn-secondary">New post</a>
-            <a [routerLink]="['/administration']" class="btn btn-secondary">Administration</a>
+            <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/p/editor']" class="btn btn-secondary">New post</a>
+            <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/administration']" class="btn btn-secondary">Administration</a>
 
             <div class="submenu" style="margin-left: auto;">
                 <img [src]="user?.imagePath" alt="userImage" id="userImage">

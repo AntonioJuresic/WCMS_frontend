@@ -61,8 +61,6 @@ export class RegistrationComponent implements OnInit {
 
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
-
-            console.log(this.imageForm);
         }
     }
 
