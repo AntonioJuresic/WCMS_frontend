@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
+import { Invitation } from '../models/invitation';
 import { WebsiteInfo } from '../models/websiteInfo';
 
 @Injectable({
@@ -27,8 +28,11 @@ export class DataService {
     API_POSTS_BY_USER_URL = '/user-posts';
     API_COMMENTS_BY_USER_URL = '/user-comments';
     API_USER_HIMSELF_URL = '/user-himself';
+    API_USER_AUTHORITY_URL = 'user-authority';
 
     API_COMMENT_URL = '/comment';
+
+    API_INVITATION_URL = '/invitation';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -180,5 +184,23 @@ export class DataService {
 
     getCommentsByUser(username: String): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_COMMENTS_BY_USER_URL + `/${username}`);
+    }
+
+    // user authority
+    giveAdminAuthority() { }
+
+    removeAdminAuthority() { }
+
+    // invitation
+    getInvitations(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_INVITATION_URL);
+    }
+
+    postInvitation(invitation: Invitation): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_INVITATION_URL, invitation);
+    }
+
+    deleteInvitation(id: Number): Observable<any> {
+        return this.httpClient.delete(this.API_URL + this.API_INVITATION_URL + `/${id}`);
     }
 }

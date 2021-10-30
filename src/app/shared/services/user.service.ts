@@ -81,7 +81,9 @@ export class UserService {
                         environment.SERVER_URL +
                         res.selectedUser[0].imagePath?.substring(2);
 
-                    this.users.push(res.selectedUser[0]);
+
+                    this.users = this.users.map(u => u.id !== res.selectedUser[0].id ? u : res.selectedUser[0]);
+
                     this.usersBS.next(this.users);
 
                     this.authenticationService.setUserInMemory(res.selectedUser[0]);

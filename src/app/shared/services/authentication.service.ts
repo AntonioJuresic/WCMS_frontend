@@ -43,7 +43,6 @@ export class AuthenticationService {
 
     setUserInMemory(user: User) {
         localStorage.setItem('user', JSON.stringify(user));
-        console.log(this.getUserFromMemory());
     }
 
     getUserFromMemory() {

@@ -8,7 +8,6 @@ import { DataService } from './data.service';
 })
 export class CategoryService {
 
-
     categories: Category[] = [];
     categoriesBS: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
@@ -28,25 +27,31 @@ export class CategoryService {
 
     postCategory(newCategory: Category) {
         this.dataService.postCategory(newCategory)
-            .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
-                this.categories.push(res.selectedCategory[0]);
-                this.categoriesBS.next(this.categories);
-            });
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedCategory: Category[]
+                }) => {
+                    this.categories.push(res.selectedCategory[0]);
+                    this.categoriesBS.next(this.categories);
+                });
     }
 
     putCategory(id: Number, updatedCategory: Category) {
         this.dataService.putCategory(id, updatedCategory)
-            .subscribe((res: { status: Number, selectedCategory: Category[] }) => {
-                this.categories[this.categories.findIndex(c => c.id === res.selectedCategory[0].id)] = res.selectedCategory[0];
-                this.categoriesBS.next(this.categories);
-            });
-
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedCategory: Category[]
+                }) => {
+                    this.categories[this.categories.findIndex(c => c.id === res.selectedCategory[0].id)] = res.selectedCategory[0];
+                    this.categoriesBS.next(this.categories);
+                });
     }
 
     deleteCategory(id: Number) {
         this.dataService.deleteCategory(id)
             .subscribe(res => {
-                console.log(res);
                 this.categories = this.categories.filter(p => p.id != id);
                 this.categoriesBS.next(this.categories);
             });
