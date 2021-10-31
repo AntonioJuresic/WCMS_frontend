@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -10,6 +11,9 @@ import { UserService } from 'src/app/shared/services/user.service';
     styleUrls: ['./administration-users.component.scss']
 })
 export class AdministrationUsersComponent implements OnInit {
+    
+    faPencilAlt = faPencilAlt;
+    faTrash = faTrash;
 
     QueryUsername: string = '';
 

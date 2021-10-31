@@ -421,14 +421,23 @@ table {
     tbody {
         tr {
             white-space: nowrap;
+
+            button, a.btn {
+                opacity: 0;
+                transition: opacity 0.2s linear;
+            }
         }
-        
+
         tr:nth-child(even) {
             background: $white;
         }
 
         tr:nth-child(odd) {
             background: $lightgray-light;
+        }
+
+        tr:hover button, tr:hover a.btn {
+            opacity: 1;
         }
     }
 }

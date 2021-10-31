@@ -13,8 +13,8 @@
         <tr>
             <th>id</th>
             <th style="width: 100%;">code</th>
-            <th style="text-align: center;">edit</th>
-            <th style="text-align: center;">delete</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -24,11 +24,11 @@
             <td>{{i.code}}</td>
 
             <td>
-                <button type="button" class="btn btn-warning btn-no-margin" (click)="openEditor(i)">Edit</button>
+                <button type="button" class="btn btn-warning btn-no-margin" (click)="openEditor(i)"><fa-icon [icon]="faPencilAlt"></fa-icon></button>
             </td>
 
             <td>
-                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteInvitation(i.id!)">Delete</button>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteInvitation(i.id!)"><fa-icon [icon]="faTrash"></fa-icon></button>
             </td>
         </tr>
     </tbody>

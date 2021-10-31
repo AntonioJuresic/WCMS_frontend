@@ -5,8 +5,8 @@
         <tr>
             <th>user</th>
             <th>post</th>
-            <th style="width: 100%;">content</th>
-            <th style="text-align: center;">delete</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -17,7 +17,7 @@
             <td>{{c.content}}</td>
 
             <td>
-                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteComment(c.id!)">Delete</button>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteComment(c.id!)"><fa-icon [icon]="faTrash"></fa-icon></button>
             </td>
         </tr>
     </tbody>

@@ -16,8 +16,8 @@
         <tr>
             <th>id</th>
             <th style="width: 100%;">title</th>
-            <th style="text-align: center;">edit</th>
-            <th style="text-align: center;">delete</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -27,11 +27,11 @@
             <td><a [routerLink]="['/p/', p.id]">{{p.title}}</a></td>
 
             <td>
-                <a [routerLink]="['/p/editor/', p.id]" class="btn btn-warning btn-no-margin">Edit</a>
+                <a [routerLink]="['/p/editor/', p.id]" class="btn btn-warning btn-no-margin"><fa-icon [icon]="faPencilAlt"></fa-icon></a>
             </td>
 
             <td>
-                <button type="button" class="btn btn-danger btn-no-margin" (click)="deletePost(p.id!)">Delete</button>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deletePost(p.id!)"><fa-icon [icon]="faTrash"></fa-icon></button>
             </td>
         </tr>
     </tbody>

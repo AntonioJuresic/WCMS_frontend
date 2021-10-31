@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { Comment } from 'src/app/shared/models/comment';
 import { CommentService } from 'src/app/shared/services/comment.service';
 
@@ -9,6 +10,9 @@ import { CommentService } from 'src/app/shared/services/comment.service';
     styleUrls: ['./administration-comments.component.scss']
 })
 export class AdministrationCommentsComponent implements OnInit {
+
+    faPencilAlt = faPencilAlt;
+    faTrash = faTrash;
 
     comments: Comment[] = [];
     commentsSubscription: Subscription = new Subscription;

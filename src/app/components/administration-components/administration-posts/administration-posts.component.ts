@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
 
@@ -9,6 +10,9 @@ import { PostService } from 'src/app/shared/services/post.service';
     styleUrls: ['./administration-posts.component.scss']
 })
 export class AdministrationPostsComponent implements OnInit, OnDestroy {
+    
+    faPencilAlt = faPencilAlt;
+    faTrash = faTrash;
 
     QueryName: string = '';
 
