@@ -1,0 +1,35 @@
+<h2>Invitations</h2>
+
+<div>
+    <button type="button" class="btn btn-success" (click)="openEditor()">New invitation</button>
+</div>
+
+<div *ngIf="editMode">
+    <app-editor-invitation [invitation]="invitationForEdit" (editModeFalse)="closeEditor($event)"></app-editor-invitation>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th style="width: 100%;">code</th>
+            <th style="text-align: center;">edit</th>
+            <th style="text-align: center;">delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let i of invitations;">
+            <td>{{i.id}}</td>
+            <td>{{i.code}}</td>
+
+            <td>
+                <button type="button" class="btn btn-warning btn-no-margin" (click)="openEditor(i)">Edit</button>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteInvitation(i.id!)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

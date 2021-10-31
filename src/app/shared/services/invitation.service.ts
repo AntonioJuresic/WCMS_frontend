@@ -38,6 +38,20 @@ export class InvitationService {
                 });
     }
 
+    putInvitation(id: Number, invitation: Invitation) {
+        this.dataService.putInvitation(id, invitation)
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedInvitation: Invitation[]
+                }) => {
+                    this.invitations = this.invitations.map(i => i.id !== res.selectedInvitation[0].id ? i : res.selectedInvitation[0]);
+                    this.invitationsBS.next(this.invitations);
+                });
+    }
+
+
+
     deleteInvitation(id: Number) {
         this.dataService.deleteInvitation(id)
             .subscribe(

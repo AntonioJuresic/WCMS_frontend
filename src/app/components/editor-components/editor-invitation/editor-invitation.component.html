@@ -1,0 +1,54 @@
+<div class="container-small">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <label *ngIf="this.invitation?.id == undefined">New invitation</label>
+        <label *ngIf="this.invitation?.id != undefined">Update invitation: <b>{{this.invitation?.code}}</b></label>
+
+        <label>Invitation code:</label>
+        <input type="text" id="code" class="form-control" formControlName="code"
+            [ngClass]="{'is-invalid': ((code?.dirty || code?.touched) && code?.invalid)}">
+
+        <div *ngIf="(code?.dirty || code?.touched) && code?.invalid">
+            <p *ngIf="code?.errors?.required" class="form-error-text">Invitation code is required</p>
+            <p *ngIf="code?.errors?.maxlength" class="form-error-text">Invitation code maximal length must be 6 characters</p>
+        </div>
+
+        <label>Email address:</label>
+        <input type="email" id="emailAddress" class="form-control" formControlName="emailAddress"
+            [ngClass]="{'is-invalid': ((emailAddress?.dirty || emailAddress?.touched) && emailAddress?.invalid)}">
+
+        <div *ngIf="(emailAddress?.dirty || emailAddress?.touched) && emailAddress?.invalid">
+            <p *ngIf="emailAddress?.errors?.required" class="form-error-text">Email address is required</p>
+            <p *ngIf="emailAddress?.errors?.email" class="form-error-text">Please provide a correct email address</p>
+            <p *ngIf="emailAddress?.errors?.maxlength" class="form-error-text">Email address maximal length must be less than 255 characters</p>
+        </div>
+
+        <label>Email subject:</label>
+        <input type="text" id="emailSubject" class="form-control" formControlName="emailSubject"
+            [ngClass]="{'is-invalid': ((emailSubject?.dirty || emailSubject?.touched) && emailSubject?.invalid)}">
+
+        <div *ngIf="(emailSubject?.dirty || emailSubject?.touched) && emailSubject?.invalid">
+            <p *ngIf="emailSubject?.errors?.required" class="form-error-text">Email subject is required</p>
+            <p *ngIf="emailSubject?.errors?.maxlength" class="form-error-text">Email subject maximal length must be less than 255 characters</p>
+        </div>
+
+        <label>Email message:</label>
+        <input type="text" id="emailMessage" class="form-control" formControlName="emailMessage"
+            [ngClass]="{'is-invalid': ((emailMessage?.dirty || emailMessage?.touched) && emailMessage?.invalid)}">
+
+        <div *ngIf="(emailMessage?.dirty || emailMessage?.touched) && emailMessage?.invalid">
+            <p *ngIf="emailMessage?.errors?.required" class="form-error-text">Email message is required</p>
+            <p *ngIf="emailMessage?.errors?.maxlength" class="form-error-text">Email message maximal length must be less than 255 characters</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
+
+            <button *ngIf="this.invitation?.id == undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Create</button>
+
+            <button *ngIf="this.invitation?.id != undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

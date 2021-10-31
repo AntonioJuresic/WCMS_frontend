@@ -32,6 +32,8 @@ import { AdministrationCommentsComponent } from './components/administration-com
 import { PostCommentsComponent } from './components/posts-components/post-comments/post-comments.component';
 import { UserProfileComponent } from './components/users-components/user-profile/user-profile.component';
 import { UserCommentsComponent } from './components/users-components/user-comments/user-comments.component';
+import { AdministrationInvitationsComponent } from './components/administration-components/administration-invitations/administration-invitations.component';
+import { EditorInvitationComponent } from './components/editor-components/editor-invitation/editor-invitation.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { UserCommentsComponent } from './components/users-components/user-commen
     AdministrationCommentsComponent,
     PostCommentsComponent,
     UserProfileComponent,
-    UserCommentsComponent
+    UserCommentsComponent,
+    AdministrationInvitationsComponent,
+    EditorInvitationComponent
   ],
   imports: [
     BrowserModule,

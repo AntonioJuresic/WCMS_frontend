@@ -200,6 +200,10 @@ export class DataService {
         return this.httpClient.post(this.API_URL + this.API_INVITATION_URL, invitation);
     }
 
+    putInvitation(id: Number, invitation: Invitation): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_INVITATION_URL + `/${id}`, invitation);
+    }
+
     deleteInvitation(id: Number): Observable<any> {
         return this.httpClient.delete(this.API_URL + this.API_INVITATION_URL + `/${id}`);
     }
