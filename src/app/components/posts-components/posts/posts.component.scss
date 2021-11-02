@@ -1,0 +1,23 @@
+@use 'sass:math';
+
+article {
+    float: left;
+}
+
+@media only screen and (max-width: 768px) {
+    article {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    article {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    article {
+        width: math.percentage(0.33);
+    }
+}

@@ -53,6 +53,8 @@ hr {
     background-color: $lightgray;
 }
 
+// Typography
+
 h1,
 h2,
 h3,
@@ -127,6 +129,8 @@ small {
     margin: 0.64rem;
     font-size: 0.8rem;
 }
+
+// Forms
 
 form {
     padding: 0.8rem;
@@ -217,6 +221,8 @@ select {
     padding: 0.512rem;
 }
 
+// Message window
+
 .message-window {
     margin: 1rem;
     padding: 1rem;
@@ -241,6 +247,8 @@ select {
     height: 100%;
     background-color: RGBA(100, 100, 100, 0.5);
 }
+
+// Buttons
 
 button a {
     color: inherit;
@@ -393,6 +401,8 @@ button:hover {
     cursor: not-allowed;
 }
 
+// Tables
+
 th,
 th,
 td {
@@ -422,7 +432,8 @@ table {
         tr {
             white-space: nowrap;
 
-            button, a.btn {
+            button,
+            a.btn {
                 opacity: 0;
                 transition: opacity 0.2s linear;
             }
@@ -436,16 +447,54 @@ table {
             background: $lightgray-light;
         }
 
-        tr:hover button, tr:hover a.btn {
+        tr:hover button,
+        tr:hover a.btn {
             opacity: 1;
         }
     }
 }
 
+// Article
+
+article {
+    width: 100%;
+
+    img {
+        width: 100%;
+
+        display: block;
+        float: left;
+        height: 30vw;
+        padding: 0.25vw;
+
+        object-fit: cover;
+    }
+}
+
+// Containers
+
 .container-small {
     margin: 0 auto;
     width: 100%;
     max-width: 576px;
+}
+
+.container-medium {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 768px;
+}
+
+.container-large {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 992px;
+}
+
+.container-extra-large {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
 }
 
 // Flex container

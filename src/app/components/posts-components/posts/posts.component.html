@@ -1,6 +1,4 @@
-<div *ngFor="let p of posts;">
-    <article>
-        <h2><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h2>
-        <img [src]="p.imagePath" alt="postImage" id="postImage">
-    </article>
-</div>
+<article *ngFor="let p of posts;">
+    <img [src]="p.imagePath" alt="postImage" id="postImage">
+    <h3><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h3>
+</article>

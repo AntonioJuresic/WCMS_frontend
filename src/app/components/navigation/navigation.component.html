@@ -1,33 +1,31 @@
-<nav>
-    <div *ngIf="userIsLogged;">
-        <div class="menu">
-            <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/p/editor']" class="btn btn-secondary">New
-                post</a>
-            <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/administration']"
-                class="btn btn-secondary">Administration</a>
+<div *ngIf="userIsLogged;">
+    <div class="menu">
+        <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/p/editor']" class="btn btn-secondary">New
+            post</a>
+        <a *ngIf="this.user?.authorityLevel != null" [routerLink]="['/administration']"
+            class="btn btn-secondary">Administration</a>
 
-            <div class="submenu" style="margin-left: auto;">
-                <img [src]="user?.imagePath" alt="userImage" id="userImage">
-                <p>{{user?.username}}</p>
+        <div class="submenu" style="margin-left: auto;">
+            <img [src]="user?.imagePath" alt="userImage" id="userImage">
+            <p>{{user?.username}}</p>
 
-                <div class="submenu-content">
-                    <a [routerLink]="['/u/', user?.username]">My profile</a>
-                    <a [routerLink]="['/u/editor/' ]" [state]="{ user : user }">Settings</a>
-                    <a href="" (click)="logout()">Log out</a>
-                </div>
+            <div class="submenu-content">
+                <a [routerLink]="['/u/', user?.username]">My profile</a>
+                <a [routerLink]="['/u/editor/' ]" [state]="{ user : user }">Settings</a>
+                <a href="" (click)="logout()">Log out</a>
             </div>
         </div>
     </div>
+</div>
 
-    <div *ngIf="!userIsLogged;">
-        <div class="menu">
-            <a [routerLink]="['/registration']">
-                <button class="btn btn-outline-secondary">Registration</button>
-            </a>
+<div *ngIf="!userIsLogged;">
+    <div class="menu">
+        <a [routerLink]="['/registration']">
+            <button class="btn btn-outline-secondary">Registration</button>
+        </a>
 
-            <a [routerLink]="['/login']">
-                <button class="btn btn-outline-secondary">Login</button>
-            </a>
-        </div>
+        <a [routerLink]="['/login']">
+            <button class="btn btn-outline-secondary">Login</button>
+        </a>
     </div>
-</nav>
+</div>
