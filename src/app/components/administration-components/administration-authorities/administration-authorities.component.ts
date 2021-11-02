@@ -26,15 +26,16 @@ export class AdministrationAuthoritiesComponent implements OnInit {
 
     ngOnInit(): void {
         this.authorityService.getAuthorities();
-        
+
         this.authoritiesSubscription = this.authorityService.authoritiesBS
-            .subscribe(res => {
-                this.authorities = res;
-            });
-            
+            .subscribe(
+                res => {
+                    this.authorities = res;
+                });
+
     }
 
-    openEditor(selectedAuthority? : Authority) {
+    openEditor(selectedAuthority?: Authority) {
         this.editMode = true;
         this.authorityForEdit = selectedAuthority;
     }

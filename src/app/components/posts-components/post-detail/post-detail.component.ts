@@ -40,7 +40,7 @@ export class PostDetailComponent implements OnInit {
                     
                     this.titleService.setTitle(res.selectedPost[0].title.valueOf());
                 },
-                (error) => {
+                error => {
                     this.errorMessage = error.error.message;
                 }
             );

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { WebsiteInfo } from 'src/app/shared/models/websiteInfo';
 import { WebsiteInfoService } from 'src/app/shared/services/website-info.service';
@@ -14,16 +15,22 @@ export class WebsiteInfoComponent implements OnInit, OnDestroy {
     websiteInfoSubscription: Subscription = new Subscription;
 
     constructor(
-        private websiteInfoService: WebsiteInfoService
+        private websiteInfoService: WebsiteInfoService,
+        private titleService: Title
     ) { }
 
     ngOnInit(): void {
         this.websiteInfoService.getWebsiteInfo();
 
         this.websiteInfoSubscription = this.websiteInfoService.websiteInfoBS
-            .subscribe(res => {
-                this.websiteInfo = res;
-            });
+            .subscribe(
+                res => {
+                    this.websiteInfo = res;
+
+                    if (this.websiteInfo.title != undefined) {
+                        this.titleService.setTitle(this.websiteInfo.title!.valueOf());
+                    }
+                });
     }
 
     ngOnDestroy(): void {

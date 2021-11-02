@@ -4,16 +4,16 @@ import { WebsiteInfo } from 'src/app/shared/models/websiteInfo';
 import { WebsiteInfoService } from 'src/app/shared/services/website-info.service';
 
 @Component({
-  selector: 'app-administration-website-info',
-  templateUrl: './administration-website-info.component.html',
-  styleUrls: ['./administration-website-info.component.scss']
+    selector: 'app-administration-website-info',
+    templateUrl: './administration-website-info.component.html',
+    styleUrls: ['./administration-website-info.component.scss']
 })
 export class AdministrationWebsiteInfoComponent implements OnInit, OnDestroy {
-  
+
     websiteInfo: WebsiteInfo = new WebsiteInfo;
     websiteInfoSubscription: Subscription = new Subscription;
 
-    editMode : Boolean = false;
+    editMode: Boolean = false;
 
     constructor(
         private websiteInfoService: WebsiteInfoService
@@ -22,12 +22,13 @@ export class AdministrationWebsiteInfoComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.websiteInfoService.getWebsiteInfo();
         this.websiteInfoSubscription = this.websiteInfoService.websiteInfoBS
-            .subscribe(res => {
-                this.websiteInfo = res;
-            });
+            .subscribe(
+                res => {
+                    this.websiteInfo = res;
+                });
     }
 
-    openEditor(websiteInfo? : WebsiteInfo) {
+    openEditor(websiteInfo?: WebsiteInfo) {
         this.editMode = true;
     }
 

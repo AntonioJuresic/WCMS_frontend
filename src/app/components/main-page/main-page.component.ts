@@ -8,10 +8,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class MainPageComponent implements OnInit {
 
-    constructor(
-        private titleService: Title
-    ) {
-        this.titleService.setTitle("LOREM IPSUM");
+    constructor() {
     }
 
     ngOnInit(): void {

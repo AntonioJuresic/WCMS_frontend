@@ -76,11 +76,11 @@ export class RegistrationComponent implements OnInit {
 
         this.userService.postUser(formData)
             .subscribe(
-                (response: { selectedUser?: User }) => {
+                (res: { selectedUser?: User }) => {
                     this.successMessage = "User created!";
                     this.errorMessage = "";
                 },
-                (error) => {
+                error => {
                     console.log(error.error.error);
                     this.successMessage = "";
                     this.errorMessage = error.error.error;

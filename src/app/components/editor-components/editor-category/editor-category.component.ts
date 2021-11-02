@@ -17,8 +17,6 @@ export class EditorCategoryComponent implements OnInit {
         name: new FormControl("", Validators.required)
     });
 
-    errorMessage: String = new String;
-
     constructor(
         private categoryService: CategoryService
     ) { }

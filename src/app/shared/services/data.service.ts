@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Authority } from '../models/authority';
-import { AuthorityChanger } from '../models/authorityChanger';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
 import { Invitation } from '../models/invitation';
@@ -96,8 +95,8 @@ export class DataService {
 
     // user authority
 
-    giveAdminAuthority(id: Number, authorityChanger: AuthorityChanger) {
-        return this.httpClient.put(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`, authorityChanger);
+    giveAdminAuthority(id: Number, invitation: Invitation) {
+        return this.httpClient.put(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`, invitation);
     }
 
     removeAdminAuthority(id: Number) {

@@ -18,8 +18,6 @@ export class EditorAuthorityComponent implements OnInit {
         title: new FormControl("", Validators.required)
     });
 
-    errorMessage: String = new String;
-
     constructor(
         private authorityService: AuthorityService
     ) { }

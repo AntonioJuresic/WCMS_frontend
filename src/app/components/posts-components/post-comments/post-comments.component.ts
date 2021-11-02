@@ -34,7 +34,9 @@ export class PostCommentsComponent implements OnInit {
                 .subscribe(
                     (res: { selectedComments: Comment[] }) => {
                         this.comments = res.selectedComments;
-                        this.comments.sort((a, b) => {return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)});
+                        this.comments.sort((a, b) => {
+                            return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)
+                        });
                     });
         }
     }
@@ -53,6 +55,9 @@ export class PostCommentsComponent implements OnInit {
             content: ""
         });
 
+        this.formGroup.markAsUntouched();
+        this.formGroup.markAsPristine();
+
         this.postCommentOnPost(comment);
     }
 
@@ -63,7 +68,7 @@ export class PostCommentsComponent implements OnInit {
                     selectedComment: Comment[]
                 }) => {
                     this.comments.push(res.selectedComment[0]);
-                    this.comments.sort((a, b) => {return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)});
+                    this.comments.sort((a, b) => { return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation) });
                 });
     }
 

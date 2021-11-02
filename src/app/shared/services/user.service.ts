@@ -109,4 +109,12 @@ export class UserService {
                 }
             )
     }
+
+    giveAuthority() {
+
+    }
+
+    removeAuthority() {
+
+    }
 }

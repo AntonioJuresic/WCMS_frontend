@@ -13,6 +13,16 @@
             <p *ngIf="code?.errors?.maxlength" class="form-error-text">Invitation code maximal length must be 6 characters</p>
         </div>
 
+        <label>Authority:</label>
+        <select id="authorityId" class="form-control" formControlName="authorityId"
+            [ngClass]="{'is-invalid': ((authorityId?.dirty || authorityId?.touched) && authorityId?.invalid)}">
+            <option *ngFor="let authority of authorities" [ngValue]="authority.id">{{authority.title}}</option>
+        </select>
+
+        <div *ngIf="(authorityId?.dirty || authorityId?.touched) && authorityId?.invalid">
+            <p class="form-error-text">Select authority</p>
+        </div>
+
         <label>Email address:</label>
         <input type="email" id="emailAddress" class="form-control" formControlName="emailAddress"
             [ngClass]="{'is-invalid': ((emailAddress?.dirty || emailAddress?.touched) && emailAddress?.invalid)}">

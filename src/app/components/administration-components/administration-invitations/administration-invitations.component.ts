@@ -5,20 +5,20 @@ import { Invitation } from 'src/app/shared/models/invitation';
 import { InvitationService } from 'src/app/shared/services/invitation.service';
 
 @Component({
-  selector: 'app-administration-invitations',
-  templateUrl: './administration-invitations.component.html',
-  styleUrls: ['./administration-invitations.component.scss']
+    selector: 'app-administration-invitations',
+    templateUrl: './administration-invitations.component.html',
+    styleUrls: ['./administration-invitations.component.scss']
 })
 export class AdministrationInvitationsComponent implements OnInit {
-    
+
     faPencilAlt = faPencilAlt;
     faTrash = faTrash;
 
     invitations: Invitation[] = [];
     invitationsSubscription: Subscription = new Subscription;
 
-    editMode : Boolean = false;
-    invitationForEdit? : Invitation;
+    editMode: Boolean = false;
+    invitationForEdit?: Invitation;
 
     constructor(
         private invitationService: InvitationService
@@ -28,12 +28,13 @@ export class AdministrationInvitationsComponent implements OnInit {
         this.invitationService.getInvitations();
 
         this.invitationsSubscription = this.invitationService.invitationsBS
-            .subscribe(res => {
-                this.invitations = res;
-            });
+            .subscribe(
+                res => {
+                    this.invitations = res;
+                });
     }
 
-    openEditor(selectedInvitation? : Invitation) {
+    openEditor(selectedInvitation?: Invitation) {
         this.editMode = true;
         this.invitationForEdit = selectedInvitation;
     }

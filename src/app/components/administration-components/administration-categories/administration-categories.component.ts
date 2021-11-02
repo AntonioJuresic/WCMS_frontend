@@ -5,20 +5,20 @@ import { Category } from 'src/app/shared/models/category';
 import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
-  selector: 'app-administration-categories',
-  templateUrl: './administration-categories.component.html',
-  styleUrls: ['./administration-categories.component.scss']
+    selector: 'app-administration-categories',
+    templateUrl: './administration-categories.component.html',
+    styleUrls: ['./administration-categories.component.scss']
 })
 export class AdministrationCategoriesComponent implements OnInit, OnDestroy {
-    
+
     faPencilAlt = faPencilAlt;
     faTrash = faTrash;
-  
+
     categories: Category[] = [];
     categoriesSubscription: Subscription = new Subscription;
 
-    editMode : Boolean = false;
-    categoryForEdit? : Category;
+    editMode: Boolean = false;
+    categoryForEdit?: Category;
 
     constructor(
         private categoryService: CategoryService
@@ -28,12 +28,13 @@ export class AdministrationCategoriesComponent implements OnInit, OnDestroy {
         this.categoryService.getCategories();
 
         this.categoriesSubscription = this.categoryService.categoriesBS
-            .subscribe(res => {
-                this.categories = res;
-            });
+            .subscribe(
+                res => {
+                    this.categories = res;
+                });
     }
 
-    openEditor(selectedCategory? : Category) {
+    openEditor(selectedCategory?: Category) {
         this.editMode = true;
         this.categoryForEdit = selectedCategory;
     }

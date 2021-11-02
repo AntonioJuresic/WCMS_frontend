@@ -40,9 +40,9 @@ export class UserProfileComponent implements OnInit {
     getUserPosts(username: String) {
         this.postService.getPostsByUser(username)
             .subscribe(
-                (response: { selectedUser: User[], selectedPosts: Post[] }) => {
-                    this.user = response.selectedUser[0];
-                    this.posts = response.selectedPosts;
+                (res: { selectedUser: User[], selectedPosts: Post[] }) => {
+                    this.user = res.selectedUser[0];
+                    this.posts = res.selectedPosts;
                     
                     this.user.imagePath = environment.SERVER_URL + this.user.imagePath?.substring(2);
 
@@ -52,7 +52,7 @@ export class UserProfileComponent implements OnInit {
 
                     console.log(this.user);
                 },
-                (error) => {
+                error => {
                     this.errorMessage = this.errorMessage + error.error.message;
                 }
             );

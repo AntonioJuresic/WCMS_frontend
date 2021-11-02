@@ -1,4 +1,8 @@
 <article *ngFor="let p of posts;">
     <img [src]="p.imagePath" alt="postImage" id="postImage">
-    <h3><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h3>
+    <h4><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h4>
+    <p><a [routerLink]="['/c/', p.categoryName]">{{p.categoryName}}</a> - {{p.dateOfCreation | date:'d.M.Y.'}}</p>
+    
+  <div class="shadow"></div> 
+    <p>{{p.content.valueOf() | shortenText: 250}}</p>
 </article>

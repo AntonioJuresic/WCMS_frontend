@@ -11,7 +11,7 @@
 
 <ul>
     <li *ngFor="let c of comments">
-        <a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a> - {{c.dateOfCreation | date:'d.M.Y.'}}
+        <a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a> - {{c.dateOfCreation | date:'d.M.Y. - HH:mm'}}
         <p>{{c.content}}</p>
     </li>
 </ul>

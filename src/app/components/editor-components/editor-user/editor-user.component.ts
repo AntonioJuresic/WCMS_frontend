@@ -31,8 +31,8 @@ export class EditorUserComponent implements OnInit {
 
     showMessageWindow: Boolean = new Boolean(false);
     successMessage: String = new String;
-    userURL: String = new String;
     errorMessage: String = new String;
+    userURL: String = new String;
 
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
@@ -46,27 +46,28 @@ export class EditorUserComponent implements OnInit {
         this.authorizationGuardService.userNeedsToBeLogged(true);
 
         this.activatedRoute.paramMap
-            .subscribe(res => {
+            .subscribe(
+                res => {
 
-                if(window.history.state.user.id == undefined) {
-                    this.router.navigate(['/']);
-                }
+                    if (window.history.state.user.id == undefined) {
+                        this.router.navigate(['/']);
+                    }
 
-                this.id = window.history.state.user.id;
+                    this.id = window.history.state.user.id;
 
-                this.formGroup.setValue({
-                    username: window.history.state.user.username,
-                    email: window.history.state.user.email,
-                    image: ""
+                    this.formGroup.setValue({
+                        username: window.history.state.user.username,
+                        email: window.history.state.user.email,
+                        image: ""
+                    });
+
+                    this.imageURL = window.history.state.user.imagePath;
                 });
-
-                this.imageURL = window.history.state.user.imagePath;
-            });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
         this.userHimself = this.id == this.loggedUser.id
 
-        if(this.loggedUser.authorityLevel == null && !this.userHimself) {
+        if (this.loggedUser.authorityLevel == null && !this.userHimself) {
             this.router.navigate(['/']);
         }
     }
@@ -99,27 +100,29 @@ export class EditorUserComponent implements OnInit {
         formData.append("username", this.formGroup.get("username")!.value);
         formData.append("image", this.imageForm);
 
-        if(this.userHimself) {
+        if (this.userHimself) {
             this.userService.putUserHimself(this.id, formData);
         } else {
             this.userService.putUser(this.id, formData);
         }
 
         this.userService.successUserPutBS
-            .subscribe(res => {
-                if (res != undefined) {
-                    this.successMessage = res;
-                    this.errorMessage = "";
-                }
-            })
+            .subscribe(
+                res => {
+                    if (res != undefined) {
+                        this.successMessage = res;
+                        this.errorMessage = "";
+                    }
+                });
 
         this.userService.failedUserPutBS
-            .subscribe(res => {
-                if (res != undefined) {
-                    this.successMessage = "";
-                    this.errorMessage = res;
-                }
-            })
+            .subscribe(
+                res => {
+                    if (res != undefined) {
+                        this.successMessage = "";
+                        this.errorMessage = res;
+                    }
+                });
 
         this.showMessageWindow = true;
     }

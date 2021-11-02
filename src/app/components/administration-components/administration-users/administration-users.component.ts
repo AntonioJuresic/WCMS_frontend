@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
     styleUrls: ['./administration-users.component.scss']
 })
 export class AdministrationUsersComponent implements OnInit {
-    
+
     faPencilAlt = faPencilAlt;
     faTrash = faTrash;
 
@@ -31,9 +31,10 @@ export class AdministrationUsersComponent implements OnInit {
         this.userService.getUsers();
 
         this.usersSubscription = this.userService.usersBS
-            .subscribe(res => {
-                this.users = res;
-            });
+            .subscribe(
+                res => {
+                    this.users = res;
+                });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
     }
@@ -41,7 +42,7 @@ export class AdministrationUsersComponent implements OnInit {
     deleteUser(id: Number) {
         this.userService.deleteUser(id);
 
-        if(id == this.loggedUser.id) {
+        if (id == this.loggedUser.id) {
             this.authenticationService.logoutUser();
         }
     }

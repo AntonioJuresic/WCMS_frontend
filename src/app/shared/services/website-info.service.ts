@@ -17,25 +17,37 @@ export class WebsiteInfoService {
 
     getWebsiteInfo() {
         this.dataService.getWebsiteInfo()
-            .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
-                this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBS.next(this.websiteInfo);
-            });
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedWebsiteInfo: WebsiteInfo[]
+                }) => {
+                    this.websiteInfo = res.selectedWebsiteInfo[0];
+                    this.websiteInfoBS.next(this.websiteInfo);
+                });
     }
 
     postWebsiteInfo(newWebsiteInfo: WebsiteInfo) {
         this.dataService.postWebsiteInfo(newWebsiteInfo)
-            .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
-                this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBS.next(this.websiteInfo);
-            });
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedWebsiteInfo: WebsiteInfo[]
+                }) => {
+                    this.websiteInfo = res.selectedWebsiteInfo[0];
+                    this.websiteInfoBS.next(this.websiteInfo);
+                });
     }
 
     putWebsiteInfo(updatedWebsiteInfo: WebsiteInfo) {
         this.dataService.putWebsiteInfo(updatedWebsiteInfo)
-            .subscribe((res: { status: Number, selectedWebsiteInfo: WebsiteInfo[] }) => {
-                this.websiteInfo = res.selectedWebsiteInfo[0];
-                this.websiteInfoBS.next(this.websiteInfo);
-            });
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedWebsiteInfo: WebsiteInfo[]
+                }) => {
+                    this.websiteInfo = res.selectedWebsiteInfo[0];
+                    this.websiteInfoBS.next(this.websiteInfo);
+                });
     }
 }

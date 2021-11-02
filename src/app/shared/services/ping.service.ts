@@ -17,8 +17,10 @@ export class PingService {
     pingServer() {
         this.dataService.pingServer()
             .subscribe(
-                (response: { status: Number, message: String }) => { },
-                (error) => {
+                (res: { status: Number, message: String }) => {
+
+                },
+                error => {
                     this.router.navigate(["/serverdown"]);
                 }
             );

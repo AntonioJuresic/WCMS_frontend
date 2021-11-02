@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/models/category';
 import { Post } from 'src/app/shared/models/post';
-import { CategoryService } from 'src/app/shared/services/category.service';
 import { PostService } from 'src/app/shared/services/post.service';
 import { environment } from 'src/environments/environment';
 
@@ -39,15 +38,18 @@ export class PostsByCategoryComponent implements OnInit {
     getCategoryPosts(name: String) {
         this.postService.getPostsByCategory(name)
             .subscribe(
-                (response: { selectedCategory: Category[], selectedPosts: Post[] }) => {
-                    this.category = response.selectedCategory[0];
-                    this.posts = response.selectedPosts;
+                (res: {
+                    selectedCategory: Category[],
+                    selectedPosts: Post[]
+                }) => {
+                    this.category = res.selectedCategory[0];
+                    this.posts = res.selectedPosts;
 
                     this.posts.forEach((post) => {
                         post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
                     });
                 },
-                (error) => {
+                error => {
                     this.errorMessage = this.errorMessage + error.error.message;
                 }
             );

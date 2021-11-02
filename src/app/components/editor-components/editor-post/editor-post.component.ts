@@ -41,8 +41,8 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
     showMessageWindow: Boolean = new Boolean(false);
     successMessage: String = new String;
-    postURL: String = new String;
     errorMessage: String = new String;
+    postURL: String = new String;
 
     constructor(
         private authorizationGuardService: AuthorizationGuardService,
@@ -56,27 +56,30 @@ export class EditorPostComponent implements OnInit, OnDestroy {
         this.authorizationGuardService.userNeedsToBeLogged(true);
         this.authorizationGuardService.userNeedsToBeAdmin();
 
-        this.route.params.subscribe(params => {
-            this.id = params['id'];
-            this.newPost = true;
+        this.route.params.subscribe(
+            params => {
+                this.id = params['id'];
+                this.newPost = true;
 
-            if (this.id != undefined) {
-                this.getPost(this.id);
-                this.newPost = false;
-            }
-        });
+                if (this.id != undefined) {
+                    this.getPost(this.id);
+                    this.newPost = false;
+                }
+            });
 
         this.categoryService.getCategories();
         this.categoriesSubscription = this.categoryService.categoriesBS
-            .subscribe(res => {
-                this.categories = res;
-            });
+            .subscribe(
+                res => {
+                    this.categories = res;
+                });
 
         this.userService.getUsers();
         this.usersSubscription = this.userService.usersBS
-            .subscribe(res => {
-                this.users = res;
-            });
+            .subscribe(
+                res => {
+                    this.users = res;
+                });
     }
 
     get title() { return this.formGroup.get('title'); }
@@ -89,23 +92,23 @@ export class EditorPostComponent implements OnInit, OnDestroy {
     getPost(id: Number) {
         this.postService.getPost(id)
             .subscribe(
-                (response) => {
+                res => {
                     this.formGroup.setValue({
-                        title: response.selectedPost[0].title,
+                        title: res.selectedPost[0].title,
                         image: "",
-                        content: response.selectedPost[0].content,
-                        dateOfCreation: this.ISOToJSDate(response.selectedPost[0].dateOfCreation),
-                        userId: response.selectedPost[0].userId,
-                        categoryId: response.selectedPost[0].categoryId,
+                        content: res.selectedPost[0].content,
+                        dateOfCreation: this.ISOToJSDate(res.selectedPost[0].dateOfCreation),
+                        userId: res.selectedPost[0].userId,
+                        categoryId: res.selectedPost[0].categoryId,
                     });
 
-                    this.imageURL = environment.SERVER_URL + response.selectedPost[0].imagePath.substring(2);
+                    this.imageURL = environment.SERVER_URL + res.selectedPost[0].imagePath.substring(2);
                 },
-                (error) => {
+                error => {
                     this.showMessageWindow = true;
                     this.errorMessage = error.error.message;
                 }
-            )
+            );
     }
 
     ISOToJSDate(date: string) {
@@ -145,19 +148,20 @@ export class EditorPostComponent implements OnInit, OnDestroy {
         }
 
         this.postService.successPostPutBS
-            .subscribe(res => {
-                this.showMessageWindow = true;
+            .subscribe(
+                res => {
+                    this.showMessageWindow = true;
 
-                if(res != undefined) {
-                    this.id = res;
+                    if (res != undefined) {
+                        this.id = res;
 
-                    this.successMessage = "Post succesfully posted/updated.";
-                    this.errorMessage = "";
-                } else if(res == undefined) {
-                    this.successMessage = "";
-                    this.errorMessage = "Error while trying to save the post.";
-                }
-            })
+                        this.successMessage = "Post succesfully posted/updated.";
+                        this.errorMessage = "";
+                    } else if (res == undefined) {
+                        this.successMessage = "";
+                        this.errorMessage = "Error while trying to save the post.";
+                    }
+                });
     }
 
     closeMessageWindow() {

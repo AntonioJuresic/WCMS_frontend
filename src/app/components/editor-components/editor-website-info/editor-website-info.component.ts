@@ -10,7 +10,6 @@ import { WebsiteInfoService } from 'src/app/shared/services/website-info.service
 })
 export class EditorWebsiteInfoComponent implements OnInit {
 
-
     @Input() websiteInfo?: WebsiteInfo;
     @Output() editModeFalse = new EventEmitter<boolean>();
 

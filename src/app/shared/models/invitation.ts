@@ -4,4 +4,5 @@ export class Invitation {
     emailAddress?: String;
     emailSubject?: String;
     emailMessage?: String;
+    authorityId?: Number;
 }

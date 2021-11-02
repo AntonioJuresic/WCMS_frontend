@@ -59,12 +59,4 @@ export class AuthorityService {
                     this.authoritiesBS.next(this.authorities);
                 });
     }
-
-    giveAdminAuthority() {
-
-    }
-
-    removeAdminAuthority() {
-
-    }
 }

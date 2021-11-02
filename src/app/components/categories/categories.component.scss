@@ -1,0 +1,10 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    h3 {
+        margin: 1.563rem;
+    }
+}

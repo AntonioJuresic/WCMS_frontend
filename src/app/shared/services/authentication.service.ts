@@ -23,9 +23,9 @@ export class AuthenticationService {
         this.dataService
             .authenticateUser(username, password)
             .subscribe(
-                (response) => {
-                    let user = response.userData;
-                    let token = response.token;
+                res => {
+                    let user = res.userData;
+                    let token = res.token;
 
                     user!.imagePath = environment.SERVER_URL + user!.imagePath.substring(2);
 
@@ -36,7 +36,7 @@ export class AuthenticationService {
 
                     this.router.navigate(['/']);
                 },
-                (error) => {
+                error => {
                     this.authenticationErrorSubject.next(error.error.message);
                 });
     }
@@ -67,7 +67,7 @@ export class AuthenticationService {
             this.dataService
                 .checkAuthentication()
                 .subscribe(
-                    (response) => {
+                    (res) => {
                         this.authenticationBS.next(true);
                     },
                     (error) => {
