@@ -48,7 +48,7 @@ export class CommentService {
                 (res: {
                     selectedComment: Comment[]
                 }) => {
-                    this.comments.push(res.selectedComment[0]);
+                    this.comments[this.comments.findIndex(c => c.id === res.selectedComment[0].id)] = res.selectedComment[0];
                     this.commentsBS.next(this.comments);
                 });
     }

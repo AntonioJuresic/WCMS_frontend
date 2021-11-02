@@ -79,8 +79,9 @@ export class PostService {
                         environment.SERVER_URL +
                         res.selectedPost[0].imagePath?.substring(2);
 
-                    this.posts = this.posts.map(p => p.id !== res.selectedPost[0].id ? p : res.selectedPost[0]);
-
+                    //this.posts = this.posts.map(p => p.id !== res.selectedPost[0].id ? p : res.selectedPost[0]);
+                    this.posts[this.posts.findIndex(p => p.id === res.selectedPost[0].id)] = res.selectedPost[0];  
+                    
                     this.postsBS.next(this.posts);
 
                     this.successPostPutBS.next(res.selectedPost[0].id!);

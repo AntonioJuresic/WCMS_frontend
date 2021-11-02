@@ -45,7 +45,8 @@ export class InvitationService {
                     status: Number,
                     selectedInvitation: Invitation[]
                 }) => {
-                    this.invitations = this.invitations.map(i => i.id !== res.selectedInvitation[0].id ? i : res.selectedInvitation[0]);
+                    //this.invitations = this.invitations.map(i => i.id !== res.selectedInvitation[0].id ? i : res.selectedInvitation[0]);
+                    this.invitations[this.invitations.findIndex(i => i.id === res.selectedInvitation[0].id)] = res.selectedInvitation[0];  
                     this.invitationsBS.next(this.invitations);
                 });
     }

@@ -15,10 +15,14 @@ export class CategoryService {
 
     getCategories() {
         this.dataService.getCategories()
-            .subscribe((res: { status: Number, selectedCategories: Category[] }) => {
-                this.categories = res.selectedCategories;
-                this.categoriesBS.next(this.categories);
-            });
+            .subscribe(
+                (res: {
+                    status: Number,
+                    selectedCategories: Category[]
+                }) => {
+                    this.categories = res.selectedCategories;
+                    this.categoriesBS.next(this.categories);
+                });
     }
 
     getCategory(id: Number) {
