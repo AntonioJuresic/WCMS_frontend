@@ -35,6 +35,9 @@ import { UserProfileComponent } from './components/users-components/user-profile
 import { UserCommentsComponent } from './components/users-components/user-comments/user-comments.component';
 import { AdministrationInvitationsComponent } from './components/administration-components/administration-invitations/administration-invitations.component';
 import { EditorInvitationComponent } from './components/editor-components/editor-invitation/editor-invitation.component';
+import { EditorUserAuthorityComponent } from './components/editor-components/editor-user-authority/editor-user-authority.component';
+import { AdministrationAuthoritiesComponent } from './components/administration-components/administration-authorities/administration-authorities.component';
+import { EditorAuthorityComponent } from './components/editor-components/editor-authority/editor-authority.component';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import { EditorInvitationComponent } from './components/editor-components/editor
     UserProfileComponent,
     UserCommentsComponent,
     AdministrationInvitationsComponent,
-    EditorInvitationComponent
+    EditorInvitationComponent,
+    EditorUserAuthorityComponent,
+    AdministrationAuthoritiesComponent,
+    EditorAuthorityComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<div class="container-small">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+        <label *ngIf="this.authority?.id == undefined">New Authority:</label>
+        <label *ngIf="this.authority?.id != undefined">Update Authority:</label>
+
+        <input type="text" id="title" class="form-control" formControlName="title"
+            [ngClass]="{'is-invalid': ((title?.dirty || title?.touched) && title?.invalid)}">
+
+        <div *ngIf="(title?.dirty || title?.touched) && title?.invalid">
+            <p class="form-error-text">Authority title is required</p>
+        </div>
+
+        <input type="number" id="level" class="form-control" formControlName="level"
+            [ngClass]="{'is-invalid': ((level?.dirty || level?.touched) && level?.invalid)}">
+
+        <div *ngIf="(level?.dirty || level?.touched) && level?.invalid">
+            <p class="form-error-text">Authority level is required</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
+            
+            <button *ngIf="this.authority?.id == undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+            [disabled]="!formGroup.valid">Create</button>
+
+            <button *ngIf="this.authority?.id != undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

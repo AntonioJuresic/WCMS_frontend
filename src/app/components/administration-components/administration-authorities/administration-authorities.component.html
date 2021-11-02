@@ -1,0 +1,37 @@
+<h2>Authorities</h2>
+
+<div>
+    <button type="button" class="btn btn-success" (click)="openEditor()">New authority</button>
+</div>
+
+<div *ngIf="editMode">
+    <app-editor-authority [authority]="authorityForEdit" (editModeFalse)="closeEditor($event)"></app-editor-authority>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th style="width: 100%;">title</th>
+            <th>level</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let a of authorities;">
+            <td>{{a.id}}</td>
+            <td>{{a.title}}</td>
+            <td>{{a.level}}</td>
+
+            <td>
+                <button type="button" class="btn btn-warning btn-no-margin" (click)="openEditor(a)"><fa-icon [icon]="faPencilAlt"></fa-icon></button>
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-danger btn-no-margin" (click)="deleteAuthority(a.id!)"><fa-icon [icon]="faTrash"></fa-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

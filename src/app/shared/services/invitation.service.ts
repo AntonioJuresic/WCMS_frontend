@@ -50,8 +50,6 @@ export class InvitationService {
                 });
     }
 
-
-
     deleteInvitation(id: Number) {
         this.dataService.deleteInvitation(id)
             .subscribe(
@@ -59,6 +57,5 @@ export class InvitationService {
                     this.invitations = this.invitations.filter(i => i.id != id);
                     this.invitationsBS.next(this.invitations);
                 });
-
     }
 }
