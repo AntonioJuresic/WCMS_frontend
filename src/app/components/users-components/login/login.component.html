@@ -21,7 +21,7 @@
             <p class="form-error-text">{{errorMessage}}</p>
         </div>
 
-        <div class="flex-container flex-direction-row justify-content-flex-end">
+        <div class="form-buttons">
             <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>
             <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Login</button>

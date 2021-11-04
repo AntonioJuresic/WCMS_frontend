@@ -1,5 +1,7 @@
-<div class="container-small">
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<div class="custom-flex-center-items" style="height: 100vh; width: 100vw;">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="container-small">
+
+        <label for="code">Invitation code:</label>
         <input type="text" id="code" class="form-control" formControlName="code"
             [ngClass]="{'is-invalid': ((code?.dirty || code?.touched) && code?.invalid)}">
 
@@ -7,11 +9,29 @@
             <p class="form-error-text">Invitation code is required</p>
         </div>
 
-        <div class="flex-container flex-direction-row justify-content-flex-end">
+        <div class="form-buttons">
             <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>
 
             <button type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Update</button>
         </div>
     </form>
+</div>
+
+<div *ngIf="showMessageWindow == true" class="message-window-container custom-flex-center-items">
+    <div class="message-window">
+        <p *ngIf="successMessage.length != 0" class="form-success-text">
+            Authority successfully updated.
+            <br> For the change to take place, logout and log in again.
+        </p>
+        <p *ngIf="errorMessage.length != 0" class="form-error-text">{{errorMessage}}</p>
+
+        <div class="center-buttons">
+            <button *ngIf="successMessage.length != 0" (click)="logout()"
+                class="btn btn-outline-primary">Logout</button>
+
+            <button *ngIf="errorMessage.length != 0" (click)="closeMessageWindow()" class="btn btn-outline-primary">Try
+                again</button>
+        </div>
+    </div>
 </div>

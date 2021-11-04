@@ -2,7 +2,7 @@
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <h2>Post editor</h2>
 
-        <label>Title:</label>
+        <label for="title">Title:</label>
         <input type="text" id="title" class="form-control" formControlName="title"
             [ngClass]="{'is-invalid': ((title?.dirty || title?.touched) && title?.invalid)}">
 
@@ -14,12 +14,12 @@
             <img [src]="imageURL">
         </div>
 
-        <label>Image</label>
+        <label for="image">Image</label>
         <label for="image" class="file-upload">🖼️ Upload image</label>
         <input type="file" accept="image/*" id="image" class="form-control" formControlName="image"
             (change)="onFileChange($event)" />
 
-        <label>Content:</label>
+        <label for="content">Content:</label>
         <textarea cols="30" rows="10" id="content" class="form-control" formControlName="content"
             [ngClass]="{'is-invalid': ((content?.dirty || content?.touched) && content?.invalid)}"></textarea>
 
@@ -27,7 +27,7 @@
             <p class="form-error-text">Content is empty</p>
         </div>
 
-        <label>Date of creation:</label>
+        <label for="dateOfCreation">Date of creation:</label>
         <input type="datetime-local" id="dateOfCreation" class="form-control" formControlName="dateOfCreation"
             [ngClass]="{'is-invalid': ((dateOfCreation?.dirty || dateOfCreation?.touched) && dateOfCreation?.invalid)}">
 
@@ -35,7 +35,7 @@
             <p class="form-error-text">Date of creation is empty</p>
         </div>
 
-        <label>User:</label>
+        <label for="userId">User:</label>
         <select id="userId" class="form-control" formControlName="userId"
             [ngClass]="{'is-invalid': ((userId?.dirty || userId?.touched) && userId?.invalid)}">
             <option *ngFor="let user of users" [ngValue]="user.id">{{user.username}}</option>
@@ -45,7 +45,7 @@
             <p class="form-error-text">Select author</p>
         </div>
 
-        <label>Category:</label>
+        <label for="categoryId">Category:</label>
         <select id="categoryId" class="form-control" formControlName="categoryId"
             [ngClass]="{'is-invalid': ((categoryId?.dirty || categoryId?.touched) && categoryId?.invalid)}">
             <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
@@ -59,7 +59,8 @@
             <p class="form-error-text">{{errorMessage}}</p>
         </div>
 
-        <div class="flex-container flex-direction-row justify-content-flex-end">
+        <div class="form-buttons">
+            <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>
             <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Post</button>
         </div>
@@ -68,9 +69,7 @@
 </div>
 
 <div *ngIf="showMessageWindow == true" class="message-window-container custom-flex-center-items">
-
     <div class="message-window">
-
         <p *ngIf="successMessage.length != 0" class="form-success-text" style="text-align: center;">{{successMessage}}</p>
 
         <a *ngIf="successMessage.length != 0 && newPost == true" [routerLink]="['/p/editor/', id]"
@@ -80,7 +79,6 @@
             class="btn btn-outline-primary">Continue editing</button>
 
         <a *ngIf="successMessage.length != 0" [routerLink]="['/p/', id]" class="btn btn-primary">Go to the post</a>
-
 
         <p *ngIf="errorMessage.length != 0" class="form-error-text">{{errorMessage}}</p>
     </div>

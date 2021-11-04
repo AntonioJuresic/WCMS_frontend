@@ -48,9 +48,6 @@ export class EditorUserComponent implements OnInit {
         this.activatedRoute.paramMap
             .subscribe(
                 res => {
-
-                    console.log(window.history.state);
-
                     if (window.history.state.user.id == undefined) {
                         this.router.navigate(['/']);
                     }

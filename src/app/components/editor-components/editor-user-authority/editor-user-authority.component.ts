@@ -19,6 +19,7 @@ export class EditorUserAuthorityComponent implements OnInit {
         code: new FormControl('', Validators.required),
     });
 
+    showMessageWindow: Boolean = new Boolean(false);
     successMessage: String = new String;
     errorMessage: String = new String;
 
@@ -26,7 +27,8 @@ export class EditorUserAuthorityComponent implements OnInit {
         private authorizationGuardService: AuthorizationGuardService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
-        private userService: UserService
+        private userService: UserService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngOnInit(): void {
@@ -44,11 +46,11 @@ export class EditorUserAuthorityComponent implements OnInit {
     }
 
     get code() { return this.formGroup.get('code'); }
-    
+
     get f(): { [key: string]: AbstractControl } {
         return this.formGroup.controls;
     }
-    
+
     onSubmit() {
         let invitation = new Invitation;
         invitation.code = this.formGroup.value.code;
@@ -62,9 +64,19 @@ export class EditorUserAuthorityComponent implements OnInit {
                 error => {
                     this.successMessage = "";
                     this.errorMessage = error.error.message;
-                    console.log(error.error);
+                    console.log(error.error.message);
                 }
             );
+
+        this.showMessageWindow = true;
+    }
+
+    closeMessageWindow() {
+        this.showMessageWindow = false;
+    }
+
+    logout() {  
+        this.authenticationService.logoutUser();
     }
 
 }

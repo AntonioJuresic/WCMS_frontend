@@ -43,10 +43,6 @@ $white: rgb(255, 255, 255);
     font-size: 100%;
 }
 
-body {
-    padding: 0.8rem;
-}
-
 hr {
     margin: 0.512rem 0px;
     border: 1px solid $lightgray;
@@ -473,6 +469,13 @@ article {
 
 // Containers
 
+.container-small,
+.container-medium,
+.container-large,
+.container-extra-large {
+    padding: 0.8rem;
+}
+
 .container-small {
     margin: 0 auto;
     width: 100%;
@@ -497,187 +500,10 @@ article {
     max-width: 1200px;
 }
 
-// Flex container
-
-.flex-container {
+.form-buttons {
     display: flex;
-}
-
-// Sets the flex direction
-
-.flex-direction-row {
     flex-direction: row;
-}
-
-.flex-direction-row-reverse {
-    flex-direction: row-reverse;
-}
-
-.flex-direction-column {
-    flex-direction: column;
-}
-
-.flex-direction-column-reverse {
-    flex-direction: column-reverse;
-}
-
-// Sets the flex wrap
-
-.flex-wrap-nowrap {
-    flex-wrap: nowrap;
-}
-
-.flex-wrap-wrap {
-    flex-wrap: wrap;
-}
-
-.flex-wrap-wrap-reverse {
-    flex-wrap: wrap-reverse;
-}
-
-// This defines the alignment along the main axis.
-
-.justify-content-flex-start {
-    justify-content: flex-start;
-}
-
-.justify-content-flex-end {
     justify-content: flex-end;
-}
-
-.justify-content-start {
-    justify-content: start;
-}
-
-.justify-content-end {
-    justify-content: end;
-}
-
-.justify-content-left {
-    justify-content: left;
-}
-.justify-content-right {
-    justify-content: right;
-}
-
-.justify-content-center {
-    justify-content: center;
-}
-
-.justify-content-space-between {
-    justify-content: space-between;
-}
-
-.justify-content-space-around {
-    justify-content: space-around;
-}
-
-.justify-content-space-evenly {
-    justify-content: space-evenly;
-}
-
-// This defines the alignment along the cross axis.
-
-.align-items-stretch {
-    align-items: stretch;
-}
-
-.align-items-flex-start {
-    align-items: flex-start;
-}
-+ .align-items-start {
-    align-items: start;
-}
-
-.align-items-self-start {
-    align-items: self-start;
-}
-
-.align-items-flex-end {
-    align-items: flex-end;
-}
-
-.align-items-end {
-    align-items: end;
-}
-
-.align-items-self-end {
-    align-items: self-end;
-}
-
-.align-items-center {
-    align-items: center;
-}
-
-.align-items-baseline {
-    align-items: baseline;
-}
-
-// This aligns a flex container’s lines within when there is extra space in the cross-axis
-.align-content-normal {
-    align-content: normal;
-}
-
-.align-content-flex-start {
-    align-content: flex-start;
-}
-
-.align-content-start {
-    align-content: start;
-}
-
-.align-content-flex-end {
-    align-content: flex-end;
-}
-
-.align-content-end {
-    align-content: end;
-}
-
-.align-content-center {
-    align-content: center;
-}
-
-.align-content-space-between {
-    align-content: space-between;
-}
-
-.align-content-space-around {
-    align-content: space-around;
-}
-
-.align-content-space-evenly {
-    align-content: space-evenly;
-}
-
-.align-content-stretch {
-    align-content: stretch;
-}
-
-// Flex item
-
-.align-self-auto {
-    align-self: auto;
-}
-
-.align-self-flex-start {
-    align-self: flex-start;
-}
-
-.align-self-flex-end {
-    align-self: flex-end;
-}
-
-.align-self-center {
-    align-self: center;
-}
-
-.align-self-baseline {
-    align-self: baseline;
-}
-
-.align-self-stretch {
-    align-self: stretch;
 }
 
 .custom-flex-center-items {
