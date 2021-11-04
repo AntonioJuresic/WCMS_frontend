@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
     public formGroup: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         username: new FormControl('', Validators.required),
-        image: new FormControl(''),
+        image: new FormControl('', Validators.required),
         password1: new FormControl('', Validators.required),
         password2: new FormControl('', Validators.required)
     },
@@ -61,6 +61,11 @@ export class RegistrationComponent implements OnInit {
 
         if (event.target.files.length > 0) {
             this.imageForm = event.target.files[0];
+
+            reader.readAsDataURL(event.target.files[0]);
+            reader.onload = () => {
+                this.imageURL = reader.result as string;
+            };
         }
     }
 

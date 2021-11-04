@@ -10,7 +10,7 @@
             <p class="form-error-text">Title is empty</p>
         </div>
 
-        <div *ngIf="imageURL">
+        <div *ngIf="imageURL.length != 0">
             <img [src]="imageURL">
         </div>
 

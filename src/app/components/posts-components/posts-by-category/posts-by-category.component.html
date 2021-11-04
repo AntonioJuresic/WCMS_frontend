@@ -1,16 +1,17 @@
 <app-navigation></app-navigation>
 
-<div *ngIf="category">
-    <h2>{{category.name}}</h2>
-</div>
+<section class="container-large">
+    <div *ngIf="category">
+        <h2>{{category.name}}</h2>
+    </div>
 
-<div *ngFor="let p of posts;">
-    <article>
-        <img [src]="p.imagePath" alt="postImage" id="postImage">
-        <h2><a [routerLink]="['/p/', p.id]">{{p.title}}</a></h2>
-    </article>
-</div>
+    <div class="posts">
+        <article *ngFor="let p of posts;">
+            <app-article-short [post]="p"></app-article-short>
+        </article>
+    </div>
 
-<div *ngIf=errorMessage>
-    <p>{{errorMessage}}</p>
-</div>
+    <div *ngIf="errorMessage.length != 0">
+        <p>{{errorMessage}}</p>
+    </div>
+</section>

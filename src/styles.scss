@@ -11,6 +11,8 @@
 0.328rem/5.24px	A Visual Type Scale
 */
 
+@use "sass:math";
+
 $red: rgb(250, 50, 50);
 $red-dark: rgb(200, 40, 40);
 $orange: rgb(250, 190, 10);
@@ -511,4 +513,35 @@ article {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+
+.posts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+article {
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+    article {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    article {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    article {
+        width: math.percentage(0.33);
+    }
 }

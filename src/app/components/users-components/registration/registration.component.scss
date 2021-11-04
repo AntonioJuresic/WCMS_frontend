@@ -1,0 +1,28 @@
+.image-container {
+    position: relative;
+    width: 50%; /* The size you want */
+    margin: 0 auto;
+}
+
+.image-container:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
+}
+
+.image-container img {
+    position: absolute; /* Take your picture out of the flow */
+
+    top: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+
+    width: 80%;
+    height: 80%;
+
+    object-fit: cover;
+    object-position: center;
+    
+    border-radius: 5px;
+}

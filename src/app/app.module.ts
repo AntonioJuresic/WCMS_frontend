@@ -39,6 +39,9 @@ import { EditorUserAuthorityComponent } from './components/editor-components/edi
 import { AdministrationAuthoritiesComponent } from './components/administration-components/administration-authorities/administration-authorities.component';
 import { EditorAuthorityComponent } from './components/editor-components/editor-authority/editor-authority.component';
 import { ShortenTextPipe } from './shared/utilities/shorten-text.pipe';
+import { ArticleShortComponent } from './components/posts-components/article-short/article-short.component';
+import { ArticleLongComponent } from './components/posts-components/article-long/article-long.component';
+import { UserDetailComponent } from './components/users-components/user-detail/user-detail.component';
 
 
 @NgModule({
@@ -75,7 +78,10 @@ import { ShortenTextPipe } from './shared/utilities/shorten-text.pipe';
     EditorUserAuthorityComponent,
     AdministrationAuthoritiesComponent,
     EditorAuthorityComponent,
-    ShortenTextPipe
+    ShortenTextPipe,
+    ArticleShortComponent,
+    ArticleLongComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

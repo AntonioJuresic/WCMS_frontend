@@ -1,0 +1,42 @@
+@use "sass:math";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .left-part,
+    .right-part {
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .left-part,
+    .right-part {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .left-part {
+        width: math.percentage(0.33);
+    }
+
+    .right-part {
+        width: math.percentage(0.66);
+    }
+}
+
+h4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+img {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

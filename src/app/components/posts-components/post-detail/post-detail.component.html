@@ -1,18 +1,11 @@
 <app-navigation></app-navigation>
 
-<article class="container-medium">
-    <div *ngIf=post>
-        <h3>{{post.title}}</h3>
-        <img [src]="post.imagePath" alt="postImage" id="postImage">
-        <p>Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></p>
-        <p>Author: <a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></p>
-        <p>Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</p>
-        <p>{{post.content}}</p>
+<section class="container-medium">
+    <article *ngIf=post style="width: 100%;">
+        <app-article-long [post]="post"></app-article-long>
+    </article>
 
-        <app-post-comments [postId]="post.id!"></app-post-comments>
-    </div>
-
-    <div *ngIf=errorMessage>
+    <div *ngIf="errorMessage.length != 0">
         <p>{{errorMessage}}</p>
     </div>
-</article>
+</section>

@@ -21,12 +21,12 @@
         <div *ngIf="(username?.dirty || username?.touched) && username?.invalid">
             <p class="form-error-text">Username is required</p>
         </div>
-
-        <div *ngIf="imageURL">
+        
+        <div *ngIf="imageURL.length != 0" class="image-container">
             <img [src]="imageURL">
         </div>
 
-        <label>Image</label>
+        <label>Profile image</label>
         <label for="image" class="file-upload">🖼️ Upload image</label>
         <input type="file" accept="image/*" id="image" class="form-control" formControlName="image"
             (change)="onFileChange($event)" />
@@ -52,7 +52,7 @@
         <div *ngIf="errorMessage">
             <p class="form-error-text">{{errorMessage}}</p>
         </div>
-        
+
         <div *ngIf="successMessage">
             <p class="form-success-text">{{successMessage}}</p>
         </div>

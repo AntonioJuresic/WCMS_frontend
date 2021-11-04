@@ -1,0 +1,6 @@
+<img [src]="post.imagePath" alt="postImage" id="postImage">
+<h4><a [routerLink]="['/p/', post.id]">{{post.title}}</a></h4>
+<p><a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a> - {{post.dateOfCreation | date:'d.M.Y.'}}</p>
+
+<div class="shadow"></div>
+<p>{{post.content.valueOf() | shortenText: 250}}</p>

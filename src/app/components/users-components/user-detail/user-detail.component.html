@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="left-part">
+        <img [src]="user.imagePath" alt="userImage" id="userImage">
+    </div>
+    
+    <div class="right-part">
+        <h2>{{user.username}}</h2>
+        <h4 *ngIf="user.authorityTitle != null">Title: {{user.authorityTitle}}</h4>
+        <h4>Date of creation: {{user.dateOfCreation | date:'d.M.Y.'}}</h4>
+    </div>
+</div>
