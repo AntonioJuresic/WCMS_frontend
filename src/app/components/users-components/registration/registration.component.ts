@@ -72,8 +72,6 @@ export class RegistrationComponent implements OnInit {
         formData.append("image", this.imageForm);
         formData.append("password", this.formGroup.get("password1")!.value);
 
-        console.log(formData);
-
         this.userService.postUser(formData)
             .subscribe(
                 (res: { selectedUser?: User }) => {

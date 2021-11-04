@@ -49,11 +49,14 @@ export class EditorUserComponent implements OnInit {
             .subscribe(
                 res => {
 
+                    console.log(window.history.state);
+
                     if (window.history.state.user.id == undefined) {
                         this.router.navigate(['/']);
                     }
 
                     this.id = window.history.state.user.id;
+                    this.user = window.history.state.user;
 
                     this.formGroup.setValue({
                         username: window.history.state.user.username,

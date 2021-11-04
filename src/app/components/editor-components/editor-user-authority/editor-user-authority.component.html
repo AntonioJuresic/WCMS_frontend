@@ -1,1 +1,17 @@
-<p>editor-user-authority works!</p>
+<div class="container-small">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <input type="text" id="code" class="form-control" formControlName="code"
+            [ngClass]="{'is-invalid': ((code?.dirty || code?.touched) && code?.invalid)}">
+
+        <div *ngIf="(code?.dirty || code?.touched) && code?.invalid">
+            <p class="form-error-text">Invitation code is required</p>
+        </div>
+
+        <div class="flex-container flex-direction-row justify-content-flex-end">
+            <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>
+
+            <button type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

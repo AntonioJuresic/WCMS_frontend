@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Invitation } from '../models/invitation';
 import { User } from '../models/user';
 import { AuthenticationService } from './authentication.service';
 import { DataService } from './data.service';
@@ -110,11 +111,11 @@ export class UserService {
             )
     }
 
-    giveAuthority() {
-
+    giveAuthority(id: Number, invitation: Invitation) {
+        return this.dataService.giveAuthority(id, invitation);
     }
 
-    removeAuthority() {
-
+    removeAuthority(id: Number) {
+        return this.dataService.removeAuthority(id);
     }
 }

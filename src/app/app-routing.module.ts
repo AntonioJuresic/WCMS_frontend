@@ -12,6 +12,7 @@ import { StylingComponent } from './styling/styling.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 import { UserProfileComponent } from './components/users-components/user-profile/user-profile.component';
+import { EditorUserAuthorityComponent } from './components/editor-components/editor-user-authority/editor-user-authority.component';
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
@@ -19,14 +20,15 @@ const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "registration", component: RegistrationComponent },
 
-    { path: "p/editor", component: EditorPostComponent },
-    { path: "p/editor/:id", component: EditorPostComponent },
-    { path: "p/:id", component: PostDetailComponent },
+    { path: "u/editor", component: EditorUserComponent },
+    { path: "u/authority", component: EditorUserAuthorityComponent},
+    { path: "u/:username", component: UserProfileComponent },
 
     { path: "c/:name", component: PostsByCategoryComponent },
 
-    { path: "u/editor", component: EditorUserComponent },
-    { path: "u/:username", component: UserProfileComponent },
+    { path: "p/editor", component: EditorPostComponent },
+    { path: "p/editor/:id", component: EditorPostComponent },
+    { path: "p/:id", component: PostDetailComponent },
 
     { path: "administration", component: AdministrationComponent },
     { path: "styling", component: StylingComponent },

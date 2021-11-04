@@ -1,23 +1,21 @@
-<div class="container-small">
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
 
-        <label *ngIf="this.category?.id == undefined">New Category:</label>
-        <label *ngIf="this.category?.id != undefined">Update Category:</label>
-        <input type="text" id="name" class="form-control" formControlName="name"
-            [ngClass]="{'is-invalid': ((name?.dirty || name?.touched) && name?.invalid)}">
+    <label *ngIf="this.category?.id == undefined">New Category:</label>
+    <label *ngIf="this.category?.id != undefined">Update Category:</label>
+    <input type="text" id="name" class="form-control" formControlName="name"
+        [ngClass]="{'is-invalid': ((name?.dirty || name?.touched) && name?.invalid)}">
 
-        <div *ngIf="(name?.dirty || name?.touched) && name?.invalid">
-            <p class="form-error-text">Category name is required</p>
-        </div>
+    <div *ngIf="(name?.dirty || name?.touched) && name?.invalid">
+        <p class="form-error-text">Category name is required</p>
+    </div>
 
-        <div class="flex-container flex-direction-row justify-content-flex-end">
-            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
-            
-            <button *ngIf="this.category?.id == undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
-            [disabled]="!formGroup.valid">Create</button>
+    <div class="flex-container flex-direction-row justify-content-flex-end">
+        <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
 
-            <button *ngIf="this.category?.id != undefined" type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
-                [disabled]="!formGroup.valid">Update</button>
-        </div>
-    </form>
-</div>
+        <button *ngIf="this.category?.id == undefined" type="submit" class="btn btn-success"
+            [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Create</button>
+
+        <button *ngIf="this.category?.id != undefined" type="submit" class="btn btn-success"
+            [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Update</button>
+    </div>
+</form>

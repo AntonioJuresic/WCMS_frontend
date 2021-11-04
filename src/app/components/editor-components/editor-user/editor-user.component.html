@@ -31,6 +31,8 @@
             <p class="form-error-text">Email is not valid</p>
         </div>
 
+        <a [routerLink]="['/u/authority/' ]" [state]="{ user : user }" class="btn btn-warning btn-no-margin">Change authority</a>
+                   
         <div class="flex-container flex-direction-row justify-content-flex-end">
             <button type="button" class="btn btn-danger" (click)="deleteUser(user.id!)" style="margin-right: auto;">Delete</button>
 

@@ -19,7 +19,7 @@ export class DataService {
     
     API_USER_URL = '/user';
     API_USER_HIMSELF_URL = '/user-himself';
-    API_USER_AUTHORITY_URL = 'user-authority';
+    API_USER_AUTHORITY_URL = '/user-authority';
 
     API_AUTHORITY_URL = '/authority';
     API_INVITATION_URL = '/invitation';
@@ -95,11 +95,11 @@ export class DataService {
 
     // user authority
 
-    giveAdminAuthority(id: Number, invitation: Invitation) {
+    giveAuthority(id: Number, invitation: Invitation) {
         return this.httpClient.put(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`, invitation);
     }
 
-    removeAdminAuthority(id: Number) {
+    removeAuthority(id: Number) {
         return this.httpClient.delete(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`);
     }
 
