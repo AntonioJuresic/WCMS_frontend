@@ -24,10 +24,29 @@ export class EditorPostComponent implements OnInit, OnDestroy {
     imageForm: any;
     imageURL: String = new String;
 
+    editorContent: String = new String("Hello World!");
+
+    public options: Object = {
+        charCounterCount: true,
+        toolbarButtons: {
+            'moreText': {
+                'buttons': ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', 'textColor', 'backgroundColor', 'inlineClass', 'inlineStyle', 'clearFormatting']
+            },
+
+            'moreParagraph': {
+                'buttons': ['alignLeft', 'alignCenter', 'formatOLSimple', 'alignRight', 'alignJustify', 'formatOL', 'formatUL', 'paragraphFormat', 'paragraphStyle', 'lineHeight', 'outdent', 'indent', 'quote']
+            },
+
+            'moreRich': {
+                'buttons': ['insertLink', 'insertTable', 'emoticons', 'fontAwesome', 'specialCharacters', 'embedly', 'insertHR']
+            }
+        }
+    };
+
     public formGroup: FormGroup = new FormGroup({
         title: new FormControl('', Validators.required),
         image: new FormControl(''),
-        content: new FormControl('', Validators.required),
+        editor: new FormControl(this.editorContent, Validators.required),
         dateOfCreation: new FormControl('', Validators.required),
         userId: new FormControl('', Validators.required),
         categoryId: new FormControl('', Validators.required)
@@ -84,7 +103,7 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
     get title() { return this.formGroup.get('title'); }
     get image() { return this.formGroup.get('image'); }
-    get content() { return this.formGroup.get('content'); }
+    get editor() { return this.formGroup.get('editor'); }
     get dateOfCreation() { return this.formGroup.get('dateOfCreation'); }
     get userId() { return this.formGroup.get('userId'); }
     get categoryId() { return this.formGroup.get('categoryId'); }
@@ -93,10 +112,12 @@ export class EditorPostComponent implements OnInit, OnDestroy {
         this.postService.getPost(id)
             .subscribe(
                 res => {
+                    this.editorContent = res.selectedPost[0].content;
+
                     this.formGroup.setValue({
                         title: res.selectedPost[0].title,
                         image: "",
-                        content: res.selectedPost[0].content,
+                        editor: this.editorContent,
                         dateOfCreation: this.ISOToJSDate(res.selectedPost[0].dateOfCreation),
                         userId: res.selectedPost[0].userId,
                         categoryId: res.selectedPost[0].categoryId,
@@ -136,7 +157,7 @@ export class EditorPostComponent implements OnInit, OnDestroy {
 
         formData.append("title", this.formGroup.get("title")!.value);
         formData.append("image", this.imageForm);
-        formData.append("content", this.formGroup.get("content")!.value);
+        formData.append("content", this.formGroup.get("editor")!.value);
         formData.append("dateOfCreation", this.formGroup.get("dateOfCreation")!.value);
         formData.append("userId", this.formGroup.get("userId")!.value);
         formData.append("categoryId", this.formGroup.get("categoryId")!.value);

@@ -1,8 +1,11 @@
-<h3>{{post.title}}</h3>
-<img [src]="post.imagePath" alt="postImage" id="postImage">
-<p>Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></p>
-<p>Author: <a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></p>
-<p>Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</p>
-<p>{{post.content}}</p>
+<h3 class="long-title">{{post.title}}</h3>
+
+<h4 class="long">Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></h4>
+<h4 class="long">Author: <a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></h4>
+<h4 class="long">Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</h4>
+
+<img [src]="post.imagePath" alt="postImage" id="postImage" class="long">
+
+<div [innerHTML]="post.content" class="content"></div>
 
 <app-post-comments [postId]="post.id!"></app-post-comments>

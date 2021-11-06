@@ -42,6 +42,7 @@ import { ShortenTextPipe } from './shared/utilities/shorten-text.pipe';
 import { ArticleShortComponent } from './components/posts-components/article-short/article-short.component';
 import { ArticleLongComponent } from './components/posts-components/article-long/article-long.component';
 import { UserDetailComponent } from './components/users-components/user-detail/user-detail.component';
+import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 
 
 @NgModule({
@@ -89,7 +90,9 @@ import { UserDetailComponent } from './components/users-components/user-detail/u
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
   bootstrap: [AppComponent]
