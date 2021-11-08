@@ -2,6 +2,8 @@
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
         <h2>Registration</h2>
 
+        <p>Already have an account? <span><a [routerLink]="['/login']">Log in!</a></span></p>
+
         <label>Email:</label>
         <input type="text" id="email" class="form-control" formControlName="email"
             [ngClass]="{'is-invalid': ((email?.dirty || email?.touched) && email?.invalid)}">
@@ -62,8 +64,6 @@
             <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled' : !formGroup.valid }"
                 [disabled]="!formGroup.valid">Register</button>
         </div>
-
-        <p>Already have an account? <span><a [routerLink]="['/login']">Log in!</a></span></p>
     </form>
 
 </div>

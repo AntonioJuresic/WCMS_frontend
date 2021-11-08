@@ -13,12 +13,14 @@ import { PostsByCategoryComponent } from './components/posts-components/posts-by
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 import { UserProfileComponent } from './components/users-components/user-profile/user-profile.component';
 import { EditorUserAuthorityComponent } from './components/editor-components/editor-user-authority/editor-user-authority.component';
+import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
 
     { path: "login", component: LoginComponent },
     { path: "registration", component: RegistrationComponent },
+    { path: "forgotpassword", component: PasswordForgotComponent },
 
     { path: "u/editor", component: EditorUserComponent },
     { path: "u/authority", component: EditorUserAuthorityComponent},

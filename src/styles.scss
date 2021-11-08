@@ -100,21 +100,9 @@ a {
 }
 
 a:hover {
+    cursor: pointer;
     text-decoration: underline;
     color: $blue-dark;
-}
-
-a.btn {
-    display: inline-block;
-
-    //margin: 0.512rem;
-    //padding: 0.41rem 0.512rem;
-
-    text-decoration: none;
-}
-
-a.btn-no-margin {
-    margin: 0rem;
 }
 
 blockquote {
@@ -134,8 +122,13 @@ small {
 // Forms
 
 form {
+
     padding: 0.8rem;
     font-size: 1rem;
+
+    h2 {
+        margin: 3.052rem 0rem;
+    }
 
     img {
         width: 100%;
@@ -250,6 +243,19 @@ select {
 }
 
 // Buttons
+
+a.btn {
+    display: inline-block;
+
+    //margin: 0.512rem;
+    //padding: 0.41rem 0.512rem;
+
+    text-decoration: none;
+}
+
+a.btn-no-margin {
+    margin: 0rem;
+}
 
 button a {
     color: inherit;

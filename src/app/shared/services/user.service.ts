@@ -111,6 +111,14 @@ export class UserService {
             )
     }
 
+    sendPasswordEmail(email: Object) {
+        return this.dataService.sendPasswordEmail(email);
+    }
+
+    changePassword(emailAdrress: String, password: Object) {
+        return this.dataService.changePassword(emailAdrress, password);
+    }
+
     giveAuthority(id: Number, invitation: Invitation) {
         return this.dataService.giveAuthority(id, invitation);
     }

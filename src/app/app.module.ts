@@ -43,6 +43,9 @@ import { ArticleShortComponent } from './components/posts-components/article-sho
 import { ArticleLongComponent } from './components/posts-components/article-long/article-long.component';
 import { UserDetailComponent } from './components/users-components/user-detail/user-detail.component';
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+import { PasswordResetComponent } from './components/users-components/password-reset/password-reset.component';
+import { PasswordSendCodeComponent } from './components/users-components/password-send-code/password-send-code.component';
+import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
 
 
 @NgModule({
@@ -82,7 +85,10 @@ import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
     ShortenTextPipe,
     ArticleShortComponent,
     ArticleLongComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    PasswordResetComponent,
+    PasswordSendCodeComponent,
+    PasswordForgotComponent
   ],
   imports: [
     BrowserModule,

@@ -16,13 +16,13 @@ export class DataService {
     API_URL = environment.API_URL;
 
     API_AUTHENTICATION_URL = '/authentication';
+    API_INVITATION_URL = '/invitation';
+    API_AUTHORITY_URL = '/authority';
     
     API_USER_URL = '/user';
+    API_USER_PASSWORD_URL = '/user-password';
     API_USER_HIMSELF_URL = '/user-himself';
     API_USER_AUTHORITY_URL = '/user-authority';
-
-    API_AUTHORITY_URL = '/authority';
-    API_INVITATION_URL = '/invitation';
 
     API_WEBSITE_INFO_URL = '/info';
 
@@ -46,6 +46,8 @@ export class DataService {
         return this.httpClient.get(this.API_URL);
     }
 
+    // authentication
+
     authenticateUser(username: String, password: String): Observable<any> {
         return this.httpClient.post(this.API_URL + this.API_AUTHENTICATION_URL, {
             username: username,
@@ -55,6 +57,53 @@ export class DataService {
 
     checkAuthentication(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_AUTHENTICATION_URL);
+    }
+
+    // authority
+
+    getAuthorities(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_AUTHORITY_URL);
+    }
+
+    postAuthority(authority: Authority): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_AUTHORITY_URL, authority);
+    }
+
+    putAuthority(id: Number, authority: Authority): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_AUTHORITY_URL + `/${id}`, authority);
+    }
+
+    deleteAuthority(id: Number): Observable<any> {
+        return this.httpClient.delete(this.API_URL + this.API_AUTHORITY_URL + `/${id}`);
+    }
+
+    
+    // invitation
+    
+    getInvitations(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_INVITATION_URL);
+    }
+
+    postInvitation(invitation: Invitation): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_INVITATION_URL, invitation);
+    }
+
+    putInvitation(id: Number, invitation: Invitation): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_INVITATION_URL + `/${id}`, invitation);
+    }
+
+    deleteInvitation(id: Number): Observable<any> {
+        return this.httpClient.delete(this.API_URL + this.API_INVITATION_URL + `/${id}`);
+    }
+
+    // user authority
+
+    giveAuthority(id: Number, invitation: Invitation) {
+        return this.httpClient.put(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`, invitation);
+    }
+
+    removeAuthority(id: Number) {
+        return this.httpClient.delete(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`);
     }
 
     //users
@@ -79,6 +128,16 @@ export class DataService {
         return this.httpClient.delete(this.API_URL + this.API_USER_URL + `/${id}`);
     }
 
+    // user password
+
+    sendPasswordEmail(email: Object): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_USER_PASSWORD_URL, email);
+    }
+    
+    changePassword(emailAdrress: String, password: Object): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_USER_PASSWORD_URL + `/${emailAdrress}`, password);
+    }
+
     //user himself
 
     getUserHimself(id: Number): Observable<any> {
@@ -91,52 +150,6 @@ export class DataService {
 
     deleteUserHimself(id: Number): Observable<any> {
         return this.httpClient.delete(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`);
-    }
-
-    // user authority
-
-    giveAuthority(id: Number, invitation: Invitation) {
-        return this.httpClient.put(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`, invitation);
-    }
-
-    removeAuthority(id: Number) {
-        return this.httpClient.delete(this.API_URL + this.API_USER_AUTHORITY_URL + `/${id}`);
-    }
-
-    // authority
-
-    getAuthorities(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_AUTHORITY_URL);
-    }
-
-    postAuthority(authority: Authority): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_AUTHORITY_URL, authority);
-    }
-
-    putAuthority(id: Number, authority: Authority): Observable<any> {
-        return this.httpClient.put(this.API_URL + this.API_AUTHORITY_URL + `/${id}`, authority);
-    }
-
-    deleteAuthority(id: Number): Observable<any> {
-        return this.httpClient.delete(this.API_URL + this.API_AUTHORITY_URL + `/${id}`);
-    }
-
-    // invitation
-    
-    getInvitations(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_INVITATION_URL);
-    }
-
-    postInvitation(invitation: Invitation): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_INVITATION_URL, invitation);
-    }
-
-    putInvitation(id: Number, invitation: Invitation): Observable<any> {
-        return this.httpClient.put(this.API_URL + this.API_INVITATION_URL + `/${id}`, invitation);
-    }
-
-    deleteInvitation(id: Number): Observable<any> {
-        return this.httpClient.delete(this.API_URL + this.API_INVITATION_URL + `/${id}`);
     }
 
     //website info

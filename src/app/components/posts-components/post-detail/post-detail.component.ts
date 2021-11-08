@@ -14,7 +14,7 @@ export class PostDetailComponent implements OnInit {
 
     id: Number = new Number;
     post: Post = new Post;
-    
+
     errorMessage: String = new String;
 
     constructor(
@@ -37,7 +37,7 @@ export class PostDetailComponent implements OnInit {
                 (res: { selectedPost: Post[] }) => {
                     this.post = res.selectedPost[0];
                     this.post.imagePath = environment.SERVER_URL + this.post.imagePath?.substring(2);
-                    
+
                     this.titleService.setTitle(res.selectedPost[0].title.valueOf());
                 },
                 error => {

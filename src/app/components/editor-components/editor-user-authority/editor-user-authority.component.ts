@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invitation } from 'src/app/shared/models/invitation';
@@ -64,7 +64,6 @@ export class EditorUserAuthorityComponent implements OnInit {
                 error => {
                     this.successMessage = "";
                     this.errorMessage = error.error.message;
-                    console.log(error.error.message);
                 }
             );
 
