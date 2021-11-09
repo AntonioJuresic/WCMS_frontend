@@ -1,4 +1,4 @@
-export class WebsiteHead {
+export class WebsiteMeta {
     title!: String
     imagePath!: String
     charset!: String

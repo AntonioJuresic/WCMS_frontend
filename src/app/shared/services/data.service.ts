@@ -6,7 +6,7 @@ import { Authority } from '../models/authority';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
 import { Invitation } from '../models/invitation';
-import { WebsiteHead } from '../models/websiteHead';
+import { WebsiteMeta } from '../models/websiteMeta';
 
 @Injectable({
     providedIn: 'root'
@@ -155,15 +155,15 @@ export class DataService {
 
     //website head
 
-    getWebsiteHead(): Observable<any> {
+    getWebsiteMeta(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_WEBSITE_HEAD_URL);
     }
 
-    postWebsiteHead(websiteHead: WebsiteHead): Observable<any> {
+    postWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
         return this.httpClient.post(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
     }
 
-    putWebsiteHead(websiteHead: WebsiteHead): Observable<any> {
+    putWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
         return this.httpClient.put(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
     }
 

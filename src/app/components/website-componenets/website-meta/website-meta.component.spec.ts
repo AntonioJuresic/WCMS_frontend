@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebsiteHeadComponent } from './website-head.component';
+import { WebsiteMetaComponent } from './website-meta.component';
 
-describe('WebsiteHeadComponent', () => {
-  let component: WebsiteHeadComponent;
-  let fixture: ComponentFixture<WebsiteHeadComponent>;
+describe('WebsiteMetaComponent', () => {
+  let component: WebsiteMetaComponent;
+  let fixture: ComponentFixture<WebsiteMetaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WebsiteHeadComponent ]
+      declarations: [ WebsiteMetaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteHeadComponent);
+    fixture = TestBed.createComponent(WebsiteMetaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WebsiteHeadService } from './website-head.service';
+import { WebsiteMetaService } from './website-meta.service';
 
-describe('WebsiteHeadService', () => {
-  let service: WebsiteHeadService;
+describe('WebsiteMetaService', () => {
+  let service: WebsiteMetaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WebsiteHeadService);
+    service = TestBed.inject(WebsiteMetaService);
   });
 
   it('should be created', () => {

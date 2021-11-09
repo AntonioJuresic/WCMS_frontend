@@ -43,7 +43,7 @@ import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 import { PasswordResetComponent } from './components/users-components/password-reset/password-reset.component';
 import { PasswordSendCodeComponent } from './components/users-components/password-send-code/password-send-code.component';
 import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
-import { WebsiteHeadComponent } from './components/website-componenets/website-head/website-head.component';
+import { WebsiteMetaComponent } from './components/website-componenets/website-meta/website-meta.component';
 
 
 @NgModule({
@@ -84,7 +84,7 @@ import { WebsiteHeadComponent } from './components/website-componenets/website-h
     PasswordResetComponent,
     PasswordSendCodeComponent,
     PasswordForgotComponent,
-    WebsiteHeadComponent
+    WebsiteMetaComponent
   ],
   imports: [
     BrowserModule,
