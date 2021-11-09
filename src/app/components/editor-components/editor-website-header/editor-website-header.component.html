@@ -1,7 +1,5 @@
-<div class="container-small">
+<div class="container-large">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <h2>Website header editor</h2>
-
         <div style="margin: 1rem 0rem;">
             <label>Content:</label>
             <textarea [froalaEditor]="options" [(froalaModel)]="editorContent" formControlName="editor"
@@ -16,12 +14,10 @@
         <p class="form-error-text">{{errorMessage}}</p>
 
         <div class="form-buttons">
-            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
-
-            <button *ngIf="this.websiteHeader?.id == undefined" type="submit" class="btn btn-success"
+            <button *ngIf="this.websiteHeader?.content == undefined" type="submit" class="btn btn-success"
                 [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Create</button>
 
-            <button *ngIf="this.websiteHeader?.id != undefined" type="submit" class="btn btn-success"
+            <button *ngIf="this.websiteHeader?.content != undefined" type="submit" class="btn btn-success"
                 [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Update</button>
         </div>
     </form>

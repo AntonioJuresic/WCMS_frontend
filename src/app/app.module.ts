@@ -49,7 +49,7 @@ import { EditorWebsiteMetaComponent } from './components/editor-components/edito
 import { WebsiteHeaderComponent } from './components/website-componenets/website-header/website-header.component';
 import { AdministrationHeaderComponent } from './components/administration-components/administration-header/administration-header.component';
 import { EditorWebsiteHeaderComponent } from './components/editor-components/editor-website-header/editor-website-header.component';
-
+import 'froala-editor/js/plugins.pkgd.min.js';
 
 @NgModule({
   declarations: [

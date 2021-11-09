@@ -11,7 +11,6 @@ import { WebsiteHeaderService } from 'src/app/shared/services/website-header.ser
 export class EditorWebsiteHeaderComponent implements OnInit {
 
     @Input() websiteHeader?: WebsiteHeader;
-    @Output() editModeFalse = new EventEmitter<boolean>();
 
     editorContent: String = new String("Hello World!");
 
@@ -44,7 +43,7 @@ export class EditorWebsiteHeaderComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        if (this.websiteHeader?.id != undefined) {
+        if (this.websiteHeader?.content != undefined) {
             this.editorContent = this.websiteHeader?.content;
 
             this.formGroup.setValue({
@@ -65,21 +64,17 @@ export class EditorWebsiteHeaderComponent implements OnInit {
         this.formGroup.setValue({
             editor: ""
         });
-
-        this.editModeFalse.emit(false);
     }
 
     onSubmit() {
+        let websiteHeader = new WebsiteHeader;
+        websiteHeader.content = this.formGroup.get("editor")!.value;
 
-        console.log(this.formGroup.get("editor")!.value);
-        
-        /*
-                if (this.websiteHeader?.title != undefined) {
-                    this.websiteHeaderService.putWebsiteHeader(formData);
-                } else if (this.websiteHeader?.title == undefined) {
-                    this.websiteHeaderService.postWebsiteHeader(formData);
-                }
-                
+        if (this.websiteHeader?.content != undefined) {
+            this.websiteHeaderService.putWebsiteHeader(websiteHeader);
+        } else if (this.websiteHeader?.content == undefined) {
+            this.websiteHeaderService.postWebsiteHeader(websiteHeader);
+        }
 
         this.websiteHeaderService.successChangingWebsiteHeaderBS
             .subscribe(
@@ -98,7 +93,6 @@ export class EditorWebsiteHeaderComponent implements OnInit {
                         this.errorMessage = res;
                     }
                 });
-                */
     }
 
 }

@@ -13,8 +13,6 @@ export class AdministrationHeaderComponent implements OnInit {
     websiteHeader: WebsiteHeader = new WebsiteHeader;
     websiteHeaderSubscription: Subscription = new Subscription;
 
-    editMode: Boolean = false;
-
     constructor(
         private websiteHeaderService: WebsiteHeaderService
     ) { }
@@ -26,14 +24,6 @@ export class AdministrationHeaderComponent implements OnInit {
                 res => {
                     this.websiteHeader = res;
                 });
-    }
-
-    openEditor(websiteHeader?: WebsiteHeader) {
-        this.editMode = true;
-    }
-
-    closeEditor(boolean: Boolean) {
-        this.editMode = boolean;
     }
 
     ngOnDestroy(): void {
