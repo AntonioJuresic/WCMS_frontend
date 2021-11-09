@@ -44,6 +44,7 @@ import { PasswordResetComponent } from './components/users-components/password-r
 import { PasswordSendCodeComponent } from './components/users-components/password-send-code/password-send-code.component';
 import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
 import { WebsiteMetaComponent } from './components/website-componenets/website-meta/website-meta.component';
+import { AdministrationMetaComponent } from './components/administration-components/administration-meta/administration-meta.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { WebsiteMetaComponent } from './components/website-componenets/website-m
     PasswordResetComponent,
     PasswordSendCodeComponent,
     PasswordForgotComponent,
-    WebsiteMetaComponent
+    WebsiteMetaComponent,
+    AdministrationMetaComponent
   ],
   imports: [
     BrowserModule,
