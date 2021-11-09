@@ -1,22 +1,26 @@
 <h2>Website META</h2>
 
-<div *ngIf="this.websiteMeta == undefined">
-    <button type="button" class="btn btn-success" (click)="openEditor()">Create</button>
+<div *ngIf="!editMode">
+    <div *ngIf="this.websiteMeta == undefined">
+        <button type="button" class="btn btn-success" (click)="openEditor()">Create</button>
+    </div>
+
+    <div *ngIf="this.websiteMeta != undefined">
+        <p>Title: {{websiteMeta.title}}</p>
+        <p>Favicon: </p>
+        <img [src]="websiteMeta.imagePath">
+        <p>Charset: {{websiteMeta.charset}}</p>
+        <p>Keywords: {{websiteMeta.keywords}}</p>
+        <p>Description: {{websiteMeta.description}}</p>
+        <p>Author: {{websiteMeta.author}}</p>
+        <p>Viewport: {{websiteMeta.viewport}}</p>
+
+        <button type="button" class="btn btn-warning" (click)="openEditor(websiteMeta)">Edit</button>
+    </div>
 </div>
 
-<div *ngIf="this.websiteMeta != undefined">
-    <p>Title: {{websiteMeta.title}}</p>
-    <p>Charset: {{websiteMeta.charset}}</p>
-    <p>Keywords: {{websiteMeta.keywords}}</p>
-    <p>Description: {{websiteMeta.description}}</p>
-    <p>Author: {{websiteMeta.author}}</p>
-    <p>Viewport: {{websiteMeta.viewport}}</p>
-
-    <button type="button" class="btn btn-warning" (click)="openEditor(websiteMeta)">Edit</button>
-</div>
 
 <div *ngIf="editMode">
-    <!--
-        <app-editor-website-info [websiteMeta]="websiteMeta" (editModeFalse)="closeEditor($event)"></app-editor-website-info>
-    -->
+    <app-editor-website-meta [websiteMeta]="websiteMeta" (editModeFalse)="closeEditor($event)">
+    </app-editor-website-meta>
 </div>

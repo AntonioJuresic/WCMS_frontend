@@ -35,8 +35,6 @@ export class EditorInvitationComponent implements OnInit {
     ngOnInit(): void {
         if (this.invitation?.id != undefined) {
 
-            console.log(this.invitation);
-
             this.formGroup.setValue({
                 code: this.invitation?.code,
                 emailAddress: this.invitation?.emailAddress,

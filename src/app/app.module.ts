@@ -45,6 +45,7 @@ import { PasswordSendCodeComponent } from './components/users-components/passwor
 import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
 import { WebsiteMetaComponent } from './components/website-componenets/website-meta/website-meta.component';
 import { AdministrationMetaComponent } from './components/administration-components/administration-meta/administration-meta.component';
+import { EditorWebsiteMetaComponent } from './components/editor-components/editor-website-meta/editor-website-meta.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { AdministrationMetaComponent } from './components/administration-compone
     PasswordSendCodeComponent,
     PasswordForgotComponent,
     WebsiteMetaComponent,
-    AdministrationMetaComponent
+    AdministrationMetaComponent,
+    EditorWebsiteMetaComponent
   ],
   imports: [
     BrowserModule,

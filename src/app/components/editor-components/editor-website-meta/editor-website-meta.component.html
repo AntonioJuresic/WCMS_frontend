@@ -1,0 +1,75 @@
+<div class="container-small">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Change Website Meta</h2>
+
+        <label for="title">title:</label>
+        <input type="text" id="title" class="form-control" formControlName="title"
+            [ngClass]="{'is-invalid': ((title?.dirty || title?.touched) && title?.invalid)}">
+
+        <div *ngIf="(title?.dirty || title?.touched) && title?.invalid">
+            <p class="form-error-text">title is required</p>
+        </div>
+        
+        <div *ngIf="imageURL">
+            <img [src]="imageURL">
+        </div>
+
+        <label for="image">favicon</label>
+        <label for="image" class="file-upload">🖼️ Upload image</label>
+        <input type="file" accept="image/*" id="image" class="form-control" formControlName="image"
+            (change)="onFileChange($event)" />
+
+        <label for="charset">charset:</label>
+        <input type="text" id="charset" class="form-control" formControlName="charset"
+            [ngClass]="{'is-invalid': ((charset?.dirty || charset?.touched) && charset?.invalid)}">
+
+        <div *ngIf="(charset?.dirty || charset?.touched) && charset?.invalid">
+            <p class="form-error-text">charset is required</p>
+        </div>
+
+        <label for="keywords">keywords:</label>
+        <input type="text" id="keywords" class="form-control" formControlName="keywords"
+            [ngClass]="{'is-invalid': ((keywords?.dirty || keywords?.touched) && keywords?.invalid)}">
+
+        <div *ngIf="(keywords?.dirty || keywords?.touched) && keywords?.invalid">
+            <p class="form-error-text">keywords is required</p>
+        </div>
+
+        <label for="description">description:</label>
+        <input type="text" id="description" class="form-control" formControlName="description"
+            [ngClass]="{'is-invalid': ((description?.dirty || description?.touched) && description?.invalid)}">
+
+        <div *ngIf="(description?.dirty || description?.touched) && description?.invalid">
+            <p class="form-error-text">description is required</p>
+        </div>
+
+        <label for="author">author:</label>
+        <input type="text" id="author" class="form-control" formControlName="author"
+            [ngClass]="{'is-invalid': ((author?.dirty || author?.touched) && author?.invalid)}">
+
+        <div *ngIf="(author?.dirty || author?.touched) && author?.invalid">
+            <p class="form-error-text">author is required</p>
+        </div>
+
+        <label for="viewport">viewport:</label>
+        <input type="text" id="viewport" class="form-control" formControlName="viewport"
+            [ngClass]="{'is-invalid': ((viewport?.dirty || viewport?.touched) && viewport?.invalid)}">
+
+        <div *ngIf="(viewport?.dirty || viewport?.touched) && viewport?.invalid">
+            <p class="form-error-text">viewport is required</p>
+        </div>
+
+        <p class="form-success-text">{{successMessage}}</p>
+        <p class="form-error-text">{{errorMessage}}</p>
+        
+        <div class="form-buttons">
+            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
+    
+            <button *ngIf="this.websiteMeta?.title == undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Create</button>
+    
+            <button *ngIf="this.websiteMeta?.title != undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

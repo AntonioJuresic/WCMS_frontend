@@ -6,7 +6,6 @@ import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AuthorizationGuardService } from 'src/app/shared/services/authorization-guard.service';
 import { UserService } from 'src/app/shared/services/user.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-editor-user',

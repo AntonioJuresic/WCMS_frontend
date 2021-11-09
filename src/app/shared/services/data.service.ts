@@ -159,11 +159,11 @@ export class DataService {
         return this.httpClient.get(this.API_URL + this.API_WEBSITE_META_URL);
     }
 
-    postWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
+    postWebsiteMeta(websiteHead: FormData): Observable<any> {
         return this.httpClient.post(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
     }
 
-    putWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
+    putWebsiteMeta(websiteHead: FormData): Observable<any> {
         return this.httpClient.put(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
     }
 
