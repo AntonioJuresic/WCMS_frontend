@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { WebsiteMeta } from 'src/app/shared/models/websiteMeta';
 import { WebsiteMetaService } from 'src/app/shared/services/website-meta.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-website-meta',
@@ -13,6 +14,9 @@ export class WebsiteMetaComponent implements OnInit, OnDestroy {
 
     websiteMeta: WebsiteMeta = new WebsiteMeta;
     websiteMetaSubscription: Subscription = new Subscription;
+
+    // accessing favicon link tag
+    favIcon: HTMLLinkElement = document.querySelector('#appIcon')!;
 
     constructor(
         private WebsiteMetaService: WebsiteMetaService,
@@ -28,9 +32,12 @@ export class WebsiteMetaComponent implements OnInit, OnDestroy {
                 res => {
                     this.websiteMeta = res;
 
+                    this.websiteMeta.imagePath = environment.SERVER_URL + this.websiteMeta.imagePath?.substring(2);
+
                     if (this.websiteMeta.title != undefined) {
                         this.updateTitle();
                         this.updateMeta();
+                        this.changeIcon();
                     }
                 });
     }
@@ -66,6 +73,9 @@ export class WebsiteMetaComponent implements OnInit, OnDestroy {
         });
     }
 
+    changeIcon() {
+        this.favIcon.href = this.websiteMeta.imagePath.valueOf();
+    }
 
     ngOnDestroy(): void {
         this.websiteMetaSubscription.unsubscribe();
