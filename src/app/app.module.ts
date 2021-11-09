@@ -24,9 +24,6 @@ import { RegistrationComponent } from './components/users-components/registratio
 import { ServerDownComponent } from './components/error-components/server-down/server-down.component';
 import { NotFoundComponent } from './components/error-components/not-found/not-found.component';
 import { PostsByCategoryComponent } from './components/posts-components/posts-by-category/posts-by-category.component';
-import { WebsiteInfoComponent } from './components/website-info/website-info.component';
-import { EditorWebsiteInfoComponent } from './components/editor-components/editor-website-info/editor-website-info.component';
-import { AdministrationWebsiteInfoComponent } from './components/administration-components/administration-website-info/administration-website-info.component';
 import { EditorUserComponent } from './components/editor-components/editor-user/editor-user.component';
 import { AdministrationUsersComponent } from './components/administration-components/administration-users/administration-users.component';
 import { AdministrationCommentsComponent } from './components/administration-components/administration-comments/administration-comments.component';
@@ -46,6 +43,7 @@ import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 import { PasswordResetComponent } from './components/users-components/password-reset/password-reset.component';
 import { PasswordSendCodeComponent } from './components/users-components/password-send-code/password-send-code.component';
 import { PasswordForgotComponent } from './components/users-components/password-forgot/password-forgot.component';
+import { WebsiteHeadComponent } from './components/website-componenets/website-head/website-head.component';
 
 
 @NgModule({
@@ -68,9 +66,6 @@ import { PasswordForgotComponent } from './components/users-components/password-
     ServerDownComponent,
     NotFoundComponent,
     PostsByCategoryComponent,
-    WebsiteInfoComponent,
-    EditorWebsiteInfoComponent,
-    AdministrationWebsiteInfoComponent,
     EditorUserComponent,
     AdministrationUsersComponent,
     AdministrationCommentsComponent,
@@ -88,7 +83,8 @@ import { PasswordForgotComponent } from './components/users-components/password-
     UserDetailComponent,
     PasswordResetComponent,
     PasswordSendCodeComponent,
-    PasswordForgotComponent
+    PasswordForgotComponent,
+    WebsiteHeadComponent
   ],
   imports: [
     BrowserModule,

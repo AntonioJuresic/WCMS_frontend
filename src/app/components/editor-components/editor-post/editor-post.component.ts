@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Category } from 'src/app/shared/models/category';
@@ -64,14 +65,18 @@ export class EditorPostComponent implements OnInit, OnDestroy {
     postURL: String = new String;
 
     constructor(
+        private titleService: Title,
         private authorizationGuardService: AuthorizationGuardService,
         private route: ActivatedRoute,
+
         private postService: PostService,
         private userService: UserService,
         private categoryService: CategoryService
     ) { }
 
     ngOnInit(): void {
+        this.titleService.setTitle("New post");
+
         this.authorizationGuardService.userNeedsToBeLogged(true);
         this.authorizationGuardService.userNeedsToBeAdmin();
 
@@ -124,6 +129,8 @@ export class EditorPostComponent implements OnInit, OnDestroy {
                     });
 
                     this.imageURL = environment.SERVER_URL + res.selectedPost[0].imagePath.substring(2);
+
+                    this.titleService.setTitle("Edit post: " + res.selectedPost[0].title);
                 },
                 error => {
                     this.showMessageWindow = true;

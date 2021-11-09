@@ -19,10 +19,8 @@
             <p class="form-error-text">Password is empty</p>
         </div>
 
-        <div *ngIf="errorMessage">
-            <p class="form-error-text">{{errorMessage}}</p>
-        </div>
-    
+        <p class="form-error-text">{{errorMessage}}</p>
+
         <a [routerLink]="['/forgotpassword/']">Forgot your password? Reset it!</a>
 
         <div class="form-buttons">

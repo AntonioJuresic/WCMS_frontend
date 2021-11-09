@@ -40,17 +40,18 @@ export class UserProfileComponent implements OnInit {
     getUserPosts(username: String) {
         this.postService.getPostsByUser(username)
             .subscribe(
-                (res: { selectedUser: User[], selectedPosts: Post[] }) => {
+                (res: {
+                    selectedUser: User[],
+                    selectedPosts: Post[]
+                }) => {
                     this.user = res.selectedUser[0];
                     this.posts = res.selectedPosts;
-                    
+
                     this.user.imagePath = environment.SERVER_URL + this.user.imagePath?.substring(2);
 
                     this.posts.forEach((post) => {
                         post.imagePath = environment.SERVER_URL + post.imagePath?.substring(2);
                     });
-
-                    console.log(this.user);
                 },
                 error => {
                     this.errorMessage = this.errorMessage + error.error.message;

@@ -23,7 +23,7 @@
         <div *ngIf="(username?.dirty || username?.touched) && username?.invalid">
             <p class="form-error-text">Username is required</p>
         </div>
-        
+
         <div *ngIf="imageURL.length != 0" class="image-container">
             <img [src]="imageURL">
         </div>
@@ -51,13 +51,8 @@
             <p class="form-error-text">Passwords don't match</p>
         </div>
 
-        <div *ngIf="errorMessage">
-            <p class="form-error-text">{{errorMessage}}</p>
-        </div>
-
-        <div *ngIf="successMessage">
-            <p class="form-success-text">{{successMessage}}</p>
-        </div>
+        <p class="form-error-text">{{errorMessage}}</p>
+        <p class="form-success-text">{{successMessage}}</p>
 
         <div class="form-buttons">
             <a [routerLink]="['/']" class="btn btn-outline-primary">Cancel</a>

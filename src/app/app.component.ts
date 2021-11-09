@@ -8,8 +8,6 @@ import { PingService } from './shared/services/ping.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'frontend';
-
     constructor(
         pingService: PingService
     ) { }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AuthorizationGuardService } from 'src/app/shared/services/authorization-guard.service';
@@ -32,12 +33,17 @@ export class RegistrationComponent implements OnInit {
     errorMessage: String = new String;
 
     constructor(
+        private titleService: Title,
+
         private authorizationGuardService: AuthorizationGuardService,
         private authenticationService: AuthenticationService,
+        
         private userService: UserService
     ) { }
 
     ngOnInit(): void {
+        this.titleService.setTitle("Registration");
+
         this.authorizationGuardService.userNeedsToBeLogged(false);
 
         this.authenticationService.authenticationErrorSubject

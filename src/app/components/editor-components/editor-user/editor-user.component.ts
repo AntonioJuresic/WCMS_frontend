@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -35,9 +36,11 @@ export class EditorUserComponent implements OnInit {
     userURL: String = new String;
 
     constructor(
+        private titleService: Title,
         private authorizationGuardService: AuthorizationGuardService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
+
         private userService: UserService,
         private authenticationService: AuthenticationService
     ) { }
@@ -62,10 +65,16 @@ export class EditorUserComponent implements OnInit {
                     });
 
                     this.imageURL = window.history.state.user.imagePath;
+
+                    this.titleService.setTitle(this.user.username + "'s settings");
                 });
 
         this.loggedUser = this.authenticationService.getUserFromMemory();
-        this.userHimself = this.id == this.loggedUser.id
+        this.userHimself = this.id == this.loggedUser.id;
+
+        if (this.userHimself) {
+            this.titleService.setTitle("My settings");
+        }
 
         if (this.loggedUser.authorityLevel == null && !this.userHimself) {
             this.router.navigate(['/']);

@@ -6,7 +6,7 @@ import { Authority } from '../models/authority';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
 import { Invitation } from '../models/invitation';
-import { WebsiteInfo } from '../models/websiteInfo';
+import { WebsiteHead } from '../models/websiteHead';
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +24,8 @@ export class DataService {
     API_USER_HIMSELF_URL = '/user-himself';
     API_USER_AUTHORITY_URL = '/user-authority';
 
-    API_WEBSITE_INFO_URL = '/info';
+    API_WEBSITE_HEAD_URL = '/head';
+    API_WEBSITE_HEADER_URL = '/header';
 
     API_CATEGORY_URL = '/category';
 
@@ -152,18 +153,18 @@ export class DataService {
         return this.httpClient.delete(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`);
     }
 
-    //website info
+    //website head
 
-    getWebsiteInfo(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_WEBSITE_INFO_URL);
+    getWebsiteHead(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_WEBSITE_HEAD_URL);
     }
 
-    postWebsiteInfo(websiteInfo: WebsiteInfo): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_WEBSITE_INFO_URL, websiteInfo);
+    postWebsiteHead(websiteHead: WebsiteHead): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
     }
 
-    putWebsiteInfo(websiteInfo: WebsiteInfo): Observable<any> {
-        return this.httpClient.put(this.API_URL + this.API_WEBSITE_INFO_URL, websiteInfo);
+    putWebsiteHead(websiteHead: WebsiteHead): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
     }
 
     //categories

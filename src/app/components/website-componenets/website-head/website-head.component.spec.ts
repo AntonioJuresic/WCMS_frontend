@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebsiteInfoComponent } from './website-info.component';
+import { WebsiteHeadComponent } from './website-head.component';
 
-describe('WebsiteInfoComponent', () => {
-  let component: WebsiteInfoComponent;
-  let fixture: ComponentFixture<WebsiteInfoComponent>;
+describe('WebsiteHeadComponent', () => {
+  let component: WebsiteHeadComponent;
+  let fixture: ComponentFixture<WebsiteHeadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WebsiteInfoComponent ]
+      declarations: [ WebsiteHeadComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteInfoComponent);
+    fixture = TestBed.createComponent(WebsiteHeadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
