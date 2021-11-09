@@ -20,9 +20,9 @@ export class WebsiteMetaService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedHead: WebsiteMeta[]
+                    selectedMeta: WebsiteMeta[]
                 }) => {
-                    this.websiteMeta = res.selectedHead[0];
+                    this.websiteMeta = res.selectedMeta[0];
                     this.websiteMetaBS.next(this.websiteMeta);
                 });
     }

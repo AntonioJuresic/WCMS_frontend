@@ -24,7 +24,7 @@ export class DataService {
     API_USER_HIMSELF_URL = '/user-himself';
     API_USER_AUTHORITY_URL = '/user-authority';
 
-    API_WEBSITE_HEAD_URL = '/head';
+    API_WEBSITE_META_URL = '/meta';
     API_WEBSITE_HEADER_URL = '/header';
 
     API_CATEGORY_URL = '/category';
@@ -156,15 +156,15 @@ export class DataService {
     //website head
 
     getWebsiteMeta(): Observable<any> {
-        return this.httpClient.get(this.API_URL + this.API_WEBSITE_HEAD_URL);
+        return this.httpClient.get(this.API_URL + this.API_WEBSITE_META_URL);
     }
 
     postWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
     }
 
     putWebsiteMeta(websiteHead: WebsiteMeta): Observable<any> {
-        return this.httpClient.put(this.API_URL + this.API_WEBSITE_HEAD_URL, websiteHead);
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
     }
 
     //categories
