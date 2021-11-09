@@ -46,6 +46,9 @@ import { PasswordForgotComponent } from './components/users-components/password-
 import { WebsiteMetaComponent } from './components/website-componenets/website-meta/website-meta.component';
 import { AdministrationMetaComponent } from './components/administration-components/administration-meta/administration-meta.component';
 import { EditorWebsiteMetaComponent } from './components/editor-components/editor-website-meta/editor-website-meta.component';
+import { WebsiteHeaderComponent } from './components/website-componenets/website-header/website-header.component';
+import { AdministrationHeaderComponent } from './components/administration-components/administration-header/administration-header.component';
+import { EditorWebsiteHeaderComponent } from './components/editor-components/editor-website-header/editor-website-header.component';
 
 
 @NgModule({
@@ -88,7 +91,10 @@ import { EditorWebsiteMetaComponent } from './components/editor-components/edito
     PasswordForgotComponent,
     WebsiteMetaComponent,
     AdministrationMetaComponent,
-    EditorWebsiteMetaComponent
+    EditorWebsiteMetaComponent,
+    WebsiteHeaderComponent,
+    AdministrationHeaderComponent,
+    EditorWebsiteHeaderComponent
   ],
   imports: [
     BrowserModule,

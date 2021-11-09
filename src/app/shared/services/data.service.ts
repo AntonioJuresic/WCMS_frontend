@@ -6,6 +6,7 @@ import { Authority } from '../models/authority';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
 import { Invitation } from '../models/invitation';
+import { WebsiteHeader } from '../models/websiteHeader';
 import { WebsiteMeta } from '../models/websiteMeta';
 
 @Injectable({
@@ -153,18 +154,32 @@ export class DataService {
         return this.httpClient.delete(this.API_URL + this.API_USER_HIMSELF_URL + `/${id}`);
     }
 
-    //website head
+    //website meta
 
     getWebsiteMeta(): Observable<any> {
         return this.httpClient.get(this.API_URL + this.API_WEBSITE_META_URL);
     }
 
-    postWebsiteMeta(websiteHead: FormData): Observable<any> {
-        return this.httpClient.post(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
+    postWebsiteMeta(websiteMeta: FormData): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_META_URL, websiteMeta);
     }
 
-    putWebsiteMeta(websiteHead: FormData): Observable<any> {
-        return this.httpClient.put(this.API_URL + this.API_WEBSITE_META_URL, websiteHead);
+    putWebsiteMeta(websiteMeta: FormData): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_META_URL, websiteMeta);
+    }
+
+    //website header
+
+    getWebsiteHeader(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_WEBSITE_HEADER_URL);
+    }
+
+    postWebsiteHeader(websiteHeader: WebsiteHeader): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_HEADER_URL, websiteHeader);
+    }
+
+    putWebsiteHeader(websiteHeader: WebsiteHeader): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_HEADER_URL, websiteHeader);
     }
 
     //categories

@@ -1,0 +1,28 @@
+<div class="container-small">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <h2>Website header editor</h2>
+
+        <div style="margin: 1rem 0rem;">
+            <label>Content:</label>
+            <textarea [froalaEditor]="options" [(froalaModel)]="editorContent" formControlName="editor"
+                [ngClass]="{'is-invalid': ((editor?.dirty || editor?.touched) && editor?.invalid)}"></textarea>
+        </div>
+
+        <div *ngIf="(editor?.dirty || editor?.touched) && editor?.invalid">
+            <p class="form-error-text">Editor is empty</p>
+        </div>
+
+        <p class="form-success-text">{{successMessage}}</p>
+        <p class="form-error-text">{{errorMessage}}</p>
+
+        <div class="form-buttons">
+            <button type="button" class="btn btn-warning" (click)="closeEditor()">Cancel</button>
+
+            <button *ngIf="this.websiteHeader?.id == undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Create</button>
+
+            <button *ngIf="this.websiteHeader?.id != undefined" type="submit" class="btn btn-success"
+                [ngClass]="{'btn-disabled' : !formGroup.valid }" [disabled]="!formGroup.valid">Update</button>
+        </div>
+    </form>
+</div>

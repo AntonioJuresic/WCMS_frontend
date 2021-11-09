@@ -1,0 +1,20 @@
+<h2>Header</h2>
+
+<div *ngIf="!editMode">
+    <div *ngIf="this.websiteHeader == undefined">
+        <button type="button" class="btn btn-success" (click)="openEditor()">Create</button>
+    </div>
+
+    <div *ngIf="this.websiteHeader != undefined">
+
+        {{websiteHeader.content}}
+
+        <button type="button" class="btn btn-warning" (click)="openEditor(websiteHeader)">Edit</button>
+    </div>
+</div>
+
+
+<div *ngIf="editMode">
+    <app-editor-website-header [websiteHeader]="websiteHeader" (editModeFalse)="closeEditor($event)">
+    </app-editor-website-header>
+</div>
