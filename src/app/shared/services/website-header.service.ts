@@ -23,9 +23,9 @@ export class WebsiteHeaderService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedHeader: WebsiteHeader[]
+                    selectedWebsiteHeader: WebsiteHeader[]
                 }) => {
-                    this.websiteHeader = res.selectedHeader[0];
+                    this.websiteHeader = res.selectedWebsiteHeader[0];
                     this.websiteHeaderBS.next(this.websiteHeader);
                 });
     }
@@ -35,9 +35,9 @@ export class WebsiteHeaderService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedMeta: WebsiteHeader[]
+                    selectedWebsiteHeader: WebsiteHeader[]
                 }) => {
-                    this.websiteHeader = res.selectedMeta[0];
+                    this.websiteHeader = res.selectedWebsiteHeader[0];
                     this.websiteHeaderBS.next(this.websiteHeader);
 
                     this.successChangingWebsiteHeaderBS.next("Success");
@@ -55,9 +55,9 @@ export class WebsiteHeaderService {
             .subscribe(
                 (res: {
                     status: Number,
-                    selectedMeta: WebsiteHeader[]
+                    selectedWebsiteHeader: WebsiteHeader[]
                 }) => {
-                    this.websiteHeader = res.selectedMeta[0];
+                    this.websiteHeader = res.selectedWebsiteHeader[0];
                     this.websiteHeaderBS.next(this.websiteHeader);
 
                     this.successChangingWebsiteHeaderBS.next("Success");

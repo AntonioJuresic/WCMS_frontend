@@ -29,5 +29,4 @@ export class AdministrationHeaderComponent implements OnInit {
     ngOnDestroy(): void {
         this.websiteHeaderSubscription.unsubscribe();
     }
-
 }

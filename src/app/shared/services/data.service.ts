@@ -6,6 +6,7 @@ import { Authority } from '../models/authority';
 import { Category } from '../models/category';
 import { Comment } from '../models/comment';
 import { Invitation } from '../models/invitation';
+import { WebsiteFooter } from '../models/websiteFooter';
 import { WebsiteHeader } from '../models/websiteHeader';
 import { WebsiteMeta } from '../models/websiteMeta';
 
@@ -27,6 +28,7 @@ export class DataService {
 
     API_WEBSITE_META_URL = '/website-meta';
     API_WEBSITE_HEADER_URL = '/website-header';
+    API_WEBSITE_FOOTER_URL = '/website-footer';
 
     API_CATEGORY_URL = '/category';
 
@@ -180,6 +182,20 @@ export class DataService {
 
     putWebsiteHeader(websiteHeader: WebsiteHeader): Observable<any> {
         return this.httpClient.put(this.API_URL + this.API_WEBSITE_HEADER_URL, websiteHeader);
+    }
+
+    //website footer
+
+    getWebsiteFooter(): Observable<any> {
+        return this.httpClient.get(this.API_URL + this.API_WEBSITE_FOOTER_URL);
+    }
+
+    postWebsiteFooter(websiteFooter: WebsiteFooter): Observable<any> {
+        return this.httpClient.post(this.API_URL + this.API_WEBSITE_FOOTER_URL, websiteFooter);
+    }
+
+    putWebsiteFooter(websiteFooter: WebsiteFooter): Observable<any> {
+        return this.httpClient.put(this.API_URL + this.API_WEBSITE_FOOTER_URL, websiteFooter);
     }
 
     //categories

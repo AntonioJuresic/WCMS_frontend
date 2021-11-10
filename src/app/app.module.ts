@@ -50,6 +50,9 @@ import { WebsiteHeaderComponent } from './components/website-componenets/website
 import { AdministrationHeaderComponent } from './components/administration-components/administration-header/administration-header.component';
 import { EditorWebsiteHeaderComponent } from './components/editor-components/editor-website-header/editor-website-header.component';
 import 'froala-editor/js/plugins.pkgd.min.js';
+import { AdministrationWebsiteFooterComponent } from './components/administration-components/administration-website-footer/administration-website-footer.component';
+import { EditorWebsiteFooterComponent } from './components/editor-components/editor-website-footer/editor-website-footer.component';
+import { WebsiteFooterComponent } from './components/website-componenets/website-footer/website-footer.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +97,10 @@ import 'froala-editor/js/plugins.pkgd.min.js';
     EditorWebsiteMetaComponent,
     WebsiteHeaderComponent,
     AdministrationHeaderComponent,
-    EditorWebsiteHeaderComponent
+    EditorWebsiteHeaderComponent,
+    AdministrationWebsiteFooterComponent,
+    EditorWebsiteFooterComponent,
+    WebsiteFooterComponent
   ],
   imports: [
     BrowserModule,
