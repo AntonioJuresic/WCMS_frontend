@@ -6,6 +6,6 @@
 
 <img [src]="post.imagePath" alt="postImage" id="postImage" class="long">
 
-<div [innerHTML]="post.content" class="content"></div>
+<div [innerHTML]="post.content | safeHtml" class="content"></div>
 
 <app-post-comments [postId]="post.id!"></app-post-comments>

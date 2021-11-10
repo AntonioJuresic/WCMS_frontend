@@ -53,6 +53,7 @@ import 'froala-editor/js/plugins.pkgd.min.js';
 import { AdministrationWebsiteFooterComponent } from './components/administration-components/administration-website-footer/administration-website-footer.component';
 import { EditorWebsiteFooterComponent } from './components/editor-components/editor-website-footer/editor-website-footer.component';
 import { WebsiteFooterComponent } from './components/website-componenets/website-footer/website-footer.component';
+import { SafeHtmlPipe } from './shared/utilities/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { WebsiteFooterComponent } from './components/website-componenets/website
     EditorWebsiteHeaderComponent,
     AdministrationWebsiteFooterComponent,
     EditorWebsiteFooterComponent,
-    WebsiteFooterComponent
+    WebsiteFooterComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
