@@ -25,8 +25,8 @@ export class DataService {
     API_USER_HIMSELF_URL = '/user-himself';
     API_USER_AUTHORITY_URL = '/user-authority';
 
-    API_WEBSITE_META_URL = '/meta';
-    API_WEBSITE_HEADER_URL = '/header';
+    API_WEBSITE_META_URL = '/website-meta';
+    API_WEBSITE_HEADER_URL = '/website-header';
 
     API_CATEGORY_URL = '/category';
 

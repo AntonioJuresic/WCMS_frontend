@@ -1,5 +1,6 @@
 <div class="container-large">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        
         <div style="margin: 1rem 0rem;">
             <label>Content:</label>
             <textarea [froalaEditor]="options" [(froalaModel)]="editorContent" formControlName="editor"
