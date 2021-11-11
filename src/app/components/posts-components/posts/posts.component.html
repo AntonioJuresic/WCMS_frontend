@@ -1,5 +1,3 @@
 <div class="posts">
-    <article *ngFor="let p of posts;">
-        <app-article-short [post]="p"></app-article-short>
-    </article>
+    <app-article-short *ngFor="let p of posts;" [post]="p"></app-article-short>
 </div>

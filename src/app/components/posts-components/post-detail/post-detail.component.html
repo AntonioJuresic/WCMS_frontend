@@ -1,9 +1,5 @@
-<app-navigation></app-navigation>
-
 <section class="container-medium">
-    <article *ngIf=post style="width: 100%;">
-        <app-article-long [post]="post"></app-article-long>
-    </article>
+    <app-article-long *ngIf=post [post]="post"></app-article-long>
 
     <div *ngIf="errorMessage.length != 0">
         <p>{{errorMessage}}</p>

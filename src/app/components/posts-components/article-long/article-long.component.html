@@ -1,11 +1,17 @@
-<h3 class="long-title">{{post.title}}</h3>
+<article>
+    <h3 class="long-title">{{post.title}}</h3>
 
-<h4 class="long">Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></h4>
-<h4 class="long">Author: <a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></h4>
-<h4 class="long">Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</h4>
+    <h4 class="long">Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></h4>
+    <h4 class="long">Author: <a [routerLink]="['/u/', post.userUsername]">{{post.userUsername}}</a></h4>
+    <h4 class="long">Date of creation: {{post.dateOfCreation | date:'d.M.Y.'}}</h4>
 
-<img [src]="post.imagePath" alt="postImage" id="postImage" class="long">
+    <img [src]="post.imagePath" alt="postImage" id="postImage" class="long">
 
-<div [innerHTML]="post.content | safeHtml" class="content"></div>
+    <div [innerHTML]="post.content | safeHtml" class="content"></div>
 
-<app-post-comments [postId]="post.id!"></app-post-comments>
+    <a *ngIf="userCanEditPost()" [routerLink]="['/p/editor/', post.id]" class="btn btn-warning btn-no-margin edit">
+        <fa-icon [icon]="faPencilAlt"></fa-icon> Edit post
+    </a>
+
+    <app-post-comments [postId]="post.id!"></app-post-comments>
+</article>

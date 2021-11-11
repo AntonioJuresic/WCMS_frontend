@@ -1,4 +1,9 @@
-<img [src]="post.imagePath" alt="postImage" id="postImage" class="short">
+<article>
+    <img [src]="post.imagePath" alt="postImage" id="postImage" class="short">
 
-<h4><a [routerLink]="['/p/', post.id]">{{post.title}}</a></h4>
-<h5><a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a> - {{post.dateOfCreation | date:'d.M.Y.'}}</h5>
+    <h4><a [routerLink]="['/p/', post.id]">{{post.title}}</a></h4>
+    <h5>
+        <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a>
+        - {{post.dateOfCreation | date:'d.M.Y.'}}
+    </h5>
+</article>

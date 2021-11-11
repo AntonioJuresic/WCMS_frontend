@@ -463,7 +463,7 @@ table {
 
 // Article
 
-article {
+app-article-short, app-article-long {
     box-sizing: border-box;
     padding: 1rem;
 
@@ -493,22 +493,30 @@ article {
 }
 
 @media only screen and (max-width: 768px) {
-    article {
+    app-article-short {
         width: 100%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-    article {
+    app-article-short {
         width: 50%;
     }
 }
 
 @media only screen and (min-width: 992px) {
-    article {
+    app-article-short {
         width: math.percentage(0.33);
     }
 }
+
+app-article-long {
+    .edit {
+        margin-top: 1.953rem;
+        margin-bottom: 3.052rem;
+    }
+}
+
 // Containers
 
 .container-small,

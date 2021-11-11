@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
 import { environment } from 'src/environments/environment';
@@ -45,5 +45,4 @@ export class PostDetailComponent implements OnInit {
                 }
             );
     }
-
 }
