@@ -32,7 +32,9 @@ export class PostCommentsComponent implements OnInit {
         if (this.postId != undefined) {
             this.commentService.getCommentsByPost(this.postId)
                 .subscribe(
-                    (res: { selectedComments: Comment[] }) => {
+                    (res: {
+                        selectedComments: Comment[]
+                    }) => {
                         this.comments = res.selectedComments;
                         this.comments.sort((a, b) => {
                             return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation)
@@ -83,7 +85,7 @@ export class PostCommentsComponent implements OnInit {
     userCanDeleteComment(userId: Number) {
         let user = this.authenticationService.getUserFromMemory();
 
-        if(user == undefined) {
+        if (user == undefined) {
             return false;
         }
 
@@ -91,5 +93,4 @@ export class PostCommentsComponent implements OnInit {
             (user.authorityLevel != undefined && user.authorityLevel > 0);
 
     }
-
 }

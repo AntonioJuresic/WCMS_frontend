@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { Comment } from 'src/app/shared/models/comment';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
     selector: 'app-user-comments',
@@ -11,24 +12,46 @@ export class UserCommentsComponent implements OnInit {
 
     @Input() username?: String;
     comments: Comment[] = [];
-    
+
     constructor(
-        private commentService: CommentService
+        private commentService: CommentService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngOnInit(): void { }
 
     ngOnChanges() {
-        if(this.username != undefined) {
+        if (this.username != undefined) {
             this.commentService.getCommentsByUser(this.username!)
                 .subscribe(
-                    (res: { selectedComments: Comment[] }) => {
+                    (res: {
+                        selectedComments: Comment[]
+                    }) => {
                         this.comments = res.selectedComments;
                         this.comments.sort((a, b) => { return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation) });
-                        console.log(this.comments);
                     }
                 )
         }
+    }
+
+    deleteCommentOnAProfile(id: Number) {
+        this.commentService.deleteCommentOnAProfile(id)
+            .subscribe(
+                res => {
+                    this.comments = this.comments.filter(c => c.id != id);
+                });
+    }
+
+    userCanDeleteComment(userId: Number) {
+        let user = this.authenticationService.getUserFromMemory();
+
+        if (user == undefined) {
+            return false;
+        }
+
+        return user.id == userId ||
+            (user.authorityLevel != undefined && user.authorityLevel > 0);
+
     }
 
 }

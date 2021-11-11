@@ -81,4 +81,8 @@ export class CommentService {
     getCommentsByUser(username: String) {
         return this.dataService.getCommentsByUser(username);
     }
+
+    deleteCommentOnAProfile(id: Number) {
+        return this.dataService.deleteComment(id);
+    }
 }
