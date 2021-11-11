@@ -1,7 +1,18 @@
+<app-navigation></app-navigation>
+
+<section class="container-extra-large">
+    <app-website-header></app-website-header>
+    <app-categories></app-categories>
+</section>
+
 <section class="container-medium">
     <app-article-long *ngIf=post [post]="post"></app-article-long>
 
     <div *ngIf="errorMessage.length != 0">
         <p>{{errorMessage}}</p>
     </div>
+</section>
+
+<section class="container-extra-large">
+    <app-website-footer></app-website-footer>
 </section>

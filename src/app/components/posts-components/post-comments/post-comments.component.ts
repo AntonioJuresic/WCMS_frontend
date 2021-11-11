@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Comment } from 'src/app/shared/models/comment';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-post-comments',
@@ -16,6 +17,8 @@ export class PostCommentsComponent implements OnInit {
 
     comments: Comment[] = [];
     commentsSubscription: Subscription = new Subscription;
+    
+    faTrash = faTrash;
 
     public formGroup: FormGroup = new FormGroup({
         content: new FormControl("", Validators.required)

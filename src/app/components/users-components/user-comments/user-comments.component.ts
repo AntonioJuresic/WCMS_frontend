@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { Comment } from 'src/app/shared/models/comment';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-user-comments',
@@ -12,6 +13,8 @@ export class UserCommentsComponent implements OnInit {
 
     @Input() username?: String;
     comments: Comment[] = [];
+    
+    faTrash = faTrash;
 
     constructor(
         private commentService: CommentService,

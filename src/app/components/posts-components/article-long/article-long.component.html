@@ -9,9 +9,9 @@
 
     <div [innerHTML]="post.content | safeHtml" class="content"></div>
 
-    <a *ngIf="userCanEditPost()" [routerLink]="['/p/editor/', post.id]" class="btn btn-warning btn-no-margin edit">
+    <a *ngIf="userCanEditPost()" [routerLink]="['/p/editor/', post.id]" class="btn btn-warning btn-no-margin">
         <fa-icon [icon]="faPencilAlt"></fa-icon> Edit post
     </a>
-
-    <app-post-comments [postId]="post.id!"></app-post-comments>
 </article>
+
+<app-post-comments [postId]="post.id!"></app-post-comments>

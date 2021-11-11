@@ -511,6 +511,8 @@ app-article-short, app-article-long {
 }
 
 app-article-long {
+    padding: 0rem;
+
     .edit {
         margin-top: 1.953rem;
         margin-bottom: 3.052rem;
@@ -518,13 +520,6 @@ app-article-long {
 }
 
 // Containers
-
-.container-small,
-.container-medium,
-.container-large,
-.container-extra-large {
-    padding: 0.8rem;
-}
 
 .container-small {
     margin: 0 auto;
