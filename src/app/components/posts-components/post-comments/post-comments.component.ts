@@ -49,7 +49,7 @@ export class PostCommentsComponent implements OnInit {
         comment.postId = this.postId;
 
         let user = this.authenticationService.getUserFromMemory();
-        comment.userId = user.id;
+        comment.userId = user.id!;
 
         this.formGroup.setValue({
             content: ""
@@ -70,6 +70,26 @@ export class PostCommentsComponent implements OnInit {
                     this.comments.push(res.selectedComment[0]);
                     this.comments.sort((a, b) => { return <any>new Date(b.dateOfCreation) - <any>new Date(a.dateOfCreation) });
                 });
+    }
+
+    deleteCommentOnAPost(id: Number) {
+        this.commentService.deleteCommentOnAPost(id)
+            .subscribe(
+                res => {
+                    this.comments = this.comments.filter(c => c.id != id);
+                });
+    }
+
+    userCanDeleteComment(userId: Number) {
+        let user = this.authenticationService.getUserFromMemory();
+
+        if(user == undefined) {
+            return false;
+        }
+
+        return user.id == userId ||
+            (user.authorityLevel != undefined && user.authorityLevel > 0);
+
     }
 
 }

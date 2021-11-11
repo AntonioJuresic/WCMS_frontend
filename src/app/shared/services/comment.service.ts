@@ -74,6 +74,10 @@ export class CommentService {
         return this.dataService.putComment(id, newComment);
     }
 
+    deleteCommentOnAPost(id: Number) {
+        return this.dataService.deleteComment(id);
+    }
+
     getCommentsByUser(username: String) {
         return this.dataService.getCommentsByUser(username);
     }

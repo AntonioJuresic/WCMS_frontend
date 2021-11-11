@@ -11,7 +11,14 @@
 
 <ul>
     <li *ngFor="let c of comments">
-        <a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a> - {{c.dateOfCreation | date:'d.M.Y. - HH:mm'}}
-        <p>{{c.content}}</p>
+        <div class="comment">
+            <a [routerLink]="['/u/', c.userUsername]">{{c.userUsername}}</a> - {{c.dateOfCreation | date:'d.M.Y. -
+            HH:mm'}}
+            <p>{{c.content}}</p>
+
+            <button *ngIf="userCanDeleteComment(c.userId)" type="button" class="btn btn-danger btn-no-margin" (click)="deleteCommentOnAPost(c.id!)">
+                delete
+            </button>
+        </div>
     </li>
 </ul>
