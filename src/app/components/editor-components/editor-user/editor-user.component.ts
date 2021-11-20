@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
     templateUrl: './editor-user.component.html',
     styleUrls: ['./editor-user.component.scss']
 })
-export class EditorUserComponent implements OnInit {
+export class EditorUserComponent implements OnInit, OnDestroy {
 
     id: Number = new Number;
     user: User = new User;
@@ -37,11 +37,11 @@ export class EditorUserComponent implements OnInit {
     constructor(
         private titleService: Title,
         private authorizationGuardService: AuthorizationGuardService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
 
         private userService: UserService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
     ) { }
 
     ngOnInit(): void {
@@ -145,6 +145,11 @@ export class EditorUserComponent implements OnInit {
 
     closeMessageWindow() {
         this.showMessageWindow = false;
+    }
+
+    ngOnDestroy(): void {
+        console.log("EditorUserComponent - izlaz");
+        this.authorizationGuardService.ngOnDestroy();
     }
 
 }

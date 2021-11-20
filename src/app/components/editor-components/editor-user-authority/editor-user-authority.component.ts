@@ -74,7 +74,8 @@ export class EditorUserAuthorityComponent implements OnInit {
         this.showMessageWindow = false;
     }
 
-    logout() {  
+    logout() {
+        this.authorizationGuardService.ngOnDestroy();
         this.authenticationService.logoutUser();
     }
 

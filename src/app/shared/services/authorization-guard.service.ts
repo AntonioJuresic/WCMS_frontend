@@ -13,7 +13,9 @@ export class AuthorizationGuardService implements OnDestroy {
     constructor(
         private authenticationService: AuthenticationService,
         private router: Router
-    ) { }
+    ) { 
+        console.log("AuthorizationGuardService - napravljen");
+    }
 
     async userNeedsToBeLogged(userLoginRequired: boolean) {
         await this.authenticationService.isUserAuthenticated();
@@ -24,6 +26,8 @@ export class AuthorizationGuardService implements OnDestroy {
                 //true ako je ulogiran
                 //false ako nije ulogiran
                 let userIsLogged = res;
+
+                console.log(res);
 
                 //treba biti ulogiran
                 if (userLoginRequired) {
@@ -51,6 +55,7 @@ export class AuthorizationGuardService implements OnDestroy {
     }
 
     ngOnDestroy(): void {
+        console.log("AuthorizationGuardService - izbrisan");
         this.authenticationSubscription.unsubscribe();
     }
 
