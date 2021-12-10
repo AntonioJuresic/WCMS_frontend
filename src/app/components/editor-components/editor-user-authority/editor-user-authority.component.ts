@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invitation } from 'src/app/shared/models/invitation';
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
     templateUrl: './editor-user-authority.component.html',
     styleUrls: ['./editor-user-authority.component.scss']
 })
-export class EditorUserAuthorityComponent implements OnInit {
+export class EditorUserAuthorityComponent implements OnInit, OnDestroy {
 
     id: Number = new Number;
 
@@ -75,8 +75,11 @@ export class EditorUserAuthorityComponent implements OnInit {
     }
 
     logout() {
-        this.authorizationGuardService.ngOnDestroy();
         this.authenticationService.logoutUser();
+    }
+
+    ngOnDestroy() {
+        this.authorizationGuardService.ngOnDestroy();
     }
 
 }
