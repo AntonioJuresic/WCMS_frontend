@@ -1,15 +1,13 @@
 <app-navigation></app-navigation>
 
-<section class="container-large">
+<section class="container-extra-large">
     <div *ngIf="category">
         <h2>{{category.name}}</h2>
     </div>
 
-    <div class="posts">
-        <article *ngFor="let p of posts;">
-            <app-article-short [post]="p"></app-article-short>
-        </article>
-    </div>
+    <dir class="posts">
+        <app-article-short *ngFor="let p of posts;" [post]="p"></app-article-short>
+    </dir>
 
     <div *ngIf="errorMessage.length != 0">
         <p>{{errorMessage}}</p>
