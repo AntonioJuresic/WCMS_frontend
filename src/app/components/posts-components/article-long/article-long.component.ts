@@ -21,7 +21,6 @@ export class ArticleLongComponent implements OnInit {
     ngOnInit(): void {
     }
 
-
     userCanEditPost() {
         let user = this.authenticationService.getUserFromMemory();
 
@@ -30,7 +29,5 @@ export class ArticleLongComponent implements OnInit {
         }
 
         return user.authorityLevel != undefined && user.authorityLevel > 0;
-
     }
-
 }

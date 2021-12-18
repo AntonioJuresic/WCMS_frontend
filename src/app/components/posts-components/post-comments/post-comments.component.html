@@ -1,14 +1,16 @@
 <h5>Comments:</h5>
 
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <input type="text" id="content" class="form-control" formControlName="content"
-        [ngClass]="{'is-invalid': ((content?.dirty || content?.touched) && content?.invalid)}">
+<div *ngIf="userCanComment()">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <input type="text" id="content" class="form-control" formControlName="content"
+            [ngClass]="{'is-invalid': ((content?.dirty || content?.touched) && content?.invalid)}">
 
-    <div class="form-buttons">
-        <button type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
-            [disabled]="!formGroup.valid">Comment</button>
-    </div>
-</form>
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-success" [ngClass]="{'btn-disabled' : !formGroup.valid }"
+                [disabled]="!formGroup.valid">Comment</button>
+        </div>
+    </form>
+</div>
 
 <ul>
     <li *ngFor="let c of comments">

@@ -31,6 +31,16 @@ export class PostCommentsComponent implements OnInit {
 
     ngOnInit(): void { }
 
+    userCanComment() {
+        let user = this.authenticationService.getUserFromMemory();
+
+        if (user == undefined) {
+            return false;
+        }
+
+        return true;
+    }
+
     ngOnChanges() {
         if (this.postId != undefined) {
             this.commentService.getCommentsByPost(this.postId)

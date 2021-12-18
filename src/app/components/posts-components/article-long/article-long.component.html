@@ -1,4 +1,5 @@
 <article>
+  <a [routerLink]="['/']">Home</a> > <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a> 
     <h3 class="long-title">{{post.title}}</h3>
 
     <h4 class="long">Category: <a [routerLink]="['/c/', post.categoryName]">{{post.categoryName}}</a></h4>
