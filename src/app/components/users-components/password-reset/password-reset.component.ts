@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class PasswordResetComponent implements OnInit {
 
-    @Input() emailAdrress: String = new String();
+    @Input() emailAdrress: String = new String;
 
     public formGroup: FormGroup = new FormGroup({
         code: new FormControl('', Validators.required),
@@ -19,23 +19,14 @@ export class PasswordResetComponent implements OnInit {
         password2: new FormControl('', Validators.required)
     });
 
-    successMessage: String = new String();
-    errorMessage: String = new String();
+    successMessage: String = new String;
+    errorMessage: String = new String;
 
     constructor(
-        private authorizationGuardService: AuthorizationGuardService,
-        private authenticationService: AuthenticationService,
         private userService: UserService
     ) { }
 
-    ngOnInit(): void {
-        this.authorizationGuardService.userNeedsToBeLogged(false);
-
-        this.authenticationService.authenticationErrorSubject
-            .subscribe((error) => {
-                this.errorMessage = error;
-            });
-    }
+    ngOnInit(): void { }
 
     get code() { return this.formGroup.get('code'); }
     get password1() { return this.formGroup.get('password1'); }

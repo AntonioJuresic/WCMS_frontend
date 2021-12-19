@@ -7,19 +7,19 @@
 
 <section class="container-large">
     <app-user-detail [user]="user"></app-user-detail>
+</section>
 
+<section class="container-extra-large">
     <h3>Posts:</h3>
     <div class="posts">
-        <article *ngFor="let p of posts;">
-            <app-article-short [post]="p"></app-article-short>
-        </article>
+        <app-article-short *ngFor="let p of posts;" [post]="p"></app-article-short>
     </div>
 
     <h3>Comments:</h3>
     <div>
         <app-user-comments [username]="user.username"></app-user-comments>
     </div>
-    
+
     <div *ngIf="errorMessage.length != 0">
         <p>{{errorMessage}}</p>
     </div>

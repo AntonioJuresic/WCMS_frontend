@@ -22,19 +22,10 @@ export class PasswordSendCodeComponent implements OnInit {
     errorMessage: String = new String;
 
     constructor(
-        private authorizationGuardService: AuthorizationGuardService,
-        private authenticationService: AuthenticationService,
         private userService: UserService
     ) { }
 
-    ngOnInit(): void {
-        this.authorizationGuardService.userNeedsToBeLogged(false);
-
-        this.authenticationService.authenticationErrorSubject
-            .subscribe((error) => {
-                this.errorMessage = error;
-            });
-    }
+    ngOnInit(): void { }
 
     get email() { return this.formGroup.get('email'); }
 
@@ -54,7 +45,7 @@ export class PasswordSendCodeComponent implements OnInit {
                     this.errorMessage = "";
 
                     this.emailSent.emit(new Boolean(true));
-                    this.emailAdrress.emit(email.email);
+                    this.emailAdrress.emit(email.email.toString());
                 },
                 error => {
                     this.successMessage = "";

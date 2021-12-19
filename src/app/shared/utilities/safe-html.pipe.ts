@@ -8,7 +8,7 @@ export class SafeHtmlPipe implements PipeTransform {
 
     constructor(private sanitizer: DomSanitizer) { }
 
-    transform(style: string | String) {
+    transform(style: undefined | string | String) {
         if(style == undefined || style.length == 0 || style.length.valueOf() == 0) {
             return "";
         }
